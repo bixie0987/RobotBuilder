@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Spider extends Actor
+public class Spider extends SuperSmoothMover
 {
     /**
      * Act - do whatever the Spider wants to do. This method is called whenever
