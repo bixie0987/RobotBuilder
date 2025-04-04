@@ -27,7 +27,8 @@ public class MyWorld extends World
         int spawnChance = 100;
         int randNum = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances
         if(randNum < spawnChance){ //chance for a spider to spawn. change logic
-            addObject(Spider);
+            addObject(new Spider("Right"), 300, 800); //added random nums for x and y for now
+            //x and y should change based on team
         }
     }
 }
