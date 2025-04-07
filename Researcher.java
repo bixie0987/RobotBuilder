@@ -18,9 +18,9 @@ public class Researcher extends Scientist
     
     public void act()
     {
-        if (getWorld() == null) {
-            killSpider();
-        }
+        
+        killSpider();
+    
         // Add your action code here.
     }
     
