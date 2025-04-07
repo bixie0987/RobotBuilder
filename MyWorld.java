@@ -8,26 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    private GreenfootImage background;
-<<<<<<< HEAD
-
-=======
-    
+    private GreenfootImage background; 
     //x spawn coordinate for spiders. this is set for the team on the left
     private int spiderXSpawn = 100;
-    
->>>>>>> subs
-    /**
+        /**
      * Constructor for objects of class MyWorld.
      * 
      */
     public MyWorld()
-    {    
-<<<<<<< HEAD
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-=======
+    {  
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
->>>>>>> subs
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
@@ -35,7 +25,6 @@ public class MyWorld extends World
     }
     
     public void act(){
-        spawn();
         spawn("Right");
         spawn("Left");
     }
@@ -50,7 +39,6 @@ public class MyWorld extends World
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
         if(randNum < spawnChance){ //chance for a spider to spawn. change logic
-            addObject(new Spider("Right"), 300, 800); //added random nums for x and y for now
             addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
