@@ -8,26 +8,50 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+<<<<<<< Updated upstream
 
+=======
+    private GreenfootImage background;
+    
+    //x spawn coordinate for spiders. this is set for the team on the left
+    private int spiderXSpawn = 100;
+    
+>>>>>>> Stashed changes
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
     public MyWorld()
     {    
+<<<<<<< Updated upstream
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+=======
+        // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
+        super(1024, 800, 1); 
+        background = new GreenfootImage("background01.png");
+        setBackground(background);
+
+>>>>>>> Stashed changes
     }
     
     public void act(){
-        spawn();
+        spawn("Right");
+        spawn("Left");
     }
     
-    public void spawn(){
+    public void spawn(String teamSide){
         int spawnChance = 100;
         int randNum = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances
+        if(teamSide.equals("Right")){ //change coordinates based on spawn side
+            spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
+        }
+        else{
+            spiderXSpawn = 100; //sets spider x coordinate to left side
+        }
         if(randNum < spawnChance){ //chance for a spider to spawn. change logic
             addObject(new Spider("Right"), 300, 800); //added random nums for x and y for now
+            addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
     }

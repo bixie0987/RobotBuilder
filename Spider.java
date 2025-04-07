@@ -16,8 +16,8 @@ public class Spider extends SuperSmoothMover
      * sabotages.
      * 
      */
-    public Spider(String team){
-        this.team = team;
+    public Spider(){
+        
     }
     /**
      * Act - do whatever the Spider wants to do. This method is called whenever
