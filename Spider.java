@@ -17,7 +17,7 @@ public class Spider extends SuperSmoothMover
      * 
      */
     public Spider(){
-        
+        setImage("spider.png");
     }
     /**
      * Act - do whatever the Spider wants to do. This method is called whenever
