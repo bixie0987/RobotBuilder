@@ -14,6 +14,8 @@ public class Supplier extends Scientist
      */
     public void act()
     {
-        // Add your action code here.
+        setRotation(-90);
+        move(2);
     }
+    
 }
