@@ -11,7 +11,18 @@ public class MyWorld extends World
     private GreenfootImage background; 
     //x spawn coordinate for spiders. this is set for the team on the left
     private int spiderXSpawn;
-
+    
+    //The number of researchers player can choose from 1-4
+    private int resNumRight = 4;
+    private int resNumLeft = 4;
+    
+    private int[][] coordsRight = {
+        {114, 550}, {228, 550}, {342, 550}, {456, 550}
+    };
+    
+    private int[][] coordsLeft = {
+        {912, 550}, {798, 550}, {684, 550}, {570, 550} 
+    };
     /**
 
      * Constructor for objects of class MyWorld.
@@ -28,6 +39,7 @@ public class MyWorld extends World
     }
 
     public void act(){
+        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
@@ -46,9 +58,21 @@ public class MyWorld extends World
         else{
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
-        if(randNum == spawnChance){ //chance for a spider to spawn. change logic
-            addObject(new Spider(teamSide), spiderXSpawn, 600); //added random nums for x and y for now
 
+
+        if(randomNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
+            addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+            //x and y should change based on team
+        }
+        
+    }
+    
+    public void spawn(int rightSide, int leftSide) {
+        for (int i = 0; i < rightSide; i++) {
+            addObject(new Researcher(), coordsRight[i][0], coordsRight[i][1]);
+        }
+        for (int i = 0; i < leftSide; i++) {
+            addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
     }
 }
