@@ -40,7 +40,10 @@ public class MyWorld extends World
     }
     
     public void act(){
+<<<<<<< Updated upstream
         spawn(resNumRight, resNumLeft);
+=======
+>>>>>>> Stashed changes
         spawn("Right");
         spawn("Left");
     }
@@ -54,8 +57,12 @@ public class MyWorld extends World
         else{
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
+<<<<<<< Updated upstream
 
         if(randNum < spawnChance){ //chance for a spider to spawn. change logic
+=======
+        if(randNum < spawnChance) { //chance for a spider to spawn. change logic//added random nums for x and y for now
+>>>>>>> Stashed changes
             addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
