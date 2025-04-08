@@ -10,7 +10,7 @@ public class MyWorld extends World
 {
     private GreenfootImage background; 
     //x spawn coordinate for spiders. this is set for the team on the left
-    private int spiderXSpawn = 100;
+    private int spiderXSpawn;
     
     //The number of researchers player can choose from 1-4
     private int resNumRight = 4;
@@ -23,8 +23,6 @@ public class MyWorld extends World
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550} 
     };
-    //x spawn coordinate for spiders. this is set for the team on the left
-    private int spiderXSpawn = 100;
 
     /**
 
@@ -42,6 +40,7 @@ public class MyWorld extends World
     }
 
     public void act(){
+        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
