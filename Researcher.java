@@ -16,9 +16,12 @@ public class Researcher extends Scientist
     public Researcher () {
         setImage("R-Placeholder.png");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         setImage(img);
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     }
