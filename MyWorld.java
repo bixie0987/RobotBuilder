@@ -32,7 +32,7 @@ public class MyWorld extends World
      * 
      */
     public MyWorld()
-    {    
+
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
@@ -53,6 +53,7 @@ public class MyWorld extends World
         else{
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
+
 
         if(randNum < spawnChance) { //chance for a spider to spawn. change logic//added random nums for x and y for now
             addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
