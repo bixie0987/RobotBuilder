@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private GreenfootImage background;
+<<<<<<< Updated upstream
     
     //x spawn coordinate for spiders. this is set for the team on the left
     private int spiderXSpawn = 100;
@@ -24,15 +25,25 @@ public class MyWorld extends World
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550} 
     };
+=======
+    //x spawn coordinate for spiders. this is set for the team on the left
+    private int spiderXSpawn = 100;
+
+>>>>>>> Stashed changes
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
     public MyWorld()
     {    
+<<<<<<< Updated upstream
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
 
+=======
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
+>>>>>>> Stashed changes
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
