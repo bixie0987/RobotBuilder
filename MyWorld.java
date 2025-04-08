@@ -50,4 +50,13 @@ public class MyWorld extends World
             }
         }
     }
+    
+    /**
+     * End World triggers when game is over, and one team achieves victory
+     */
+    public void endGame()
+    {
+        // if (condition)
+        Greenfoot.setWorld(new EndScreen());    
+    }
 }
