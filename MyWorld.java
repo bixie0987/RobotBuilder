@@ -23,7 +23,6 @@ public class MyWorld extends World
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550} 
     };
-    private int spiderXSpawn;
     /**
 
      * Constructor for objects of class MyWorld.
