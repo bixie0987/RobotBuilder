@@ -29,6 +29,11 @@ public class MyWorld extends World
     public void act(){
         spawn("Right");
         spawn("Left");
+        
+        if(Greenfoot.isKeyDown("up")) {
+            SettingsScreen s = new SettingsScreen();
+            Greenfoot.setWorld(s);
+        }
     }
     
     public void spawn(String teamSide){
