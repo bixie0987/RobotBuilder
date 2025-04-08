@@ -28,7 +28,6 @@ public class Researcher extends Scientist
 
     public void killSpider () {
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
-
         if (target != null) {
             getWorld().removeObject(target);
         } else {
@@ -47,7 +46,6 @@ public class Researcher extends Scientist
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
             double distance = Math.hypot(getX() - spider.getX(), getY() - spider.getY());
-
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closest = spider;

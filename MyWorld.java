@@ -8,8 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    private GreenfootImage background;
-    
+    private GreenfootImage background; 
     //x spawn coordinate for spiders. this is set for the team on the left
     private int spiderXSpawn = 100;
     
@@ -28,24 +27,32 @@ public class MyWorld extends World
     private int spiderXSpawn = 100;
 
     /**
+
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld() {
 
+    public MyWorld()
+    {   
+        // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
 
     }
-    
-    public void act() {
+
+    public void act(){
         spawn("Right");
         spawn("Left");
+        
+        if(Greenfoot.isKeyDown("up")) {
+            SettingsScreen s = new SettingsScreen();
+            Greenfoot.setWorld(s);
+        }
     }
-    
-    public void spawn(String teamSide) {
-        int spawnChance = 100;
+
+    public void spawn(String teamSide){
+        int spawnChance = 1;
         int randNum = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
             spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
