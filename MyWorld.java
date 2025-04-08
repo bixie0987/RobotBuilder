@@ -31,7 +31,7 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()
+    public MyWorld() {
 
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
@@ -39,12 +39,12 @@ public class MyWorld extends World
 
     }
     
-    public void act(){
+    public void act() {
         spawn("Right");
         spawn("Left");
     }
     
-    public void spawn(String teamSide){
+    public void spawn(String teamSide) {
         int spawnChance = 100;
         int randNum = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
