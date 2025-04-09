@@ -13,17 +13,21 @@ public class Researcher extends Scientist
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Researcher () {
-        
+        setImage("R-Placeholder.png");
+        GreenfootImage img = getImage();
+        img.scale(img.getWidth() / 2, img.getHeight() / 2);
+        setImage(img);
     }
-    
-    public void act()
-    {
+
+    public void act(){
             if (getWorld() == null) {
                     if (getWorld() == null) {
                 killSpider();
+                }
+            // Add your action code here.
             }
             // Add your action code here.
-        }
+        killSpider();
     }
     
     public void killSpider () {
