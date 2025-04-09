@@ -34,6 +34,6 @@ public class Robot extends SuperSmoothMover
      */
     public void stageUp() {
         stage++;
-        getWorld().addObject(new PoofAnimation(), 100, 100);
+        getWorld().addObject(new PoofAnimation(), getX(), getY());
     }
 }
