@@ -58,13 +58,9 @@ public class MyWorld extends World
         else{
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
-
-
-        if(randomNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
-            addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
-            //x and y should change based on team
+        if(randNum == spawnChance){
+            addObject(new Spider(teamSide), spiderXSpawn, 600);
         }
-        
     }
     
     public void spawn(int rightSide, int leftSide) {
