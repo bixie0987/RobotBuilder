@@ -33,6 +33,12 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        // initiate progress bar
+        SuperStatBar materialProgress = new SuperStatBar(100, 50, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
+        addObject(materialProgress, 465, 300);
+        // initiate piles
+        Materials woodPile = new Materials();
+        addObject(woodPile, 460, 430);
         
         spawn(resNumRight, resNumLeft);
     }
