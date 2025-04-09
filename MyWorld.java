@@ -22,6 +22,12 @@ public class MyWorld extends World{
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550} 
     };
+public class MyWorld extends World
+{
+    private GreenfootImage background;  
+    //x spawn coordinate for spiders. this is set for the team on the left
+    private int spiderXSpawn;
+    private int supplierXSpawn;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -32,6 +38,9 @@ public class MyWorld extends World{
     public MyWorld()
     {      
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
+        super(1024, 800, 1); 
+    public MyWorld()
+    {    
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
@@ -71,6 +80,29 @@ public class MyWorld extends World{
         }
         for (int i = 0; i < leftSide; i++) {
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
+
+    }
+    
+    public void spawn(String teamSide){
+        int spawnChanceSpider = 1;
+        int spawnChanceSupplier = 1;
+        int randNum1 = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances of spider
+        int randNum2 = Greenfoot.getRandomNumber(60); //spawn random num from 0-60, for spawn chances of spider
+        if(teamSide.equals("Right")){ //change coordinates based on spawn side
+            spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
+            supplierXSpawn = 531; //sets supplier x coordinate to the right side of the screen
+        }
+        else{
+            spiderXSpawn = 100; //sets spider x coordinate to left side
+            supplierXSpawn = 471; //sets supplier x coordinate to left
+        }
+        if(randNum1 == spawnChanceSpider){ //chance for a spider to spawn. change logic
+            addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+            //x and y should change based on team
+        }
+        if(randNum2 == spawnChanceSupplier){//chance for a supplier to spawn. change logic
+            addObject(new Supplier(), supplierXSpawn, 720); //added random nums for x and y for now
+            //x and y should change based on team
         }
     }
 }
