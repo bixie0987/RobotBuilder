@@ -22,6 +22,11 @@ public class MyWorld extends World
     
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550}};
+        
+    // Robots (good and evil)
+    private Robot robotGood;
+    private Robot robotEvil;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -35,14 +40,28 @@ public class MyWorld extends World
         setBackground(background);
         
         spawn(resNumRight, resNumLeft);
+        
+        // Create robots
+        robotGood = new Robot("good", 0.55);
+        robotEvil = new Robot("evil", 0.55);
+        addObject(robotGood, 250, 300);
+        addObject(robotEvil, 775, 300);
     }
 
     public void act(){
         spawn("Right");
         spawn("Left");
+        
+        // TO BE CHANGED EVENTUALLY: to switch to SettingsScreen, press "up"
         if(Greenfoot.isKeyDown("up")) {
             SettingsScreen s = new SettingsScreen();
             Greenfoot.setWorld(s);
+        }
+        
+        // TO BE CHANGED EVENTUALLY: to test PoofAnimation, right click
+        MouseInfo m = Greenfoot.getMouseInfo();
+        if(m != null && m.getButton() == 3) {
+            robotGood.stageUp();
         }
     }
     
