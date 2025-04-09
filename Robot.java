@@ -1,17 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Robot here.
+ * Controls robots' appearance, animation, and behaviour.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version April 2025
  */
 public class Robot extends SuperSmoothMover
 {
-    private int stage = 0;
+    private int stage = 0; // stage of material
     
     private GreenfootImage image;
     
+    /**
+     * Sets robot's image
+     * 
+     * @param type     "good" for viewer's robot (left), "evil" for opposing robot (right)
+     * @param scale    Multipler to scale the image to
+     */
     public Robot(String type, double scale) {
         image = new GreenfootImage("robot_" + type + ".png");
         image.scale((int)(image.getWidth()*scale), (int)(image.getHeight()*scale));
@@ -21,5 +27,13 @@ public class Robot extends SuperSmoothMover
     public void act()
     {
         // Add your action code here.
+    }
+    
+    /**
+     * Prepares robot for next stage of material - play poof animation, change robot image UNFINISHED!!!!
+     */
+    public void stageUp() {
+        stage++;
+        getWorld().addObject(new PoofAnimation(), 100, 100);
     }
 }
