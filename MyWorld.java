@@ -36,10 +36,10 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
-
+        
+        spawn(resNumRight, resNumLeft);
     }
     public void act(){
-        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         if(Greenfoot.isKeyDown("up")) {

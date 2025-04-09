@@ -15,7 +15,7 @@ public class Researcher extends Scientist
     public Researcher () {
         setImage("R-Placeholder.png");
         GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 2, img.getHeight() / 2);
+        img.scale(img.getWidth() / 4, img.getHeight() / 4);
         setImage(img);
     }
     public void act()

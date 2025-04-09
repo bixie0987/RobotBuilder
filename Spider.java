@@ -40,11 +40,4 @@ public class Spider extends SuperSmoothMover
             setRotation(-90);
         }
     }
-
-    public int getX(){
-        return this.getX();
-    }
-    public int getY(){
-        return this.getY();
-    }
 }
