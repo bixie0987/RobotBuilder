@@ -23,6 +23,11 @@ public class MyWorld extends World
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550} 
     };
+    
+    // Robots (good and evil)
+    private Robot robotGood;
+    private Robot robotEvil;
+    
     /**
 
      * Constructor for objects of class MyWorld.
@@ -36,6 +41,12 @@ public class MyWorld extends World
         background = new GreenfootImage("background01.png");
         setBackground(background);
 
+        
+        // Create robots
+        robotGood = new Robot("good", 0.55);
+        robotEvil = new Robot("evil", 0.55);
+        addObject(robotGood, 250, 300);
+        addObject(robotEvil, 775, 300);
     }
 
     public void act(){
@@ -62,6 +73,8 @@ public class MyWorld extends World
 
         if(randomNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
             addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+        if(randNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
+            //addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
         
