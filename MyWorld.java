@@ -10,7 +10,7 @@ public class MyWorld extends World{
     private GreenfootImage background;
     
     //x spawn coordinate for spiders. this is set for the team on the left
-    private int spiderXSpawn = 100;
+    private int spiderXSpawn;
     //The number of researchers player can choose from 1-4
     private int resNumRight = 4;
     private int resNumLeft = 4;
@@ -22,23 +22,10 @@ public class MyWorld extends World{
     private int[][] coordsLeft = {
         {912, 550}, {798, 550}, {684, 550}, {570, 550} 
     };
-public class MyWorld extends World
-{
-    private GreenfootImage background;  
-    //x spawn coordinate for spiders. this is set for the team on the left
-    private int spiderXSpawn;
-    private int supplierXSpawn;
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1024, 800, 1); 
-    public MyWorld()
-    {      
-        // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
-        super(1024, 800, 1); 
     public MyWorld()
     {    
         super(1024, 800, 1); 
@@ -48,6 +35,7 @@ public class MyWorld extends World
     }
     
     public void act(){
+        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
@@ -81,6 +69,7 @@ public class MyWorld extends World
         for (int i = 0; i < leftSide; i++) {
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
 
+        }
     }
     
     public void spawn(String teamSide){
