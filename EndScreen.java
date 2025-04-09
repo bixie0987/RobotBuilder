@@ -8,13 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EndScreen extends World
 {
-
+    private GreenfootImage goodRobot;
+    private GreenfootImage evilRobot;
     /**
      * Constructor for objects of class EndScreen.
      * 
      */
-    private GreenfootImage goodRobot;
-    private GreenfootImage evilRobot;
     public EndScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
