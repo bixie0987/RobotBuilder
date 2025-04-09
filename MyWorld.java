@@ -9,7 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private GreenfootImage background;
-        //x spawn coordinate for spiders. this is set for the team on the left
+    //x spawn coordinate for spiders. this is set for the team on the left
+
+    //x spawn coordinate for spiders. this is set for the team on the left
     private int spiderXSpawn;
     
     //The number of researchers player can choose from 1-4
@@ -25,7 +27,6 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-
     public MyWorld()   
     {   
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
