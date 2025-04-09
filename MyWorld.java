@@ -60,7 +60,6 @@ public class MyWorld extends World
             addObject(new Spider(teamSide), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
-        
     }
     
     public void spawn(int rightSide, int leftSide) {
