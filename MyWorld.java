@@ -6,8 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
-{
+public class MyWorld extends World{
     private GreenfootImage background;
     
     //x spawn coordinate for spiders. this is set for the team on the left
@@ -30,6 +29,7 @@ public class MyWorld extends World
     public MyWorld()    {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1); 
+    public MyWorld()
     {      
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1); 
@@ -65,7 +65,6 @@ public class MyWorld extends World
             
     }
     
-    
     public void spawn(int rightSide, int leftSide) {
         for (int i = 0; i < rightSide; i++) {
             addObject(new Researcher(), coordsRight[i][0], coordsRight[i][1]);
@@ -74,4 +73,5 @@ public class MyWorld extends World
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
     }
+}
 }
