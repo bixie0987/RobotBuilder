@@ -44,7 +44,9 @@ public class Spider extends SuperSmoothMover
     public int getX(){
         return this.getX();
     }
+    /*
     public int getY(){
         return this.getY();
     }
+    */
 }
