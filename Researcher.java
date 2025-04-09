@@ -18,6 +18,7 @@ public class Researcher extends Scientist
         img.scale(img.getWidth() / 4, img.getHeight() / 4);
         setImage(img);
     }
+
     public void act()
     {
         if (getWorld() == null) {
@@ -40,7 +41,7 @@ public class Researcher extends Scientist
                 move(2);
             }
         }
-    }
+
     public Spider getClosestSpider() {
         Spider closest = null;
         double closestDistance = Double.MAX_VALUE;
@@ -48,11 +49,13 @@ public class Researcher extends Scientist
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
             double distance = Math.hypot(getX() - spider.getX(), getY() - spider.getY());
+
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closest = spider;
             }
         }
         return closest;
+        
     }
 }
