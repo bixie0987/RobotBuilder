@@ -23,4 +23,10 @@ public class Materials extends Actor
     {
         // Add your action code here.
     }
+    
+    public void addedToWorld(World w) 
+    {
+        super.addedToWorld(w);
+        w.addObject(materialProgress, getX(), getY() + 30);
+    }
 }

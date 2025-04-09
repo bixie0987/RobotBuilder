@@ -33,6 +33,8 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        Materials materials = new Materials();
+        addObject(materials, 470, 300);
 
     }
     
