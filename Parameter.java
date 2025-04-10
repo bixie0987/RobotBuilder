@@ -31,9 +31,9 @@ public class Parameter
      * @param y            Y-position of parameter (specifically, the text)
      * @param w            World that parameter exists in (should be SettingsWorld, which passes itself as a parameter)
      */
-    public Parameter(String paramText, int x, int y, World w) {
+    public Parameter(String paramText, int x, int y, World w, int maxVal) {
         // Set parameter values and max values
-        maxVal = 10; // max value of the bar
+        this.maxVal = maxVal; // max value of the bar
         val = 0; // starting value
         
         // Create text
@@ -71,5 +71,12 @@ public class Parameter
         }
         
         counter.updateText(String.valueOf(val));
+    }
+    
+    /**
+     * Returns parameter value
+     */
+    public int getParamValue() {
+        return val;
     }
 }

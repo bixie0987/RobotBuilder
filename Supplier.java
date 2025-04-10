@@ -15,6 +15,13 @@ public class Supplier extends Scientist
      */
     public void act()
     {
-        // Add your action code here.
+        setRotation(-90);
+        move(2);
+        if(this.isTouching(Materials.class)){
+            MyWorld world = (MyWorld) getWorld();
+            world.increaseProgress(5);  // increase by 2 every time it touches
+            getWorld().removeObject(this);
+        }
     }
+    
 }

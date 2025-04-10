@@ -10,19 +10,12 @@ public class Spider extends SuperSmoothMover
 {
     private String team; //team for where the spider is spawned
     private int exitXCoord;
-    private boolean onLeft; //boolean for if it's on the left or right side
     /**
-     * Spider constructor
+     * 
      */
     public Spider(String team){
         setImage("spider.png");
         this.team = team;
-        if(team.equals("Left")){
-            onLeft = true;
-        }
-        else{
-            onLeft = false;
-        }
     }
 
     public void addedToWorld(World w){
@@ -48,12 +41,4 @@ public class Spider extends SuperSmoothMover
             setRotation(-90);
         }
     }
-    /**
-     * Returns the side that the spider came from. Researches who come from the
-     * same side should not attack spiders on the same side.
-     */
-    public boolean getSide(){
-        return onLeft; 
-    }
-
 }

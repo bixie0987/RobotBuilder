@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Materials extends Actor
 {
-    private SuperStatBar materialProgress; // progress bar
+    private GreenfootImage piles;
     /**
      * Act - do whatever the ResearchPile wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -16,7 +16,9 @@ public class Materials extends Actor
     
     public Materials()
     {
-        materialProgress = new SuperStatBar(100, 50, this, 60, 8, 30, Color.ORANGE, Color.DARK_GRAY);
+        piles = new GreenfootImage("woodpiles.png"); 
+        piles.scale(90, 90);                          
+        setImage(piles);
     }
     
     public void act()
