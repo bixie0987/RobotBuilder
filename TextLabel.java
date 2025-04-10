@@ -20,11 +20,11 @@ public class TextLabel extends Actor
      * @param givenColour    Colour of words
      */
     public TextLabel(String text, int givenSize, Color givenColour) {
-        // set text values
+        // Set text values
         size = givenSize;
         colour = givenColour;
         
-        // draw text
+        // Draw text
         GreenfootImage img = new GreenfootImage(text, size, colour, highlightColour);
         setImage(img);
     }
