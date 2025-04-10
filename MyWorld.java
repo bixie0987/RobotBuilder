@@ -71,6 +71,15 @@ public class MyWorld extends World
         }
     }
     
+    //plays or stops background music depending on if scenario is running or not
+    public void started(){
+        Sounds.getInstance().playBackgroundMusicLoop();
+    }
+
+    public void stopped(){
+        Sounds.getInstance().stopBackgroundMusic();
+    }
+    
     /**
      * End World triggers when game is over, and one team achieves victory
      */

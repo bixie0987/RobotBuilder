@@ -20,16 +20,16 @@ public class Researcher extends Scientist
     }
 
     public void act(){
+        if (getWorld() == null) {
             if (getWorld() == null) {
-                    if (getWorld() == null) {
                 killSpider();
-                }
-            // Add your action code here.
             }
             // Add your action code here.
+        }
+        // Add your action code here.
         killSpider();
     }
-    
+
     public void killSpider () {
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
         if (target != null) {
@@ -57,7 +57,7 @@ public class Researcher extends Scientist
             }
         }
         return closest;
-        
+
     }
 }
 
