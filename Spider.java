@@ -8,26 +8,36 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Spider extends SuperSmoothMover
 {
-    private String team;
-    /**chance of spawn should be an integer set by the user. chance of spawn
-     * will be an integer from 0-100 that sets how often a spider spawns
-     * per 10 seconds
-     * team should either be left or right. the team will be who the spider
-     * sabotages.
+    private String team; //team for where the spider is spawned
+    private int exitXCoord;
+    /**
      * 
      */
-    public Spider(){
+    public Spider(String team){
         setImage("spider.png");
+        this.team = team;
     }
+
+    public void addedToWorld(World w){
+        setRotation(90);
+        if(team.equals("Right")){
+            exitXCoord = w.getWidth()/2 - 100;
+        }
+        else{
+            exitXCoord = w.getWidth()/2 + 100;
+        }
+    }
+
     /**
      * Act - do whatever the Spider wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        // Add your action code here.
-    }
-    public void sabotage(String team){
-        
+        move(1);
+        if(getY()==750){ //if reached the coordinates of tubes
+            setLocation(exitXCoord, getY());
+            setRotation(-90);
+        }
     }
 }
