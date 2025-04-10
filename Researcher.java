@@ -41,6 +41,7 @@ public class Researcher extends Scientist
                 move(2);
             }
         }
+    }
 
     public Spider getClosestSpider() {
         Spider closest = null;
