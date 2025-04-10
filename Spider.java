@@ -26,6 +26,7 @@ public class Spider extends SuperSmoothMover
         else{
             exitXCoord = w.getWidth()/2 + 100;
         }
+        Sounds.getInstance().playSounds(Sounds.SPIDER_SPAWN);
     }
 
     /**
