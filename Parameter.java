@@ -48,11 +48,12 @@ public class Parameter
         bMinus = new Button("minus_icon.png", 0.1);
         
         // Add all objects, ADJUST SPACING HERE
+        x += text.getImage().getWidth()/2; // add offset to entire parameter's x-position so all spacing stays consistent
         w.addObject(text, x, y);
-        w.addObject(bar, x+150, y);
-        w.addObject(counter, x+225, y);
-        w.addObject(bMinus, x+250, y);
-        w.addObject(bPlus, x+280, y);
+        w.addObject(bar, x+200, y);
+        w.addObject(counter, x+275, y);
+        w.addObject(bMinus, x+300, y);
+        w.addObject(bPlus, x+330, y);
     }
     
     /**

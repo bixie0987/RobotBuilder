@@ -21,9 +21,9 @@ public class SettingsScreen extends World
         super(1024, 800, 1);
         
         // Create parameters (including their corresponding buttons/bars)
-        param1 = new Parameter("Parameter 1", 100, 100, this, 10);
-        param2 = new Parameter("Parameter 2", 100, 200, this, 10);
-        numResearchers = new Parameter("Number of researchers", 100, 300, this, 4);
+        param1 = new Parameter("Parameter 1", 200, 100, this, 10);
+        param2 = new Parameter("Parameter 2", 200, 200, this, 10);
+        numResearchers = new Parameter("Number of researchers", 200, 300, this, 4);
         
         // Create 'Finish' button
         finishButton = new Button("finish.png", 0.5);
@@ -35,5 +35,12 @@ public class SettingsScreen extends World
         param1.update();
         param2.update();
         numResearchers.update();
+        
+        // Check if 'Finish' button is pressed
+        if(finishButton.getPressed()) {
+            // Exit SettingsScreen and switch to simulation screen (MyWorld), save parameters
+            ParamStorage.setNumResearchers(numResearchers.getParamValue());
+            ParamStorage.printAll();
+        }
     }
 }
