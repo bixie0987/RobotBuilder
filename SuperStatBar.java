@@ -378,4 +378,8 @@ public class SuperStatBar extends Actor
         }
 
     }
+    
+    public int getCurrentValue() {
+        return currVals[0];  // Return the current value of the first bar
+    }
 }

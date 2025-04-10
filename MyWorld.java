@@ -27,6 +27,14 @@ public class MyWorld extends World
     private Robot robotGood;
     private Robot robotEvil;
     
+    // progress bar for piles
+    private SuperStatBar materialProgress1;
+    private SuperStatBar materialProgress2;
+    
+    // materials
+    private Materials pile1;
+    private Materials pile2;
+
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -38,12 +46,16 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
-        // initiate progress bar
-        SuperStatBar materialProgress = new SuperStatBar(100, 50, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
-        addObject(materialProgress, 465, 300);
+        // initiate progress bars
+        materialProgress1 = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
+        addObject(materialProgress1, 464, 340);
+        materialProgress2 = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
+        addObject(materialProgress2, 536, 340);
         // initiate piles
-        Materials woodPile = new Materials();
-        addObject(woodPile, 460, 430);
+        pile1 = new Materials();
+        addObject(pile1, 455, 430);
+        pile2 = new Materials();
+        addObject(pile2, 545, 430);
         
         spawn(resNumRight, resNumLeft);
         
@@ -109,4 +121,10 @@ public class MyWorld extends World
         // if (condition)
         Greenfoot.setWorld(new EndScreen());    
     }
+    
+    public void increaseProgress(int amount) 
+    {
+        materialProgress1.update(materialProgress1.getCurrentValue() + amount); // increase the progress bar
+        materialProgress2.update(materialProgress1.getCurrentValue() + amount);
+    }  
 }
