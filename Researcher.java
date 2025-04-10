@@ -15,7 +15,6 @@ public class Researcher extends Scientist
     public Researcher () {
         setImage("R-Placeholder.png");
         GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 2, img.getHeight() / 2);
         img.scale(img.getWidth() / 4, img.getHeight() / 4);
         setImage(img);
     }
@@ -47,7 +46,6 @@ public class Researcher extends Scientist
     public Spider getClosestSpider() {
         Spider closest = null;
         double closestDistance = Double.MAX_VALUE;
-
     
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
