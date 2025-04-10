@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SettingsScreen extends World
 {
-    private Parameter param1, param2;
+    private Parameter param1, param2, numResearchers;
     
     /**
      * Constructor for objects of class SettingsScreen.
@@ -19,14 +19,14 @@ public class SettingsScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1);
         
-        param1 = new Parameter("Parameter 1", 100, 100, this);
-        param2 = new Parameter("Parameter 2", 100, 200, this);
-        
-        
+        param1 = new Parameter("Parameter 1", 100, 100, this, 10);
+        param2 = new Parameter("Parameter 2", 100, 200, this, 10);
+        numResearchers = new Parameter("Number of researchers", 100, 300, this, 4);
     }
     
     public void act() {
         param1.update();
         param2.update();
+        numResearchers.update();
     }
 }
