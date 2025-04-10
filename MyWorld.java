@@ -19,11 +19,9 @@ public class MyWorld extends World
     
     private int[][] coordsRight = {
         {180, 550}, {220, 550}, {260, 550}, {300, 550}};
-    }
     
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
-    }
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
@@ -130,4 +128,4 @@ public class MyWorld extends World
         materialProgress2.update(materialProgress1.getCurrentValue() + amount);
     }  
 }
-}
+
