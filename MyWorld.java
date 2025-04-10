@@ -36,10 +36,10 @@ public class MyWorld extends World
         background = new GreenfootImage("background01.png");
         setBackground(background);
 
+        spawn(resNumRight, resNumLeft);
     }
 
     public void act(){
-        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
@@ -60,8 +60,7 @@ public class MyWorld extends World
         }
 
 
-        if(randomNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
-            addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+        if(randNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
             addObject(new Spider(teamSide), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
