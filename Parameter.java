@@ -44,10 +44,8 @@ public class Parameter
         bar = new SuperStatBar(maxVal, val, null, 100, 10, 0);
         
         // Create plus/minus sign buttons
-        GreenfootImage plusImage = new GreenfootImage("plus_icon.png");
-        GreenfootImage minusImage = new GreenfootImage("minus_icon.png");
-        bPlus = new Button(plusImage, 0.1);
-        bMinus = new Button(minusImage, 0.1);
+        bPlus = new Button("plus_icon.png", 0.1);
+        bMinus = new Button("minus_icon.png", 0.1);
         
         // Add all objects, ADJUST SPACING HERE
         w.addObject(text, x, y);
