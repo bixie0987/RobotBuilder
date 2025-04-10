@@ -22,6 +22,7 @@ public class MyWorld extends World
     
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+    
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
@@ -54,7 +55,6 @@ public class MyWorld extends World
     }
 
     public void act(){
-        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
