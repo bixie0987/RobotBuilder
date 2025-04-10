@@ -62,6 +62,7 @@ public class MyWorld extends World
 
         if(randomNum == spawnChance){ //chance for a spider to spawn. change logic//added random nums for x and y for now
             addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+            addObject(new Spider(teamSide), spiderXSpawn, 600); //added random nums for x and y for now
             //x and y should change based on team
         }
         
@@ -74,5 +75,14 @@ public class MyWorld extends World
         for (int i = 0; i < leftSide; i++) {
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
+    }
+
+    /**
+     * End World triggers when game is over, and one team achieves victory
+     */
+    public void endGame()
+    {
+        // if (condition)
+        Greenfoot.setWorld(new EndScreen());    
     }
 }
