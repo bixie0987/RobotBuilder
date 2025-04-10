@@ -40,7 +40,6 @@ public class SettingsScreen extends World
         if(finishButton.getPressed()) {
             // Exit SettingsScreen and switch to simulation screen (MyWorld), save parameters
             ParamStorage.setNumResearchers(numResearchers.getParamValue());
-            ParamStorage.printAll();
         }
     }
 }
