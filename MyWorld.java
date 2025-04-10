@@ -107,7 +107,7 @@ public class MyWorld extends World
      */
     public void endGame()
     {
-        // condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
+        // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
         Greenfoot.setWorld(new EndScreen());    
     }
 }

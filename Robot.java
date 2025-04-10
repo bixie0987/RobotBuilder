@@ -43,20 +43,20 @@ public class Robot extends SuperSmoothMover
     }
     
     /**
-     * Prepares robot for next stage of material - play poof animation, change robot image UNFINISHED!!!
+     * Prepares robot for next stage of material - plays poof animation, changes robot image, updates material progress bar UNFINISHED!!!
      */
     public void stageUp() {
-        // play poof animation
+        // Play poof animation
         getWorld().addObject(new PoofAnimation(), getX(), getY());
         
-        // change appearance UNFINISHED!!!!
+        // Change appearance UNFINISHED!!!!
         
-        // update material progress bar
+        // Update material progress bar
         matProgBars[stage].update(1); // change current stage box to be completed (set its currVal to 1)
         if(stage < NUM_STAGES-1) {
             stage++;
         } else {
-            // trigger endgame screen
+            // Trigger endgame screen
             ((MyWorld)getWorld()).endGame(); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
         }
     }
