@@ -38,8 +38,11 @@ public class SettingsScreen extends World
         
         // Check if 'Finish' button is pressed
         if(finishButton.getPressed()) {
-            // Exit SettingsScreen and switch to simulation screen (MyWorld), save parameters
+            // Save parameters
             ParamStorage.setNumResearchers(numResearchers.getParamValue());
+            
+            // Exit SettingsScreen and switch to simulation screen (MyWorld)
+            Greenfoot.setWorld(new MyWorld());
         }
     }
 }
