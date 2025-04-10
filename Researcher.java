@@ -34,12 +34,6 @@ public class Researcher extends Scientist
             startY = getY();
             firstTime = true;
         }
-        if (getWorld() == null) {
-            if (getWorld() == null) {
-                killSpider();
-            }
-            // Add your action code here.
-        }
         // Add your action code here.
         killSpider();
     }
