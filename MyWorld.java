@@ -38,6 +38,7 @@ public class MyWorld extends World
     }
 
     public void act(){
+        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         if(Greenfoot.isKeyDown("up")) {
@@ -84,4 +85,5 @@ public class MyWorld extends World
         // if (condition)
         Greenfoot.setWorld(new EndScreen());    
     }
+}
 }
