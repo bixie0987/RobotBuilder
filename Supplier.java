@@ -17,9 +17,12 @@ public class Supplier extends Scientist
     {
         setRotation(-90);
         move(2);
-        if(this.isTouching(Materials.class)){
-            MyWorld world = (MyWorld) getWorld();
-            world.increaseProgress(5);  // increase by 2 every time it touches
+        
+        // determine which side is touched
+        Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
+        if (touchedPile != null) {
+            String pileSide = touchedPile.getSide();
+            touchedPile.increaseProgress(5);  // Only the touched pile's bar increases
             getWorld().removeObject(this);
         }
     }
