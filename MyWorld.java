@@ -19,9 +19,15 @@ public class MyWorld extends World
     
     private int[][] coordsRight = {
         {180, 550}, {220, 550}, {260, 550}, {300, 550}};
+    }
     
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+    }
+    // Robots (good and evil)
+    private Robot robotGood;
+    private Robot robotEvil;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -33,17 +39,37 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        // initiate progress bar
+        SuperStatBar materialProgress = new SuperStatBar(100, 50, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
+        addObject(materialProgress, 465, 300);
+        // initiate piles
+        Materials woodPile = new Materials();
+        addObject(woodPile, 460, 430);
         
         spawn(resNumRight, resNumLeft);
+        
+        // Create robots
+        robotGood = new Robot("good", 0.55);
+        robotEvil = new Robot("evil", 0.55);
+        addObject(robotGood, 250, 300);
+        addObject(robotEvil, 775, 300);
     }
 
     public void act(){
         spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
+        
+        // TO BE CHANGED EVENTUALLY: to switch to SettingsScreen, press "up"
         if(Greenfoot.isKeyDown("up")) {
             SettingsScreen s = new SettingsScreen();
             Greenfoot.setWorld(s);
+        }
+        
+        // TO BE CHANGED EVENTUALLY: to test PoofAnimation, right click
+        MouseInfo m = Greenfoot.getMouseInfo();
+        if(m != null && m.getButton() == 3) {
+            robotGood.stageUp();
         }
     }
     
