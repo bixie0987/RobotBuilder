@@ -26,6 +26,7 @@ public class Spider extends SuperSmoothMover
         else{
             exitXCoord = w.getWidth()/2 + 100;
         }
+        Sounds.getInstance().playSounds(Sounds.SPIDER_SPAWN);
     }
 
     /**
@@ -39,12 +40,5 @@ public class Spider extends SuperSmoothMover
             setLocation(exitXCoord, getY());
             setRotation(-90);
         }
-    }
-
-    public int getX(){
-        return this.getX();
-    }
-    public int getY(){
-        return this.getY();
     }
 }
