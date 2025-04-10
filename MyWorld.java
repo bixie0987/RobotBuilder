@@ -114,5 +114,3 @@ public class MyWorld extends World
         Greenfoot.setWorld(new EndScreen());    
     }
 }
-
-}
