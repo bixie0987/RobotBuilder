@@ -57,6 +57,6 @@ public class Researcher extends Scientist
             }
         }
         return closest;
-        
+
     }
 }

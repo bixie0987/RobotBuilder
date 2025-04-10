@@ -18,10 +18,11 @@ public class MyWorld extends World
     private int resNumLeft = 4;
     
     private int[][] coordsRight = {
-        {180, 550}, {220, 550}, {260, 550}, {300, 550}};
+        {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
     
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+    
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
@@ -66,7 +67,7 @@ public class MyWorld extends World
     }
 
     public void act(){
-        spawn(resNumRight, resNumLeft);
+        //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
@@ -113,6 +114,15 @@ public class MyWorld extends World
         }
     }
     
+    //plays or stops background music depending on if scenario is running or not
+    public void started(){
+        Sounds.getInstance().playBackgroundMusicLoop();
+    }
+
+    public void stopped(){
+        Sounds.getInstance().stopBackgroundMusic();
+    }
+    
     /**
      * End World triggers when game is over, and one team achieves victory
      */
@@ -128,4 +138,3 @@ public class MyWorld extends World
         materialProgress2.update(materialProgress1.getCurrentValue() + amount);
     }  
 }
-

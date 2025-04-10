@@ -2,8 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 
 /**
- * This class is in charge of managing all sound effects and sounds emitted
- * by living beings
+ * This class is in charge of managing all sound effects and background music
  * 
  * @Elise Liu
  * @V03
@@ -15,9 +14,9 @@ public class Sounds extends Actor
     //initializes variables to store sound effects/ambience sound
     //these sounds do not need to be in an array since they do not overlap
     private GreenfootSound darknessSound;
-    private GreenfootSound ambientSound;
+    private GreenfootSound backgroundMusic;
     private GreenfootSound bombSound;
-    
+
     //array that holds sound effects
     private ArrayList<GreenfootSound> soundList = new ArrayList<GreenfootSound>();
 
@@ -27,24 +26,27 @@ public class Sounds extends Actor
     private GreenfootSound[][] soundArray = new GreenfootSound[soundIndex.length][15];
 
     //array that holds each living being's sound file name
-    private String[] soundNames = {"research_in_progress.wav","fairy.wav","cat.wav", "knight_slash.wav"};
+    private String[] soundNames = {"research_in_progress.wav","spider_spawn.wav","attach_limb.mp3", "research_bar_max.wav"};
 
     //variables to identify living beings
     public final static int RESEARCH_IN_PROGRESS = 0;
-    public final static int FAIRY = 1;
-    public final static int CAT = 2;
-    public final static int KNIGHT = 3;
-    
-    
+    public final static int SPIDER_SPAWN = 1;
+    public final static int ATTACH_LIMB = 2;
+    public final static int RESEARCH_BAR_MAX = 3;
+
 
     /**
      * The constructor is private so that it can't be created by any other classes
      * There will be a method to get an instance of this class, which will be shared by every class
      */
     private Sounds(){
-        darknessSound = new GreenfootSound("dark_sound.wav");
-        darknessSound.setVolume(60);
-        soundList.add(darknessSound); //adds the sound effect to the array list    
+        //darknessSound = new GreenfootSound("dark_sound.wav");
+        //darknessSound.setVolume(60);
+        //soundList.add(darknessSound); //adds the sound effect to the array list    
+
+        backgroundMusic = new GreenfootSound("background_music.mp3");
+        backgroundMusic.setVolume(30);
+        soundList.add(backgroundMusic);
 
         //adds 15 sounds of the same audio file to their corresponding row of the 2d array
         //their corresponding row is determined by the living being type, which is index 1
@@ -81,20 +83,16 @@ public class Sounds extends Actor
 
     }
 
-    public void playDarknessSound(){
-        darknessSound.play();
-    }
-    
-    public void playBombSound(){
-        bombSound.play();
+    //public void playDarknessSound(){
+    //darknessSound.play();
+    //}
+
+    public void playBackgroundMusicLoop(){
+        backgroundMusic.playLoop();
     }
 
-    public void playAmbientSoundLoop(){
-        ambientSound.playLoop();
-    }
-
-    public void stopAmbientSound(){
-        ambientSound.stop();
+    public void stopBackgroundMusic(){
+        backgroundMusic.stop();
     }
 
     public void playSounds(int livingBeingType){
