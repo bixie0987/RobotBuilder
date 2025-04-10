@@ -17,6 +17,9 @@ public class Supplier extends Scientist
     {
         setRotation(-90);
         move(2);
+        if(this.isTouching(Materials.class)){
+            getWorld().removeObject(this);
+        }
     }
     
 }
