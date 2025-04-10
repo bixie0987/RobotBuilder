@@ -22,11 +22,6 @@ public class MyWorld extends World
     
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 703aab0abc9e57ecd53e9cd96253ae0b5f62069b
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
