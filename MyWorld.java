@@ -18,10 +18,10 @@ public class MyWorld extends World
     private int resNumLeft = 4;
     
     private int[][] coordsRight = {
-        {114, 550}, {228, 550}, {342, 550}, {456, 550}};
+        {180, 550}, {220, 550}, {260, 550}, {300, 550}};
     
     private int[][] coordsLeft = {
-        {912, 550}, {798, 550}, {684, 550}, {570, 550}};
+        {834, 550}, {794, 550}, {754, 550}, {714, 550}};
     /**
      * Constructor for objects of class MyWorld.
      * 
