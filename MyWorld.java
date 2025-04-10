@@ -16,11 +16,10 @@ public class MyWorld extends World
     //The number of researchers player can choose from 1-4
     private int resNumRight = 4;
     private int resNumLeft = 4;
-    
-    private int[][] coordsRight= {
-        {180, 550}, {220, 550}, {260, 550}, {300, 550}};  
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+    private int[][] coordsRight = {
+        {180, 550}, {220, 550}, {260, 550}, {300, 550}};
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
@@ -158,8 +157,15 @@ public class MyWorld extends World
 
         // Reset the progress bar
         materialProgress2.update(0);
+        part.getImage().scale(450, 610); // adjust the size
+
+        addObject(part, 250, 300);
+
+        // Reset the progress bar back to 0
+        materialProgress1.update(0);
     }
 }
+
 }
 
 

@@ -22,7 +22,7 @@ public class Supplier extends Scientist
         Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
         if (touchedPile != null) {
             String pileSide = touchedPile.getSide();
-            touchedPile.increaseProgress(5);  // Only the touched pile's bar increases
+            touchedPile.increaseProgress(7);  // Only the touched pile's bar increases
             getWorld().removeObject(this);
         }
     }

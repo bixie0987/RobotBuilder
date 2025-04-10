@@ -40,6 +40,7 @@ public class Materials extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.checkAndUnlockRightPart();
         }
+
     }
     
     public String getSide() {
