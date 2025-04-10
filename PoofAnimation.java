@@ -25,7 +25,7 @@ public class PoofAnimation extends Actor
     
     public void act()
     {
-        // play animation frames
+        // Play animation frames
         if(frameCount < images.length) {
             setImage(images[frameCount]);
             frameCount++;

@@ -64,7 +64,7 @@ public class MyWorld extends World
         robotGood = new Robot("good", 0.55);
         robotEvil = new Robot("evil", 0.55);
         addObject(robotGood, 250, 300);
-        addObject(robotEvil, 775, 300);
+        addObject(robotEvil, 750, 300);
     }
 
     public void act(){
@@ -120,7 +120,7 @@ public class MyWorld extends World
      */
     public void endGame()
     {
-        // if (condition)
+        // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
         Greenfoot.setWorld(new EndScreen());    
     }
     
