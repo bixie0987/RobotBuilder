@@ -58,6 +58,7 @@ public class Researcher extends Scientist
             move(2);
         }
     }
+
     public Spider getClosestSpider() {
         Spider closest = null;
         double closestDistance = Double.MAX_VALUE;

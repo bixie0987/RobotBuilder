@@ -18,14 +18,23 @@ public class MyWorld extends World
     private int resNumLeft = 4;
     
     private int[][] coordsRight = {
-        {180, 550}, {220, 550}, {260, 550}, {300, 550}};
+        {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
     
     private int[][] coordsLeft = {
         {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+    
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
     
+    // progress bar for piles
+    private SuperStatBar materialProgress1;
+    private SuperStatBar materialProgress2;
+    
+    // materials
+    private Materials pile1;
+    private Materials pile2;
+
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -37,12 +46,16 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
-        // initiate progress bar
-        SuperStatBar materialProgress = new SuperStatBar(100, 50, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
-        addObject(materialProgress, 465, 300);
+        // initiate progress bars
+        materialProgress1 = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
+        addObject(materialProgress1, 464, 340);
+        materialProgress2 = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
+        addObject(materialProgress2, 536, 340);
         // initiate piles
-        Materials woodPile = new Materials();
-        addObject(woodPile, 460, 430);
+        pile1 = new Materials();
+        addObject(pile1, 455, 430);
+        pile2 = new Materials();
+        addObject(pile2, 545, 430);
         
         spawn(resNumRight, resNumLeft);
         
@@ -50,10 +63,11 @@ public class MyWorld extends World
         robotGood = new Robot("good", 0.55);
         robotEvil = new Robot("evil", 0.55);
         addObject(robotGood, 250, 300);
-        addObject(robotEvil, 775, 300);
+        addObject(robotEvil, 750, 300);
     }
 
     public void act(){
+        //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
@@ -100,12 +114,27 @@ public class MyWorld extends World
         }
     }
     
+    //plays or stops background music depending on if scenario is running or not
+    public void started(){
+        Sounds.getInstance().playBackgroundMusicLoop();
+    }
+
+    public void stopped(){
+        Sounds.getInstance().stopBackgroundMusic();
+    }
+    
     /**
      * End World triggers when game is over, and one team achieves victory
      */
     public void endGame()
     {
-        // if (condition)
+        // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
         Greenfoot.setWorld(new EndScreen());    
     }
+    
+    public void increaseProgress(int amount) 
+    {
+        materialProgress1.update(materialProgress1.getCurrentValue() + amount); // increase the progress bar
+        materialProgress2.update(materialProgress1.getCurrentValue() + amount);
+    }  
 }
