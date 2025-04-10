@@ -18,11 +18,12 @@ public class MyWorld extends World
     private int resNumLeft = 4;
     
     private int[][] coordsRight = {
-        {114, 550}, {228, 550}, {342, 550}, {456, 550}};
+        {180, 550}, {220, 550}, {260, 550}, {300, 550}};
+    }
     
     private int[][] coordsLeft = {
-        {912, 550}, {798, 550}, {684, 550}, {570, 550}};
-        
+        {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+    }
     // Robots (good and evil)
     private Robot robotGood;
     private Robot robotEvil;
@@ -67,6 +68,7 @@ public class MyWorld extends World
     }
 
     public void act(){
+        spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
         
@@ -127,4 +129,5 @@ public class MyWorld extends World
         materialProgress1.update(materialProgress1.getCurrentValue() + amount); // increase the progress bar
         materialProgress2.update(materialProgress1.getCurrentValue() + amount);
     }  
+}
 }
