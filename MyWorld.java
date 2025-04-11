@@ -13,9 +13,12 @@ public class MyWorld extends World
     private int spiderXSpawn;
     private int supplierXSpawn;
     
-    //The number of researchers player can choose from 1-4 -> parameter value stored in ParamStorage
+    // PLAYER PARAMETER VALUES -> parameter value stored in ParamStorage
+    //The number of researchers player can choose from 1-4
     private int resNumRight = ParamStorage.getNumResearchers();
     private int resNumLeft = ParamStorage.getNumResearchers();
+    // Spider spawn chance player can choose from 1-10
+    private int spiderSpawnChance = ParamStorage.getSpiderSpawnChance();
     
     private int[][] coordsRight = {
         {180, 550}, {220, 550}, {260, 550}, {300, 550}};
