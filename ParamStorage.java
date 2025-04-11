@@ -8,7 +8,7 @@
  */
 public class ParamStorage  
 {
-    private static int numResearchers;
+    private static int numResearchers, spiderSpawnChance;
     
     // Getters and setters for each parameter variable
     public static int getNumResearchers() {
@@ -17,9 +17,16 @@ public class ParamStorage
     public static void setNumResearchers(int i) {
         numResearchers = i;
     }
+    public static int getSpiderSpawnChance() {
+        return spiderSpawnChance;
+    }
+    public static void setSpiderSpawnChance(int i) {
+        spiderSpawnChance = i;
+    }
     
     // Print all parameter values. Useful for debugging
     public static void printAll() {
-        System.out.println(numResearchers);
+        System.out.println("numResearchers: " + numResearchers);
+        System.out.println("spiderSpawnChance: " + spiderSpawnChance);
     }
 }
