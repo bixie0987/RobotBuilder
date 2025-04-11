@@ -30,16 +30,9 @@ public class MyWorld extends World
     private Robot robotGood;
     private Robot robotEvil;
     
-    // progress bar for piles
-    private SuperStatBar materialProgress1;
-    private SuperStatBar materialProgress2;
-    
     // materials
     private Materials pile1;
     private Materials pile2;
-    
-    private int leftRobotPart = 0; // From 0 to 6 (for 6 total parts of robot)
-    private int rightRobotPart = 0;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -52,26 +45,21 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
-        // initiate progress bars
-        materialProgress1 = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
-        addObject(materialProgress1, 464, 340);
-        materialProgress2 = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
-        addObject(materialProgress2, 536, 340);
-        // initiate piles
-        // Assign a different "side" to each pile
-        pile1 = new Materials(materialProgress1, "left");
-        addObject(pile1, 455, 430);
         
-        pile2 = new Materials(materialProgress2, "right");
+        // Create robots
+        robotGood = new Robot("good");
+        robotEvil = new Robot("evil");
+        addObject(robotGood, 250, 320);
+        addObject(robotEvil, 750, 320);
+        
+        // initiate piles
+        // Link the robot to each pile
+        pile1 = new Materials(robotGood);
+        addObject(pile1, 455, 430);
+        pile2 = new Materials(robotEvil);
         addObject(pile2, 545, 430);
                 
         spawn(resNumRight, resNumLeft);
-        
-        // Create robots
-        robotGood = new Robot("good", 0.55);
-        robotEvil = new Robot("evil", 0.55);
-        addObject(robotGood, 250, 300);
-        addObject(robotEvil, 750, 300);
     }
 
     public void act(){
@@ -139,54 +127,6 @@ public class MyWorld extends World
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
         Greenfoot.setWorld(new EndScreen());    
     }
-    
-    public void increaseProgress(int amount) 
-    {
-        materialProgress1.update(materialProgress1.getCurrentValue() + amount); // increase the progress bar
-        materialProgress2.update(materialProgress1.getCurrentValue() + amount);
-    }  
-    
-    public void checkAndUnlockLeftPart() {
-    int progress = materialProgress1.getCurrentValue();
-
-    if (progress >= 100 && leftRobotPart < 6) {
-        leftRobotPart++;
-
-        // Create a generic Actor to display image
-        Actor part = new Actor() {};
-        part.setImage("part" + leftRobotPart + ".PNG");
-        part.getImage().scale(450, 670); // adjust the size
-
-        addObject(part, 250, 310);
-
-        // Reset the progress bar back to 0
-        materialProgress1.update(0);
-        }
-    }
-    
-    public void checkAndUnlockRightPart() {
-    int progress = materialProgress2.getCurrentValue();
-
-    if (progress >= 100 && rightRobotPart < 6) {
-        rightRobotPart++;
-
-        // Generic actor with right-side image
-        Actor part = new Actor() {};
-        part.setImage("right" + rightRobotPart + ".PNG"); 
-        part.getImage().scale(450, 670); // adjust the size
-        addObject(part, 775, 310);
-
-        // Reset the progress bar
-        materialProgress2.update(0);
-        part.getImage().scale(450, 610); // adjust the size
-
-        addObject(part, 250, 300);
-
-        // Reset the progress bar back to 0
-        materialProgress1.update(0);
-    }
-}
-
 }
 
 
