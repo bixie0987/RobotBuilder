@@ -20,6 +20,7 @@ public class Researcher extends Scientist
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 4, img.getHeight() / 4);
         setImage(img);
+        enableStaticRotation();
     }
 
     public void act()
@@ -45,11 +46,11 @@ public class Researcher extends Scientist
             Spider closest = getClosestSpider();
             if (closest != null) {
                 turnTowards(closest.getX(), closest.getY());
-                move(2);
+                move(1);
             }
         } else if (startX != getX() && startY != getY()) {
             turnTowards(startX, startY);
-            move(2);
+            move(1);
         }
     }
 

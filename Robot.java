@@ -60,4 +60,8 @@ public class Robot extends SuperSmoothMover
             ((MyWorld)getWorld()).endGame(); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
         }
     }
+    
+    public int getStage() {
+        return stage;
+    }
 }
