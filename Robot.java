@@ -8,14 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Robot extends SuperSmoothMover
 {
-    private int stage = 0; // stage of material. First stage is 0!!
-    private int NUM_STAGES = 5; // TO BE DETERMINED!!!!!
+    private int stage = 0; // each stage is one type of material. First stage is 0!!
+    private int NUM_STAGES = 3; // total number of stages (materials)
+    private SuperStatBar[] matProgBars = new SuperStatBar[NUM_STAGES]; // progress squares at the top - represents material stage
     
-    private GreenfootImage image;
+    private GreenfootImage baseImage;
     
-    // Material progress bars at the top (Array of SuperStatBars - each square is one stat bar)
-    // TO BE CHANGED LATER!!!!! 5 IS TEMP. NUMBER OF STAGES
-    private SuperStatBar[] matProgBars = new SuperStatBar[NUM_STAGES]; // matProgBars - 'material progress bars'
+    // Robot parts
+    private int robotPart = 0; // From 0 to 6 (for 6 total parts of robot)
+    
+    private String type; // "good" for left robot, "evil" for right robot
     
     /**
      * Sets robot's image
@@ -23,16 +25,22 @@ public class Robot extends SuperSmoothMover
      * @param type     "good" for viewer's robot (left), "evil" for opposing robot (right)
      * @param scale    Multiplier to scale the image to
      */
-    public Robot(String type, double scale) {
-        image = new GreenfootImage("robot_" + type + ".png");
-        image.scale((int)(image.getWidth()*scale), (int)(image.getHeight()*scale));
-        setImage(image);
+    public Robot(String type) {
+        this.type = type;
+        
+        // Robot starts with a transparent base image (just a transparent rectangle shape)
+        // As parts are unlocked, the part images are drawn on top of the base image.
+        baseImage = new GreenfootImage(300, 380);
+        baseImage.setColor(new Color(0, 0, 0, 0)); // transparent
+        baseImage.fill(); // apply the transparent colour
+        setImage(baseImage);
     }
     
     public void addedToWorld(World w) {
         // Create material progress bars
         for(int i = 0; i < matProgBars.length; i++) {
             matProgBars[i] = new SuperStatBar(1, 0, null, 30, 30, 0); // each progress 'box' is a superstatbar, but with maxVal 1 (unfinished stages: currVal = 0; finished stages: currVal = 1)
+
             w.addObject(matProgBars[i], this.getX()-150 + 80*i, 80);
         }
     }
@@ -46,10 +54,11 @@ public class Robot extends SuperSmoothMover
      * Prepares robot for next stage of material - plays poof animation, changes robot image, updates material progress bar UNFINISHED!!!
      */
     public void stageUp() {
+        // Reset part counter
+        robotPart = 0;
+        
         // Play poof animation
         getWorld().addObject(new PoofAnimation(), getX(), getY());
-        
-        // Change appearance UNFINISHED!!!!
         
         // Update material progress bar
         matProgBars[stage].update(1); // change current stage box to be completed (set its currVal to 1)
@@ -61,7 +70,28 @@ public class Robot extends SuperSmoothMover
         }
     }
     
-    public int getStage() {
-        return stage;
+    /**
+     * Draw the next robot part. If all parts of current stage are unlocked, move on to the next stage (material).
+     */
+    public void unlockPart() {
+        // If all parts are unlocked (robotPart = 6), move on to the next stage/material
+        if(robotPart < 6) {
+            robotPart++;
+            
+            // Create partImage
+            GreenfootImage partImage = new GreenfootImage("robot_parts_" + type + "/part" + robotPart + ".PNG");
+            partImage.scale((int)(partImage.getWidth()*0.49), (int)(partImage.getHeight()*0.49));
+            
+            // Center partImage on baseImage
+            // Calculate top-left position to center the part on the base
+            int x = (baseImage.getWidth() - partImage.getWidth()) / 2;
+            int y = (baseImage.getHeight() - partImage.getHeight()) / 2;
+            
+            // Draw partImage on baseImage
+            baseImage.drawImage(partImage, x, y);
+            setImage(baseImage);
+        } else {
+            stageUp();
+        }
     }
 }
