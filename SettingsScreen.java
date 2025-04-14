@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SettingsScreen extends World
 {
     private Parameter param1, param2, numResearchers, spiderSpawnChance;
-    
-    private Button finishButton; // button to exit SettingsScreen, save parameters and start simulation
+
+    private Button startButton; // button to exit SettingsScreen, save parameters and start simulation
     
     /**
      * Constructor for objects of class SettingsScreen.
@@ -24,11 +24,12 @@ public class SettingsScreen extends World
         param1 = new Parameter("Parameter 1", 200, 100, this, 10, 0);
         param2 = new Parameter("Parameter 2", 200, 200, this, 10, 0);
         numResearchers = new Parameter("Number of researchers", 200, 300, this, 4, 1);
-        spiderSpawnChance = new Parameter("Spider spawn chance", 200, 350, this, 10, 1);
         
-        // Create 'Finish' button
-        finishButton = new Button("finish.png", 0.3);
-        addObject(finishButton, 500, 600);
+        // Create 'start' button
+        startButton = new Button("startBUTT.png", 0.5);
+        addObject(startButton, 500, 500);
+        spiderSpawnChance = new Parameter("Spider spawn chance", 200, 350, this, 10, 1);
+       
     }
     
     public void act() {
@@ -36,6 +37,15 @@ public class SettingsScreen extends World
         param1.update();
         param2.update();
         numResearchers.update();
+        // Check if 'start' button is pressed
+        if(startButton.getPressed()) {
+            // Save parameters
+            ParamStorage.setNumResearchers(numResearchers.getParamValue());
+            
+            // Exit SettingsScreen and switch to simulation screen (MyWorld)
+            Greenfoot.setWorld(new MyWorld());
+        }
+
         spiderSpawnChance.update();
         
         // Check if 'Finish' button is pressed
