@@ -11,7 +11,7 @@ public class Researcher extends Scientist
     private boolean firstTime = false;
     private int startX, startY;
     private String side; //Whether the researchers are on the left or right side.
-    
+
     private final int framesBetweenImages = 30; //half a second between switching between images
     private int actCount = 0; //counts acts passed
     private GreenfootImage[] images; //array that contains images for animation
@@ -19,6 +19,7 @@ public class Researcher extends Scientist
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+
     public Researcher () {
         images = new GreenfootImage[9];
         //adds images to the array
@@ -41,9 +42,12 @@ public class Researcher extends Scientist
             startY = getY();
             firstTime = true;
         }
-        // Add your action code here.
+        if(actCount == 270){
+            actCount=0; //resets act count, or animation image, after last image has been reached
+        }
         killSpider();
     }
+
     public void killSpider () {
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
         if (target != null) {
@@ -51,24 +55,25 @@ public class Researcher extends Scientist
         } else if (hasSpiderOnSide()) {
             Spider closest = getClosestSpider();
             if (closest != null) {
+                animate();
                 turnTowards(closest.getX(), closest.getY());
                 move(1);
-                animate();
             }
         } else if (startX != getX() && startY != getY()) {
+            animate();
             turnTowards(startX, startY);
             move(1);
-            animate();
         }
     }
 
     public Spider getClosestSpider() {
         Spider closest = null;
         double closestDistance = Double.MAX_VALUE;
+
         double distance;
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
-            
+
             int x = spider.getX();
             if (x >= 256 && x <= 768) {
                 distance = Math.hypot(getX() - spider.getX(), getY() - spider.getY());
@@ -80,10 +85,10 @@ public class Researcher extends Scientist
         }
         return closest;
     }
+
     public boolean hasSpiderOnSide() {
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
-            
             if ((side.equals("left") && spider.getX() < 512 && spider.getX() > 256) || (side.equals("right") && spider.getX() > 512 && spider.getX() < 768)) {
                 return true;
             }
