@@ -38,18 +38,11 @@ public class SettingsScreen extends World
         param2.update();
         numResearchers.update();
         // Check if 'start' button is pressed
-        if(startButton.getPressed()) {
-            // Save parameters
-            ParamStorage.setNumResearchers(numResearchers.getParamValue());
-            
-            // Exit SettingsScreen and switch to simulation screen (MyWorld)
-            Greenfoot.setWorld(new MyWorld());
-        }
 
         spiderSpawnChance.update();
         
         // Check if 'Finish' button is pressed
-        if(finishButton.getPressed()) {
+        if(startButton.getPressed()) {
             // Save parameters
             ParamStorage.setNumResearchers(numResearchers.getParamValue());
             ParamStorage.setSpiderSpawnChance(spiderSpawnChance.getParamValue());
