@@ -49,7 +49,6 @@ public class SettingsScreen extends World
             
             // Exit SettingsScreen and switch to simulation screen (MyWorld)
             Greenfoot.setWorld(new MyWorld());
-            ParamStorage.printAll();
         }
     }
 }
