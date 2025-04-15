@@ -11,15 +11,21 @@ public class Researcher extends Scientist
     private boolean firstTime = false;
     private int startX, startY;
     private String side; //Whether the researchers are on the left or right side.
+    
+    private final int framesBetweenImages = 30; //half a second between switching between images
+    private int actCount = 0; //counts acts passed
+    private GreenfootImage[] images; //array that contains images for animation
     /**
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Researcher () {
-        setImage("R-Placeholder.png");
-        GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 4, img.getHeight() / 4);
-        setImage(img);
+        images = new GreenfootImage[9];
+        //adds images to the array
+        for(int i=0; i<9; i++){
+            images[i] = new GreenfootImage("fresearcherwalk" + i + ".png");
+        }
+        setImage(images[0]);
         enableStaticRotation();
     }
 
@@ -47,10 +53,12 @@ public class Researcher extends Scientist
             if (closest != null) {
                 turnTowards(closest.getX(), closest.getY());
                 move(1);
+                animate();
             }
         } else if (startX != getX() && startY != getY()) {
             turnTowards(startX, startY);
             move(1);
+            animate();
         }
     }
 
@@ -81,5 +89,10 @@ public class Researcher extends Scientist
             }
         }
         return false;
+    }
+    public void animate(){
+        int frame = actCount/30; //cycles between frames every half second
+        setImage(images[frame]); //set image to the frame that corresponds to the time passed
+        actCount++;
     }
 }

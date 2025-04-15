@@ -17,8 +17,14 @@ public class MyWorld extends World
     //The number of researchers player can choose from 1-4
     private int resNumRight = ParamStorage.getNumResearchers();
     private int resNumLeft = ParamStorage.getNumResearchers();
+    
     // Spider spawn chance player can choose from 1-10
+    //if the number is 1, spider should spawn once every 10 seconds
+    //if the number is 10, spider should spawn 10 times every 10 seconds
     private int spiderSpawnChance = ParamStorage.getSpiderSpawnChance();
+    //600 acts every 10 seconds; each interval should be 10 seconds long
+    private final int SPIDER_SPAWN_INTERVAL = 600;
+    private int spiderSpawnTimer = 0; //timer that counts the acts between spawn intervals
   
     private int[][] coordsRight = {
         {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
@@ -63,6 +69,10 @@ public class MyWorld extends World
     }
 
     public void act(){
+        spiderSpawnTimer++;
+        if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
+            spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
+        }
         //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
@@ -93,7 +103,7 @@ public class MyWorld extends World
             supplierXSpawn = 471; //sets supplier x coordinate to left
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
-        if(randNum1 == spawnChanceSpider){
+        if(shouldSpawnSpider()){
             addObject(new Spider(teamSide), spiderXSpawn, 600);
         }
         if(randNum2 == spawnChanceSupplier){//chance for a supplier to spawn. change logic
@@ -108,6 +118,11 @@ public class MyWorld extends World
         for (int i = 0; i < leftSide; i++) {
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
+    }
+    
+    public boolean shouldSpawnSpider(){
+        //chance to spawn a spider per act = spiderSpawnChance / 600
+        return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
     }
     
     //plays or stops background music depending on if scenario is running or not
