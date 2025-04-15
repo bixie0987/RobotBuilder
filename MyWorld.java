@@ -138,10 +138,10 @@ public class MyWorld extends World
     /**
      * End World triggers when game is over, and one team achieves victory
      */
-    public void endGame()
+    public void endGame(String winner)
     {
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
-        Greenfoot.setWorld(new EndScreen());    
+        Greenfoot.setWorld(new EndScreen(winner));    
     }
 }
 
