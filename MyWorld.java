@@ -89,7 +89,7 @@ public class MyWorld extends World
         int spawnChanceSpider = 1;
         int spawnChanceSupplier = 1;
         int randNum1 = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances
-        int randNum2 = Greenfoot.getRandomNumber(60); //spawn random num from 0-60, for spawn chances of spider
+        int randNum2 = Greenfoot.getRandomNumber(300); //spawn random num from 0-60, for spawn chances of spider
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
             supplierXSpawn = 531; //sets supplier x coordinate to the right side of the screen
             spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
