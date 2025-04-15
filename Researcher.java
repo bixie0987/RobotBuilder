@@ -15,6 +15,7 @@ public class Researcher extends Scientist
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+
     public Researcher () {
         setImage("R-Placeholder.png");
         GreenfootImage img = getImage();
@@ -35,9 +36,9 @@ public class Researcher extends Scientist
             startY = getY();
             firstTime = true;
         }
-        // Add your action code here.
         killSpider();
     }
+
     public void killSpider () {
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
         if (target != null) {
@@ -57,6 +58,7 @@ public class Researcher extends Scientist
     public Spider getClosestSpider() {
         Spider closest = null;
         double closestDistance = Double.MAX_VALUE;
+
         double distance;
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
@@ -83,3 +85,4 @@ public class Researcher extends Scientist
         return false;
     }
 }
+

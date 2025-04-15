@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private GreenfootImage background;
+<<<<<<< Updated upstream
     //x spawn coordinate for spiders. this is set for the team on the left
     private int spiderXSpawn;
     private int supplierXSpawn;
@@ -33,14 +34,25 @@ public class MyWorld extends World
     // materials
     private Materials pile1;
     private Materials pile2;
+=======
+    
+    //x spawn coordinate for spiders. this is set for the team on the left
+    private int spiderXSpawn = 100;
+>>>>>>> Stashed changes
 
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
+<<<<<<< Updated upstream
      
     public MyWorld()   
     {   
+=======
+    public MyWorld()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+>>>>>>> Stashed changes
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
@@ -93,12 +105,20 @@ public class MyWorld extends World
             supplierXSpawn = 471; //sets supplier x coordinate to left
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
+<<<<<<< Updated upstream
         if(randNum1 == spawnChanceSpider){
             addObject(new Spider(teamSide), spiderXSpawn, 600);
         }
         if(randNum2 == spawnChanceSupplier){//chance for a supplier to spawn. change logic
             addObject(new Supplier(), supplierXSpawn, 720); //added random nums for x and y for now
             //x and y should change based on team
+=======
+        if(randNum < spawnChance){ //chance for a spider to spawn. change logic
+            if(randNum < spawnChance) { //chance for a spider to spawn. change logic//added random nums for x and y for now
+                addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+                //x and y should change based on team
+            }
+>>>>>>> Stashed changes
         }
     }
         public void spawn(int rightSide, int leftSide) {
