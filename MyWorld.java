@@ -15,10 +15,11 @@ public class MyWorld extends World
     
     // PLAYER PARAMETER VALUES -> parameter value stored in ParamStorage
     //The number of researchers player can choose from 1-4
-    private int resNumRight = ParamStorage.getNumResearchers();
-    private int resNumLeft = ParamStorage.getNumResearchers();
+    private int resNumLeft = ParamStorage.getNumResearchersGood();
+    private int resNumRight = ParamStorage.getNumResearchersEvil();
     // Spider spawn chance player can choose from 1-10
-    private int spiderSpawnChance = ParamStorage.getSpiderSpawnChance();
+    private int spiderSpawnChanceLeft = ParamStorage.getSpiderSpawnChanceGood();
+    private int spiderSpawnChanceRight = ParamStorage.getSpiderSpawnChanceEvil();
     
     private int[][] coordsRight = {
         {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 

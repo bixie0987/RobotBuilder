@@ -10,7 +10,8 @@ public class SettingsScreen extends World
 {
     private GreenfootImage background;
     
-    private Parameter param1, param2, numResearchers, spiderSpawnChance;
+    private Parameter numResearchersGood, spiderSpawnChanceGood;
+    private Parameter numResearchersEvil, spiderSpawnChanceEvil;
     
     private Button finishButton; // button to exit SettingsScreen, save parameters and start simulation
     
@@ -30,9 +31,14 @@ public class SettingsScreen extends World
         addObject(title, getWidth()/2, 40);
         
         // Create parameters (including their corresponding buttons/bars)
-        int paramX = 100;
-        numResearchers = new Parameter("Number of researchers", paramX, 300, this, 4, 1);
-        spiderSpawnChance = new Parameter("Spider spawn chance", paramX, 350, this, 10, 1);
+        // Good robot params
+        int paramX = 80;
+        numResearchersGood = new Parameter("Number of researchers", paramX, 300, this, 4, 1);
+        spiderSpawnChanceGood = new Parameter("Spider spawn chance", paramX, 350, this, 10, 1);
+        // Evil robot params
+        paramX = 540;
+        numResearchersEvil = new Parameter("Number of researchers (evil)", paramX, 300, this, 4, 1);
+        spiderSpawnChanceEvil = new Parameter("Spider spawn chance (evil)", paramX, 350, this, 10, 1);
         
         // Create 'Finish' button
         finishButton = new Button("finish.png", 0.3);
@@ -41,16 +47,18 @@ public class SettingsScreen extends World
     
     public void act() {
         // Update parameter bars
-        param1.update();
-        param2.update();
-        numResearchers.update();
-        spiderSpawnChance.update();
+        numResearchersGood.update();
+        spiderSpawnChanceGood.update();
+        numResearchersEvil.update();
+        spiderSpawnChanceEvil.update();
         
         // Check if 'Finish' button is pressed
         if(finishButton.getPressed()) {
             // Save parameters
-            ParamStorage.setNumResearchers(numResearchers.getParamValue());
-            ParamStorage.setSpiderSpawnChance(spiderSpawnChance.getParamValue());
+            ParamStorage.setNumResearchersGood(numResearchersGood.getParamValue());
+            ParamStorage.setSpiderSpawnChanceGood(spiderSpawnChanceGood.getParamValue());
+            ParamStorage.setNumResearchersEvil(numResearchersEvil.getParamValue());
+            ParamStorage.setSpiderSpawnChanceEvil(spiderSpawnChanceEvil.getParamValue());
             
             // Exit SettingsScreen and switch to simulation screen (MyWorld)
             Greenfoot.setWorld(new MyWorld());
