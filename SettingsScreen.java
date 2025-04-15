@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SettingsScreen extends World
 {
+    private GreenfootImage background;
+    
     private Parameter param1, param2, numResearchers, spiderSpawnChance;
     
     private Button finishButton; // button to exit SettingsScreen, save parameters and start simulation
@@ -19,12 +21,18 @@ public class SettingsScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1);
+        background = new GreenfootImage("settingsScreen.png");
+        background.scale((int)(background.getWidth()*0.885), (int)(background.getHeight()*0.885));
+        setBackground(background);
+        
+        // Create title text, 'Settings'
+        TextLabel title = new TextLabel("Settings", 40, Color.WHITE);
+        addObject(title, getWidth()/2, 40);
         
         // Create parameters (including their corresponding buttons/bars)
-        param1 = new Parameter("Parameter 1", 200, 100, this, 10, 0);
-        param2 = new Parameter("Parameter 2", 200, 200, this, 10, 0);
-        numResearchers = new Parameter("Number of researchers", 200, 300, this, 4, 1);
-        spiderSpawnChance = new Parameter("Spider spawn chance", 200, 350, this, 10, 1);
+        int paramX = 100;
+        numResearchers = new Parameter("Number of researchers", paramX, 300, this, 4, 1);
+        spiderSpawnChance = new Parameter("Spider spawn chance", paramX, 350, this, 10, 1);
         
         // Create 'Finish' button
         finishButton = new Button("finish.png", 0.3);
