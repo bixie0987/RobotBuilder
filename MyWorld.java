@@ -39,6 +39,10 @@ public class MyWorld extends World
     // materials
     private Materials pile1;
     private Materials pile2;
+    
+    //Pipe
+    private Pipe pipe1;
+    private Pipe pipe2;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -64,6 +68,15 @@ public class MyWorld extends World
         addObject(pile1, 455, 430);
         pile2 = new Materials(robotEvil);
         addObject(pile2, 545, 430);
+        
+        //Add pipes
+        pipe1 = new Pipe("Mario_pipe.png", 0.5);
+        addObject(pipe1, 100, 750);
+        pipe2 = new Pipe("Mario_pipe.png", 0.5);
+        addObject(pipe2, 924, 750);
+        
+        //set paint order for pipe and spider
+        setPaintOrder (Pipe.class, Spider.class);
 
         spawn(resNumRight, resNumLeft);
     }
