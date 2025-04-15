@@ -20,9 +20,9 @@ C:\Users\Julia\Documents\GitHub\RobotBuilder\doc
 UTF-8
 -charset
 UTF-8
-C:\Users\Julia\Documents\GitHub\RobotBuilder\Parameter.java
+C:\Users\Julia\Documents\GitHub\RobotBuilder\SuperStatBar.java
 <---- end of javadoc command ---->
-Loading source file C:\Users\Julia\Documents\GitHub\RobotBuilder\Parameter.java...
+Loading source file C:\Users\Julia\Documents\GitHub\RobotBuilder\SuperStatBar.java...
 Constructing Javadoc information...
 warning: unknown enum constant Tag.Any
   reason: class file for threadchecker.Tag not found
@@ -31,7 +31,13 @@ warning: unknown enum constant Tag.Any
 warning: unknown enum constant Tag.Any
 Standard Doclet version 21.0.4+7-LTS
 Building tree for all the packages and classes...
-Generating C:\Users\Julia\Documents\GitHub\RobotBuilder\doc\Parameter.html...
+Generating C:\Users\Julia\Documents\GitHub\RobotBuilder\doc\SuperStatBar.html...
+C:\Users\Julia\Documents\GitHub\RobotBuilder\SuperStatBar.java:182: warning: @param argument "maxVal" is not a parameter name.
+     *  @param  maxVal[]  the maximum values for each stat
+        ^
+C:\Users\Julia\Documents\GitHub\RobotBuilder\SuperStatBar.java:183: warning: @param argument "currVal" is not a parameter name.
+     *  @param currVal[]  the starting values for each stat
+        ^
 Generating C:\Users\Julia\Documents\GitHub\RobotBuilder\doc\package-summary.html...
 Generating C:\Users\Julia\Documents\GitHub\RobotBuilder\doc\index.html...
-4 warnings
+6 warnings
