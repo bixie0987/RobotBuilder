@@ -28,7 +28,7 @@ public class SettingsScreen extends World
         
         // Create title text, 'Settings'
         TextLabel title = new TextLabel("Settings", 40, Color.WHITE);
-        addObject(title, getWidth()/2, 40);
+        addObject(title, getWidth()/2, 70);
         
         // Create parameters (including their corresponding buttons/bars)
         // Good robot params
