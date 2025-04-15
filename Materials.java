@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class ResearchPile here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yuvia Liu 
+ * @version April 2025
  */
 public class Materials extends Actor
 {
