@@ -35,8 +35,8 @@ public class MyWorld extends World
     private Materials pile1;
     private Materials pile2;
     
-    private int leftRobotPart = 0; // From 0 to 6 (for 6 total parts of robot)
-    private int rightRobotPart = 0;
+    //x spawn coordinate for spiders. this is set for the team on the left
+    private int spiderXSpawn = 100;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -44,7 +44,7 @@ public class MyWorld extends World
      */
      
     public MyWorld()   
-    {   
+    {     
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
@@ -108,6 +108,10 @@ public class MyWorld extends World
         if(randNum2 == spawnChanceSupplier){//chance for a supplier to spawn. change logic
             addObject(new Supplier(), supplierXSpawn, 720); //added random nums for x and y for now
             //x and y should change based on team
+            if(randNum < spawnChance) { //chance for a spider to spawn. change logic//added random nums for x and y for now
+                addObject(new Spider(), spiderXSpawn, 600); //added random nums for x and y for now
+                //x and y should change based on team
+            }
         }
     }
         public void spawn(int rightSide, int leftSide) {
