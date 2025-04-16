@@ -15,17 +15,12 @@ public class MyWorld extends World
 
     // PLAYER PARAMETER VALUES -> parameter value stored in ParamStorage
     //The number of researchers player can choose from 1-4
-    private int resNumRight = ParamStorage.getNumResearchers();
-    private int resNumLeft = ParamStorage.getNumResearchers();
-
+    private int resNumLeft = ParamStorage.getNumResearchersGood();
+    private int resNumRight = ParamStorage.getNumResearchersEvil();
     // Spider spawn chance player can choose from 1-10
-    //if the number is 1, spider should spawn once every 10 seconds
-    //if the number is 10, spider should spawn 10 times every 10 seconds
-    private int spiderSpawnChance = ParamStorage.getSpiderSpawnChance();
-    //600 acts every 10 seconds; each interval should be 10 seconds long
-    private final int SPIDER_SPAWN_INTERVAL = 600;
-    private int spiderSpawnTimer = 0; //timer that counts the acts between spawn intervals
-
+    private int spiderSpawnChanceLeft = ParamStorage.getSpiderSpawnChanceGood();
+    private int spiderSpawnChanceRight = ParamStorage.getSpiderSpawnChanceEvil();
+    
     private int[][] coordsRight = {
             {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
 
