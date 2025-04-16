@@ -12,9 +12,8 @@ public class SettingsScreen extends World
     
     private Parameter numResearchersGood, spiderSpawnChanceGood;
     private Parameter numResearchersEvil, spiderSpawnChanceEvil;
-    
-    private Button finishButton; // button to exit SettingsScreen, save parameters and start simulation
-    
+
+    private Button startButton; // button to exit SettingsScreen, save parameters and start simulation  
     /**
      * Constructor for objects of class SettingsScreen.
      */
@@ -40,9 +39,11 @@ public class SettingsScreen extends World
         numResearchersEvil = new Parameter("Number of researchers (evil)", paramX, 300, this, 4, 1);
         spiderSpawnChanceEvil = new Parameter("Spider spawn chance (evil)", paramX, 350, this, 10, 1);
         
-        // Create 'Finish' button
-        finishButton = new Button("finish.png", 0.3);
-        addObject(finishButton, 500, 600);
+        // Create 'start' button
+        startButton = new Button("startBUTT.png", 0.5);
+        addObject(startButton, 500, 500);
+        spiderSpawnChance = new Parameter("Spider spawn chance", 200, 350, this, 10, 1);
+       
     }
     
     public void act() {
@@ -53,7 +54,7 @@ public class SettingsScreen extends World
         spiderSpawnChanceEvil.update();
         
         // Check if 'Finish' button is pressed
-        if(finishButton.getPressed()) {
+        if(startButton.getPressed()) {
             // Save parameters
             ParamStorage.setNumResearchersGood(numResearchersGood.getParamValue());
             ParamStorage.setSpiderSpawnChanceGood(spiderSpawnChanceGood.getParamValue());
@@ -62,7 +63,6 @@ public class SettingsScreen extends World
             
             // Exit SettingsScreen and switch to simulation screen (MyWorld)
             Greenfoot.setWorld(new MyWorld());
-            ParamStorage.printAll();
         }
     }
 }

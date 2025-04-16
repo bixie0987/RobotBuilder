@@ -11,15 +11,23 @@ public class Researcher extends Scientist
     private boolean firstTime = false;
     private int startX, startY;
     private String side; //Whether the researchers are on the left or right side.
+
+    private final int framesBetweenImages = 30; //half a second between switching between images
+    private int actCount = 0; //counts acts passed
+    private GreenfootImage[] images; //array that contains images for animation
     /**
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+
     public Researcher () {
-        setImage("R-Placeholder.png");
-        GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 4, img.getHeight() / 4);
-        setImage(img);
+        images = new GreenfootImage[9];
+        //adds images to the array
+        for(int i=0; i<9; i++){
+            images[i] = new GreenfootImage("fresearcherwalk" + i + ".png");
+        }
+        setImage(images[0]);
+        enableStaticRotation();
     }
 
     public void act()
@@ -34,9 +42,12 @@ public class Researcher extends Scientist
             startY = getY();
             firstTime = true;
         }
-        // Add your action code here.
+        if(actCount == 270){
+            actCount=0; //resets act count, or animation image, after last image has been reached
+        }
         killSpider();
     }
+
     public void killSpider () {
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
         if (target != null) {
@@ -44,22 +55,25 @@ public class Researcher extends Scientist
         } else if (hasSpiderOnSide()) {
             Spider closest = getClosestSpider();
             if (closest != null) {
+                animate();
                 turnTowards(closest.getX(), closest.getY());
-                move(2);
+                move(1);
             }
         } else if (startX != getX() && startY != getY()) {
+            animate();
             turnTowards(startX, startY);
-            move(2);
+            move(1);
         }
     }
 
     public Spider getClosestSpider() {
         Spider closest = null;
         double closestDistance = Double.MAX_VALUE;
+
         double distance;
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
-            
+
             int x = spider.getX();
             if (x >= 256 && x <= 768) {
                 distance = Math.hypot(getX() - spider.getX(), getY() - spider.getY());
@@ -71,14 +85,19 @@ public class Researcher extends Scientist
         }
         return closest;
     }
+
     public boolean hasSpiderOnSide() {
         for (Object obj : getWorld().getObjects(Spider.class)) {
             Spider spider = (Spider) obj;
-            
             if ((side.equals("left") && spider.getX() < 512 && spider.getX() > 256) || (side.equals("right") && spider.getX() > 512 && spider.getX() < 768)) {
                 return true;
             }
         }
         return false;
+    }
+    public void animate(){
+        int frame = actCount/30; //cycles between frames every half second
+        setImage(images[frame]); //set image to the frame that corresponds to the time passed
+        actCount++;
     }
 }
