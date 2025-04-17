@@ -66,7 +66,7 @@ public class Robot extends SuperSmoothMover
             stage++;
         } else {
             // Trigger endgame screen
-            ((MyWorld)getWorld()).endGame(); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
+            ((MyWorld)getWorld()).endGame(type); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
         }
     }
     
