@@ -11,6 +11,7 @@ public class Researcher extends Scientist
     private boolean firstTime = false;
     private int startX, startY;
     private String side; //Whether the researchers are on the left or right side.
+    private SuperStatBar researchBar;
     /**
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
