@@ -11,6 +11,7 @@ public class Researcher extends Scientist
     private boolean firstTime = false;
     private int startX, startY;
     private String side; //Whether the researchers are on the left or right side.
+    private SuperStatBar researchBar;
 
     private final int framesBetweenImages = 30; //half a second between switching between images
     private int actCount = 0; //counts acts passed
