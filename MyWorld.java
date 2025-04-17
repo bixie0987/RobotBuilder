@@ -43,6 +43,8 @@ public class MyWorld extends World
     //Pipe
     private Pipe pipe1;
     private Pipe pipe2;
+    private Pipe pipe3;
+    private Pipe pipe4;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -74,6 +76,10 @@ public class MyWorld extends World
         addObject(pipe1, 100, 750);
         pipe2 = new Pipe("Mario_pipe.png", 0.5);
         addObject(pipe2, 924, 750);
+        pipe3 = new Pipe("Mario_pipe.png", 0.5);
+        addObject(pipe3, 612, 750);
+        pipe4 = new Pipe("Mario_pipe.png", 0.5);
+        addObject(pipe4, 392, 750);
         
         //set paint order for pipe and spider
         setPaintOrder (Pipe.class, Spider.class);
@@ -109,11 +115,11 @@ public class MyWorld extends World
         int randNum1 = Greenfoot.getRandomNumber(100); //spawn random num from 0-99, for spawn chances
         int randNum2 = Greenfoot.getRandomNumber(300); //spawn random num from 0-60, for spawn chances of spider
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
-            supplierXSpawn = 531; //sets supplier x coordinate to the right side of the screen
+            supplierXSpawn = 535; //sets supplier x coordinate to the right side of the screen
             spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
         }
         else{
-            supplierXSpawn = 471; //sets supplier x coordinate to left
+            supplierXSpawn = 475; //sets supplier x coordinate to left
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
         if(shouldSpawnSpider()){
