@@ -108,7 +108,6 @@ public class MyWorld extends World
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
         if(shouldSpawnSpider(teamSide)){
-
             addObject(new Spider(teamSide), spiderXSpawn, 600);
         }
         if(randNum2 == spawnChanceSupplier){//chance for a supplier to spawn. change logic
