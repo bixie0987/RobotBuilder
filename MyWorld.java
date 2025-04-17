@@ -64,10 +64,12 @@ public class MyWorld extends World
     }
 
     public void act(){
+        /*
         spiderSpawnTimer++;
         if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
             spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
         }
+        */
         //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
@@ -115,10 +117,11 @@ public class MyWorld extends World
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
     }
-
+    
     public boolean shouldSpawnSpider(){
         //chance to spawn a spider per act = spiderSpawnChance / 600
-        return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
+        //return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
+        return false; // TEMPORARY, DELETE THIS!
     }
 
     //plays or stops background music depending on if scenario is running or not
