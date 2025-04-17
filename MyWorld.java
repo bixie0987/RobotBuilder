@@ -65,6 +65,7 @@ public class MyWorld extends World
         addObject(pile2, 545, 430);
 
         spawn(resNumRight, resNumLeft);
+        spawn();
     }
 
     public void act(){
@@ -107,6 +108,7 @@ public class MyWorld extends World
             spiderXSpawn = 100; //sets spider x coordinate to left side
         }
         if(shouldSpawnSpider(teamSide)){
+
             addObject(new Spider(teamSide), spiderXSpawn, 600);
         }
         if(randNum2 == spawnChanceSupplier){//chance for a supplier to spawn. change logic
@@ -122,6 +124,11 @@ public class MyWorld extends World
         for (int i = 0; i < leftSide; i++) {
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
+    }
+    
+    public void spawn () {
+        addObject(new Computer(), 250, 500);
+        addObject(new Computer(), 750, 500);
     }
 
     public boolean shouldSpawnSpider(String teamSide){
