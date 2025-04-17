@@ -42,7 +42,6 @@ public class SettingsScreen extends World
         // Create 'start' button
         startButton = new Button("startBUTT.png", 0.5);
         addObject(startButton, 500, 500);
-       
     }
     
     public void act() {
