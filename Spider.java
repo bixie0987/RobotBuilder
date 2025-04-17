@@ -21,7 +21,7 @@ public class Spider extends SuperSmoothMover
     public void addedToWorld(World w){
         setRotation(90);
         if(team.equals("Right")){
-            exitXCoord = w.getWidth()/2 - 100;
+            exitXCoord = w.getWidth()/2 - 120;
         }
         else{
             exitXCoord = w.getWidth()/2 + 100;
