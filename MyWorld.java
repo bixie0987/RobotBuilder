@@ -88,7 +88,11 @@ public class MyWorld extends World
     }
 
     public void act(){
-        
+        spiderSpawnTimer++;
+        if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
+            spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
+        }
+
         //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
@@ -143,7 +147,10 @@ public class MyWorld extends World
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
     }
-    
+
+    public boolean shouldSpawnSpider(){
+        //chance to spawn a spider per act = spiderSpawnChance / 600
+        return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
     public void spawn () {
         addObject(new Computer(), 250, 500);
         addObject(new Computer(), 750, 500);
@@ -157,7 +164,6 @@ public class MyWorld extends World
         else{
             return Greenfoot.getRandomNumber(600) < spiderSpawnChanceRight;
         }
-        
     }
 
     //plays or stops background music depending on if scenario is running or not
