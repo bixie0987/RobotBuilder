@@ -22,8 +22,13 @@ public class Parameter
     private Button bPlus;
     private Button bMinus;
     
-    private Color FONT_COLOUR = Color.GREEN; // REPLACE COLOUR AFTER!
-    private int FONT_SIZE = 24;
+    private ParameterBox parameterBox;
+    
+    private Color FONT_COLOUR = Color.WHITE; // REPLACE COLOUR AFTER!
+    private int FONT_SIZE = 21;
+    
+    private Color FILLEDBAR_COLOUR = new Color(166, 255, 255);
+    private Color EMPTYBAR_COLOUR = new Color(30, 70, 136);
     
     /**
      * Creates parameter with corresponding text, bar, counter, and +/- buttons
@@ -48,20 +53,29 @@ public class Parameter
         text = new TextLabel(paramText, FONT_SIZE, FONT_COLOUR); // parameter text
         counter = new TextLabel(String.valueOf(val), FONT_SIZE, FONT_COLOUR); // counter display of parameter value
         
+        // Draw square box around each parameter
+        int boxWidth = 450;
+        int boxMargin = 20; // distance between left of text to left edge of box
+        parameterBox = new ParameterBox(boxWidth, 40, new Color(3, 12, 31, 150));
+        int boxX = x + boxWidth/2;
+        w.addObject(parameterBox, boxX - boxMargin, y);
+        
         // Create settings bars
-        bar = new SuperStatBar(maxVal-diff, val-diff, null, 100, 10, 0);
+        bar = new SuperStatBar(maxVal-diff, val-diff, null, 100, 10, 0, FILLEDBAR_COLOUR, EMPTYBAR_COLOUR);
         
         // Create plus/minus sign buttons
-        bPlus = new Button("plus_icon.png", 0.1);
-        bMinus = new Button("minus_icon.png", 0.1);
+        bPlus = new Button("plus_icon.png", 0.08);
+        bMinus = new Button("minus_icon.png", 0.08);
         
         // Add all objects, ADJUST SPACING HERE
+        int boxRightX = x + boxWidth;
+        w.addObject(bar, boxRightX-170, y);
+        w.addObject(counter, boxRightX-105, y);
+        w.addObject(bMinus, boxRightX-80, y);
+        w.addObject(bPlus, boxRightX-50, y);
+        // Add text
         x += text.getImage().getWidth()/2; // add offset to entire parameter's x-position so all spacing stays consistent
         w.addObject(text, x, y);
-        w.addObject(bar, x+200, y);
-        w.addObject(counter, x+275, y);
-        w.addObject(bMinus, x+300, y);
-        w.addObject(bPlus, x+330, y);
     }
     
     /**
@@ -83,9 +97,16 @@ public class Parameter
     }
     
     /**
-     * Returns parameter value
+     * @return int    Returns parameter value
      */
     public int getParamValue() {
         return val;
+    }
+    
+    /**
+     * @return int    Returns width of entire parameter, aka the width of the parameterBox
+     */
+    public int getWidth() {
+        return parameterBox.getImage().getWidth();
     }
 }

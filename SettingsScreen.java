@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SettingsScreen extends World
 {
-    private Parameter param1, param2, numResearchers, spiderSpawnChance;
-
-    private Button startButton; // button to exit SettingsScreen, save parameters and start simulation
+    private GreenfootImage background;
     
+    private Parameter numResearchersGood, spiderSpawnChanceGood;
+    private Parameter numResearchersEvil, spiderSpawnChanceEvil;
+
+    private Button startButton; // button to exit SettingsScreen, save parameters and start simulation  
     /**
      * Constructor for objects of class SettingsScreen.
      */
@@ -19,11 +21,23 @@ public class SettingsScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1);
+        background = new GreenfootImage("settingsScreen.png");
+        background.scale((int)(background.getWidth()*0.885), (int)(background.getHeight()*0.885));
+        setBackground(background);
+        
+        // Create title text, 'Settings'
+        TextLabel title = new TextLabel("Settings", 40, Color.WHITE);
+        addObject(title, getWidth()/2, 70);
         
         // Create parameters (including their corresponding buttons/bars)
-        param1 = new Parameter("Parameter 1", 200, 100, this, 10, 0);
-        param2 = new Parameter("Parameter 2", 200, 200, this, 10, 0);
-        numResearchers = new Parameter("Number of researchers", 200, 300, this, 4, 1);
+        // Good robot params
+        int paramX = 80;
+        numResearchersGood = new Parameter("Number of researchers", paramX, 300, this, 4, 1);
+        spiderSpawnChanceGood = new Parameter("Spider spawn chance", paramX, 350, this, 10, 1);
+        // Evil robot params
+        paramX = 540;
+        numResearchersEvil = new Parameter("Number of researchers (evil)", paramX, 300, this, 4, 1);
+        spiderSpawnChanceEvil = new Parameter("Spider spawn chance (evil)", paramX, 350, this, 10, 1);
         
         // Create 'start' button
         startButton = new Button("startBUTT.png", 0.5);
@@ -34,18 +48,18 @@ public class SettingsScreen extends World
     
     public void act() {
         // Update parameter bars
-        param1.update();
-        param2.update();
-        numResearchers.update();
-        // Check if 'start' button is pressed
-
-        spiderSpawnChance.update();
+        numResearchersGood.update();
+        spiderSpawnChanceGood.update();
+        numResearchersEvil.update();
+        spiderSpawnChanceEvil.update();
         
         // Check if 'Finish' button is pressed
         if(startButton.getPressed()) {
             // Save parameters
-            ParamStorage.setNumResearchers(numResearchers.getParamValue());
-            ParamStorage.setSpiderSpawnChance(spiderSpawnChance.getParamValue());
+            ParamStorage.setNumResearchersGood(numResearchersGood.getParamValue());
+            ParamStorage.setSpiderSpawnChanceGood(spiderSpawnChanceGood.getParamValue());
+            ParamStorage.setNumResearchersEvil(numResearchersEvil.getParamValue());
+            ParamStorage.setSpiderSpawnChanceEvil(spiderSpawnChanceEvil.getParamValue());
             
             // Exit SettingsScreen and switch to simulation screen (MyWorld)
             Greenfoot.setWorld(new MyWorld());

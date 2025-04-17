@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Supplier here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yuvia Liu, Jaclyn
+ * @version April 2025
  */
 public class Supplier extends Scientist
 {
@@ -21,7 +21,7 @@ public class Supplier extends Scientist
         // determine which side is touched
         Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
         if (touchedPile != null) {
-            touchedPile.increaseProgress(7);  // Only the touched pile's bar increases
+            touchedPile.increaseProgress(10);  // Only the touched pile's bar increases
             getWorld().removeObject(this);
         }
     }
