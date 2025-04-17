@@ -52,6 +52,7 @@ public class Researcher extends Scientist
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
         if (target != null) {
             getWorld().removeObject(target);
+            Sounds.getInstance().playSounds(Sounds.KILL_SPIDER);
         } else if (hasSpiderOnSide()) {
             Spider closest = getClosestSpider();
             if (closest != null) {
