@@ -11,11 +11,14 @@ public class Researcher extends Scientist
     private boolean firstTime = false;
     private int startX, startY;
     private String side; //Whether the researchers are on the left or right side.
-    private SuperStatBar researchBar;
 
     private final int framesBetweenImages = 30; //half a second between switching between images
     private int actCount = 0; //counts acts passed
     private GreenfootImage[] images; //array that contains images for animation
+    
+    private int researchCooldown = 0;
+    private int increaseLeft = 1;
+    private int increaseRight = 1;
     /**
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -47,8 +50,28 @@ public class Researcher extends Scientist
             actCount=0; //resets act count, or animation image, after last image has been reached
         }
         killSpider();
+        doResearch();
     }
 
+    public void doResearch() {
+        Computer touchedPile = (Computer) getOneIntersectingObject(Computer.class);
+        if (touchedPile != null) {
+            if (researchCooldown == 0 ) {
+                if (side == "left") {
+                    touchedPile.increaseProgress(increaseLeft);  // Only the touched computer's bar increases
+                }
+                if (side == "right") {
+                    touchedPile.increaseProgress(increaseRight);  // Only the touched computer's bar increases
+                }
+                researchCooldown = 60;
+            }
+        }
+        
+        if (researchCooldown > 0) {
+            researchCooldown--;
+        }
+    }
+    
     public void killSpider () {
         Spider target = (Spider) getOneIntersectingObject(Spider.class);
         if (target != null) {
@@ -101,5 +124,17 @@ public class Researcher extends Scientist
         int frame = actCount/30; //cycles between frames every half second
         setImage(images[frame]); //set image to the frame that corresponds to the time passed
         actCount++;
+    }
+    public void boostResearcherLeft() {
+        if (side.equals("left") && increaseLeft < 50) {
+            increaseLeft *= 2;
+            //System.out.println("Good size research boost");
+        }
+    }
+    public void boostResearcherRight() {
+        if (side.equals("right") && increaseRight < 50) {
+            increaseRight *= 2;
+            //System.out.println("Bad side research boost");
+        }
     }
 }
