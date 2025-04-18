@@ -44,6 +44,9 @@ public class MyWorld extends World
     private Pipe pipe2;
     private Pipe pipe3;
     private Pipe pipe4;
+    
+    // Upgrades
+    private Upgrade upgrade1;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -85,13 +88,19 @@ public class MyWorld extends World
 
         spawn(resNumRight, resNumLeft);
         spawn();
+        
+        // Upgrades
+        upgrade1 = new Upgrade();
+        addObject(upgrade1, 200, 600);
     }
 
     public void act(){
+        /* TEMPORARILY COMMENTED OUT!!!
         spiderSpawnTimer++;
         if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
             spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
         }
+        */
 
         //spawn(resNumRight, resNumLeft);
         spawn("Right");
@@ -150,7 +159,10 @@ public class MyWorld extends World
 
     public boolean shouldSpawnSpider(){
         //chance to spawn a spider per act = spiderSpawnChance / 600
-        return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
+        //return Greenfoot.getRandomNumber(600) < spiderSpawnChance; // TEMPORARILY COMMENTED OUT!!!
+        return false;
+    }
+    
     public void spawn () {
         addObject(new Computer(), 250, 500);
         addObject(new Computer(), 750, 500);
