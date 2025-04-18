@@ -46,7 +46,7 @@ public class MyWorld extends World
     private Pipe pipe4;
     
     // Upgrades
-    private Upgrade upgrade1;
+    private UpgradeSupplierSpeed supplySpeedUpgrade;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -90,8 +90,8 @@ public class MyWorld extends World
         spawn();
         
         // Upgrades
-        upgrade1 = new Upgrade();
-        addObject(upgrade1, 200, 600);
+        supplySpeedUpgrade = new UpgradeSupplierSpeed();
+        addObject(supplySpeedUpgrade, 200, 600);
     }
 
     public void act(){

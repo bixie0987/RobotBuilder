@@ -8,34 +8,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Upgrade extends Actor
 {
-    private GreenfootImage image;
+    
     
     // Related description to this upgrade
     private UpgradeDescription description;
+    
+    private String DESCRIPTION_TEXT = "lalala";
 
     /**
      * Constructor for objects of class Upgrade
      */
     public Upgrade()
     {
-        image = new GreenfootImage("upgrade_icon.png");
-        image.scale((int)(image.getWidth()*0.1), (int)(image.getHeight()*0.1));
-        setImage(image);
-        
         
     }
     
     protected void addedToWorld(World w) {
-        description = new UpgradeDescription();
+        description = new UpgradeDescription(DESCRIPTION_TEXT);
         w.addObject(description, getX()+100, getY()-100);
     }
     
     public void act() {
         // If mouse is hovering over upgrade, show upgrade description. Otherwise, hide description.
-        if(isHovering()) {
-            description.show();
-        } else {
-            description.hide();
+        if(Greenfoot.getMouseInfo() != null) {
+            if(isHovering()) {
+                description.show();
+            } else {
+                description.hide();
+            }
         }
     }
     

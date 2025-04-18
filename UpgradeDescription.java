@@ -12,12 +12,12 @@ public class UpgradeDescription extends Actor
     
     private TextLabel text;
     
-    public UpgradeDescription() {
+    public UpgradeDescription(String descriptionText) {
         image = new GreenfootImage("description_box.png");
         image.scale((int)(image.getWidth()*0.1), (int)(image.getHeight()*0.1));
         setImage(image);
         
-        text = new TextLabel("lalala", 20, Color.BLACK);
+        text = new TextLabel(descriptionText, 20, Color.BLACK);
     }
     
     protected void addedToWorld(World w) {
