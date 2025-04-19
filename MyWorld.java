@@ -24,6 +24,8 @@ public class MyWorld extends World
     private int leftSpiderSpawnTimer = 0;
     private int rightSpiderSpawnTimer = 0;
     private final int SPIDER_SPAWN_INTERVAL = 600;
+    private int spiderFreezeTimerRight = 0;
+    private int spiderFreezeTimerLeft = 0;
     
     private int[][] coordsRight = {
             {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
@@ -45,6 +47,11 @@ public class MyWorld extends World
     private Pipe pipe3;
     private Pipe pipe4;
 
+    private int increaseLeft = 100;
+    private int increaseRight = 100;
+    
+    protected int supplierContributionLeft = 10;
+    protected int supplierContributionRight = 10;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -110,6 +117,24 @@ public class MyWorld extends World
         if(m != null && m.getButton() == 3) {
             robotGood.stageUp();
         }
+        if (spiderFreezeTimerLeft > 0) {
+            for (Object obj : getObjects(Spider.class)) {
+                Spider spider = (Spider) obj;
+                if (spider.getX() < 512 && spider.getX() > 256) {
+                    removeObject(spider);
+                }
+            }
+            spiderFreezeTimerLeft--;
+        }
+        if (spiderFreezeTimerRight > 0) {
+            for (Object obj : getObjects(Spider.class)) {
+                Spider spider = (Spider) obj;
+                if (spider.getX() > 512 && spider.getX() < 768) {
+                    removeObject(spider);
+                }
+            }
+            spiderFreezeTimerRight--;
+        }
     }
 
     public void spawn(String teamSide){
@@ -123,7 +148,8 @@ public class MyWorld extends World
         }
         
         int spawnChanceSupplier = 1;
-        int randNum2 = Greenfoot.getRandomNumber(300); //spawn random num from 0-60, for spawn chances of spider
+        int randNum = Greenfoot.getRandomNumber(increaseLeft);
+        int randNum2 = Greenfoot.getRandomNumber(increaseRight); //spawn random num from 0-60, for spawn chances of spider
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
             supplierXSpawn = 535; //sets supplier x coordinate to the right side of the screen
             spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
@@ -156,8 +182,8 @@ public class MyWorld extends World
         return false;
     }
     public void spawn () {
-        addObject(new Computer(), 250, 500);
-        addObject(new Computer(), 750, 500);
+        addObject(new Computer(), 234, 500);
+        addObject(new Computer(), 768, 500);
     }
 
     public boolean shouldSpawnSpider(String teamSide){
@@ -187,5 +213,26 @@ public class MyWorld extends World
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
         Greenfoot.setWorld(new EndScreen(winner));    
     }
+    public void freezeLeft() {
+        spiderFreezeTimerLeft = 600;
+    }
+    public void freezeRight() {
+        spiderFreezeTimerRight = 600;
+    }
+    public void boostSupplierLeft() {
+        if (increaseLeft > 10) {
+            increaseLeft -= 3;
+        }
+        if (supplierContributionLeft < 50) {
+            supplierContributionLeft *= 2;
+        }
+    }
+    public void boostSupplierRight() {
+        if (increaseRight > 10) {
+            increaseRight -= 3;
+        }
+        if (supplierContributionRight < 50) {
+            supplierContributionRight *= 2;
+        }
+    }
 }
-
