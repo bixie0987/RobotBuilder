@@ -1,35 +1,35 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class UpgradeDescription here.
+ * Write a description of class PowerupInfo here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class UpgradeDescription extends Actor
+public class PowerupInfo extends Actor
 {
-    // Image of box behind the description text
+    // Image of box behind the info text
     private GreenfootImage boxImage;
     
-    // Description text
+    // Info/description text
     private TextLabel text;
     
     /**
-     * Set image for description's box, and create description's text
+     * Set image for info box, and create info text
      * 
-     * @param descriptionText    Text describing the upgrade
+     * @param infoText    Text containing powerup's info
      */
-    public UpgradeDescription(String descriptionText) {
-        // Set image of box behind description
+    public PowerupInfo(String infoText) {
+        // Set image of box behind info text
         boxImage = new GreenfootImage("description_box.png");
         boxImage.scale((int)(boxImage.getWidth()*0.1), (int)(boxImage.getHeight()*0.1));
         setImage(boxImage);
         
-        text = new TextLabel(descriptionText, 20, Color.BLACK);
+        text = new TextLabel(infoText, 20, Color.BLACK);
     }
     
     protected void addedToWorld(World w) {
-        // Add description text at center of box
+        // Add info text at center of box
         w.addObject(text, getX(), getY());
     }
     
@@ -39,7 +39,7 @@ public class UpgradeDescription extends Actor
     }
     
     /**
-     * Hide description from view (default)
+     * Hide info box from view (default)
      */
     public void hide() {
         boxImage.setTransparency(0);

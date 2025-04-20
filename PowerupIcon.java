@@ -1,43 +1,48 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Superclass of all upgrades. Creates hover-able icons (that display upgrade description when user's mouse hovers over the icon)
+ * Superclass of all Powerup icons. Creates a hover-able icon (that displays powerup's info when user's mouse hovers over the icon)
  * 
  * @author Julia 
  * @version April 19
  */
-public abstract class Upgrade extends Actor
+public class PowerupIcon extends Actor
 {
-    // Variables SPECIFIC to each upgrade (these are instantiated in each upgrade subclass' constructor)
-    protected String DESCRIPTION_TEXT;
+    // Variables SPECIFIC to each powerup icon (these are instantiated in each PowerupIcon subclass' constructor)
+    protected String INFO_TEXT = "test description"; // default powerup icon text
+    protected GreenfootImage image = new GreenfootImage("powerup_icon.png"); // default icon image
     
+    // Whether or not this icon's related powerup has just been activated
     protected boolean ACTIVATED;
     
-    // Related description to this upgrade
-    private UpgradeDescription description;
+    // Related description to this powerup
+    private PowerupInfo info;
+    // offset x- and y-values for info
+    private int infoX = 100;
+    private int infoY = 100;
 
     /**
-     * Constructor for objects of class Upgrade
+     * Constructor for objects of class Powerup
      */
-    public Upgrade()
+    public PowerupIcon()
     {
-        
+        // code for default icon image
+        image.scale((int)(image.getWidth()*0.08), (int)(image.getHeight()*0.08));
+        setImage(image);
     }
     
     protected void addedToWorld(World w) {
-        description = new UpgradeDescription(DESCRIPTION_TEXT);
-        w.addObject(description, getX()+100, getY()-100);
+        info = new PowerupInfo(INFO_TEXT);
+        w.addObject(info, getX()+infoX, getY()-infoY);
     }
-    
-    protected abstract void activate();
     
     public void act() {
         // If mouse is hovering over upgrade, show upgrade description. Otherwise, hide description.
         if(Greenfoot.getMouseInfo() != null) {
             if(isHovering()) {
-                description.show();
+                info.show();
             } else {
-                description.hide();
+                info.hide();
             }
         }
     }

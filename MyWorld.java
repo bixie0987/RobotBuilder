@@ -25,11 +25,11 @@ public class MyWorld extends World
     private int rightSpiderSpawnTimer = 0;
     private final int SPIDER_SPAWN_INTERVAL = 600;
     
-    private int[][] coordsRight = {
-            {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
+    private int[][] coordsRight = { 
+            {834, 550}, {794, 550}, {754, 550}, {714, 550}};
 
     private int[][] coordsLeft = {
-            {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+            {180, 550}, {220, 550}, {260, 550}, {300, 550}};
 
     // Robots (good and evil)
     private Robot robotGood;
@@ -45,8 +45,9 @@ public class MyWorld extends World
     private Pipe pipe3;
     private Pipe pipe4;
     
-    // Upgrades
-    // Add upgrade objects here
+    // Powerup icons
+    // Add powerup icon objects here
+    private PowerupIcon testPowerup;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -89,8 +90,10 @@ public class MyWorld extends World
         spawn(resNumRight, resNumLeft);
         spawn();
         
-        // Upgrades
-        // Instantiate upgrades here
+        // Powerup icons
+        // Instantiate powerup icons here
+        testPowerup = new PowerupIcon();
+        addObject(testPowerup, 300, 300);
     }
 
     public void act(){
