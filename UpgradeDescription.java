@@ -8,19 +8,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class UpgradeDescription extends Actor
 {
-    private GreenfootImage image;
+    // Image of box behind the description text
+    private GreenfootImage boxImage;
     
+    // Description text
     private TextLabel text;
     
+    /**
+     * Set image for description's box, and create description's text
+     * 
+     * @param descriptionText    Text describing the upgrade
+     */
     public UpgradeDescription(String descriptionText) {
-        image = new GreenfootImage("description_box.png");
-        image.scale((int)(image.getWidth()*0.1), (int)(image.getHeight()*0.1));
-        setImage(image);
+        // Set image of box behind description
+        boxImage = new GreenfootImage("description_box.png");
+        boxImage.scale((int)(boxImage.getWidth()*0.1), (int)(boxImage.getHeight()*0.1));
+        setImage(boxImage);
         
         text = new TextLabel(descriptionText, 20, Color.BLACK);
     }
     
     protected void addedToWorld(World w) {
+        // Add description text at center of box
         w.addObject(text, getX(), getY());
     }
     
@@ -29,13 +38,19 @@ public class UpgradeDescription extends Actor
         // Add your action code here.
     }
     
+    /**
+     * Hide description from view (default)
+     */
     public void hide() {
-        image.setTransparency(0);
+        boxImage.setTransparency(0);
         text.setColour(new Color(0, 0, 0, 0));
     }
     
+    /**
+     * Show description (should activate when mouse hovers over upgrade icon)
+     */
     public void show() {
-        image.setTransparency(255);
+        boxImage.setTransparency(255);
         text.setColour(Color.BLACK);
     }
 }

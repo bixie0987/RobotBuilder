@@ -1,19 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Upgrade here.
+ * Superclass of all upgrades. Creates hover-able icons (that display upgrade description when user's mouse hovers over the icon)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia 
+ * @version April 19
  */
-public class Upgrade extends Actor
+public abstract class Upgrade extends Actor
 {
+    // Variables SPECIFIC to each upgrade (these are instantiated in each upgrade subclass' constructor)
+    protected String DESCRIPTION_TEXT;
     
+    protected boolean ACTIVATED;
     
     // Related description to this upgrade
     private UpgradeDescription description;
-    
-    private String DESCRIPTION_TEXT = "lalala";
 
     /**
      * Constructor for objects of class Upgrade
@@ -27,6 +28,8 @@ public class Upgrade extends Actor
         description = new UpgradeDescription(DESCRIPTION_TEXT);
         w.addObject(description, getX()+100, getY()-100);
     }
+    
+    protected abstract void activate();
     
     public void act() {
         // If mouse is hovering over upgrade, show upgrade description. Otherwise, hide description.
@@ -58,5 +61,9 @@ public class Upgrade extends Actor
         } else {
             return false;
         }
+    }
+    
+    public boolean getActivated() {
+        return ACTIVATED;
     }
 }
