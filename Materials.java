@@ -15,7 +15,6 @@ public class Materials extends Actor
     
     // link to its Robot object
     private Robot robot;
-
     /**
      * Create materials pile. Each materials pile has its own progress bar and linked robot.
      * 
