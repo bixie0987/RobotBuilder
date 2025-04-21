@@ -80,16 +80,6 @@ public class Computer extends Actor
     }
     public void supplierIncrease() {
         MyWorld world = (MyWorld) getWorld();
-        for (Object obj : getWorld().getObjects(Supplier.class)) {
-            Supplier s = (Supplier) obj;
-            if (morality) {
-                //System.out.println("Good side supplier boost");
-                s.boostSupplierLeft();
-            } else {
-                //System.out.println("Bad side supplier boost");
-                s.boostSupplierRight();
-            }
-        }
         if (morality) {
             world.boostSupplierLeft();
         } else {

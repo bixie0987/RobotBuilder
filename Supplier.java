@@ -24,10 +24,10 @@ public class Supplier extends Scientist
         MyWorld world = (MyWorld) getWorld();
         setRotation(-90);
         if (getX() < 512) {
-            move(speedLeft);
+            move(world.speedLeft);
         }
         if (getX() > 512) {
-            move(speedRight);
+            move(world.speedRight);
         }
         
         // determine which side is touched
@@ -36,24 +36,16 @@ public class Supplier extends Scientist
             if (touchedPile != null) {
                 touchedPile.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases
                 getWorld().removeObject(this);
+                return;
                 //System.out.println("good " + world.supplierContributionLeft);
             }
-        } else {
+        }
+        if (getX() > 512) {
             if (touchedPile != null) {
                 touchedPile.increaseProgress(world.supplierContributionRight);  // Only the touched pile's bar increases
                 getWorld().removeObject(this);
                 //System.out.println("bad " + world.supplierContributionRight);
             }
-        }
-    }
-    public void boostSupplierLeft() {
-        if (getX() < 512) {
-            speedLeft *= 2;
-        }
-    }
-    public void boostSupplierRight() {
-        if (getX() > 512) {
-            speedRight *= 2;
         }
     }
 }
