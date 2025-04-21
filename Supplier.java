@@ -32,6 +32,8 @@ public class Supplier extends Scientist
         
         // determine which side is touched
         Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
+       
+
         if (getX() < 512) {
             if (touchedPile != null) {
                 touchedPile.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases

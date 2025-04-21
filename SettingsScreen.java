@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * 
+ * Screen for user to set the settings/parameters of simulation.
  * 
  * @author Julia
  * @version April 2025
@@ -61,6 +61,7 @@ public class SettingsScreen extends World
             
             // Exit SettingsScreen and switch to simulation screen (MyWorld)
             Greenfoot.setWorld(new MyWorld());
+            ParamStorage.printAll();
         }
     }
 }

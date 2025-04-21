@@ -27,11 +27,11 @@ public class MyWorld extends World
     private int spiderFreezeTimerRight = 0;
     private int spiderFreezeTimerLeft = 0;
     
-    private int[][] coordsRight = {
-            {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
+    private int[][] coordsRight = { 
+            {834, 550}, {794, 550}, {754, 550}, {714, 550}};
 
     private int[][] coordsLeft = {
-            {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+            {180, 550}, {220, 550}, {260, 550}, {300, 550}};
 
     // Robots (good and evil)
     private Robot robotGood;
@@ -46,6 +46,10 @@ public class MyWorld extends World
     private Pipe pipe2;
     private Pipe pipe3;
     private Pipe pipe4;
+    
+    // Powerup icons
+    // Add powerup icon objects here
+    private PowerupIcon testPowerup;
 
     //variables for the supplier's spawn rate
     private int increaseLeft = 135;
@@ -98,6 +102,11 @@ public class MyWorld extends World
 
         spawn(resNumRight, resNumLeft);
         spawn();
+        
+        // Powerup icons
+        // Instantiate powerup icons here
+        testPowerup = new PowerupIcon();
+        addObject(testPowerup, 300, 300);
     }
 
     public void act(){
@@ -187,6 +196,7 @@ public class MyWorld extends World
         //return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
         return false;
     }
+    
     public void spawn () {
         addObject(new Computer(), 234, 500);
         addObject(new Computer(), 768, 500);
