@@ -8,6 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EndScreen extends World
 {
+    private int confettiTimer = 0;
+    private int confettiSpawned = 0;
+    private final int MAX_CONFETTI = 5;       // Total confetti to spawn
+    private final int MAX_FRAMES = 60;         // Spread across ~1 seconds
     private GreenfootImage endscreen;
     /**
      * Constructor for objects of class EndScreen.
@@ -25,6 +29,23 @@ public class EndScreen extends World
         }
         
         setBackground(endscreen);
+        endscreen.scale(1024, 800);
       
+    }
+    
+    public void act()
+    {
+        if (confettiSpawned < MAX_CONFETTI) {
+            confettiTimer++;
+    
+        // About 25% chance per frame, stops once 10 are spawned
+            if (Greenfoot.getRandomNumber(MAX_FRAMES) < 2) {
+                int x = Greenfoot.getRandomNumber(getWidth());
+                int y = Greenfoot.getRandomNumber(getHeight());
+                addObject(new ConfettiAnimation(), x, y);
+                confettiSpawned++;
+            }
+        }
+
     }
 }
