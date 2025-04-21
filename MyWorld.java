@@ -51,11 +51,17 @@ public class MyWorld extends World
     // Add powerup icon objects here
     private PowerupIcon testPowerup;
 
-    private int increaseLeft = 100;
-    private int increaseRight = 100;
+    //variables for the supplier's spawn rate
+    private int increaseLeft = 135;
+    private int increaseRight = 135;
     
-    protected int supplierContributionLeft = 10;
-    protected int supplierContributionRight = 10;
+    //variables for the supplier contribution to material stat bar
+    protected int supplierContributionLeft = 20;
+    protected int supplierContributionRight = 20;
+    
+    //variables for the moving speed of the suppliers-- mainly for aesthetics
+    protected int speedLeft = 2;
+    protected int speedRight = 2;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -230,19 +236,25 @@ public class MyWorld extends World
         spiderFreezeTimerRight = 600;
     }
     public void boostSupplierLeft() {
-        if (increaseLeft > 10) {
+        if (increaseLeft > 30) {
             increaseLeft -= 3;
         }
-        if (supplierContributionLeft < 50) {
-            supplierContributionLeft *= 2;
+        if (supplierContributionLeft <= 35) {
+            supplierContributionLeft += 5;
+        }
+        if (speedLeft <= 4) {
+            speedLeft *= 2;
         }
     }
     public void boostSupplierRight() {
-        if (increaseRight > 10) {
+        if (increaseRight > 30) {
             increaseRight -= 3;
         }
-        if (supplierContributionRight < 50) {
-            supplierContributionRight *= 2;
+        if (supplierContributionRight <= 35) {
+            supplierContributionRight += 5;
+        }
+        if (speedRight <= 4) {
+            speedRight *= 2;
         }
     }
 }

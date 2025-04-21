@@ -17,8 +17,14 @@ public class Researcher extends Scientist
     private GreenfootImage[] images; //array that contains images for animation
     
     private int researchCooldown = 0;
+    
+    //variables for the contribution of researchers to computer stat bar
     private int increaseLeft = 1;
     private int increaseRight = 1;
+    
+    //variables for the moving speed of researchers
+    private int leftSpeed = 1;
+    private int rightSpeed = 1;
     /**
      * Act - do whatever the Researcher wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -82,12 +88,20 @@ public class Researcher extends Scientist
             if (closest != null) {
                 animate();
                 turnTowards(closest.getX(), closest.getY());
-                move(1);
+                if (side.equals("left")) {
+                    move(leftSpeed);
+                } else {
+                    move(rightSpeed);
+                }
             }
         } else if (startX != getX() && startY != getY()) {
             animate();
             turnTowards(startX, startY);
-            move(1);
+            if (side.equals("left")) {
+                move(leftSpeed);
+            } else {
+                move(rightSpeed);
+            }
         }
     }
 
@@ -126,15 +140,25 @@ public class Researcher extends Scientist
         actCount++;
     }
     public void boostResearcherLeft() {
-        if (side.equals("left") && increaseLeft < 50) {
-            increaseLeft *= 2;
-            //System.out.println("Good size research boost");
+        if (side.equals("left")) {
+            if (increaseLeft <= 8) {
+                increaseLeft *= 2;
+                //System.out.println("Good size research boost");
+            }
+            if (leftSpeed <= 4) {
+                leftSpeed += 1;
+            }
         }
     }
     public void boostResearcherRight() {
-        if (side.equals("right") && increaseRight < 50) {
-            increaseRight *= 2;
-            //System.out.println("Bad side research boost");
+        if (side.equals("right")) {
+            if (increaseRight <= 8) {
+                increaseRight *= 2;
+                //System.out.println("Good size research boost");
+            }
+            if (rightSpeed <= 4) {
+                rightSpeed += 1;
+            }
         }
     }
 }
