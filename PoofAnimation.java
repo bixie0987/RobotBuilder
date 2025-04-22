@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Julia
  * @version April 2025
  */
-public class PoofAnimation extends Actor
+public class PoofAnimation extends Effects
 {
     private GreenfootImage[] images = new GreenfootImage[30];
     private int frameCount = 0; // counter of frame number
