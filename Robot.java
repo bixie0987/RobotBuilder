@@ -57,6 +57,7 @@ public class Robot extends SuperSmoothMover
         
         // Play poof animation
         getWorld().addObject(new PoofAnimation(), getX(), getY());
+        Sounds.getInstance().playSounds(Sounds.CHANGE_MATERIAL);
         
         // Update material progress bar
         matProgBars[stage].update(1); // change current stage box to be completed (set its currVal to 1)

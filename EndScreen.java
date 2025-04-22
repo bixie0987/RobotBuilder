@@ -17,8 +17,7 @@ public class EndScreen extends World
      * Constructor for objects of class EndScreen.
      * 
      */
-    public EndScreen(String winner)
-    {   
+    public EndScreen(String winner){   
         super(1024, 800, 1);
         GreenfootImage endscreen;
         if (winner.equals("good")) {
@@ -29,9 +28,8 @@ public class EndScreen extends World
         
         setBackground(endscreen);
         endscreen.scale(1024, 800);
-      
+        Sounds.getInstance().playSounds(Sounds.WIN_SOUND);
     }
-    
     public void act()
     {
         if (confettiSpawned < MAX_CONFETTI) {
