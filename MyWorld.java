@@ -24,12 +24,14 @@ public class MyWorld extends World
     private int leftSpiderSpawnTimer = 0;
     private int rightSpiderSpawnTimer = 0;
     private final int SPIDER_SPAWN_INTERVAL = 600;
+    private int spiderFreezeTimerRight = 0;
+    private int spiderFreezeTimerLeft = 0;
     
-    private int[][] coordsRight = {
-            {180, 550}, {220, 550}, {260, 550}, {300, 550}}; 
+    private int[][] coordsRight = { 
+            {834, 550}, {794, 550}, {754, 550}, {714, 550}};
 
     private int[][] coordsLeft = {
-            {834, 550}, {794, 550}, {754, 550}, {714, 550}};
+            {180, 550}, {220, 550}, {260, 550}, {300, 550}};
 
     // Robots (good and evil)
     private Robot robotGood;
@@ -44,7 +46,22 @@ public class MyWorld extends World
     private Pipe pipe2;
     private Pipe pipe3;
     private Pipe pipe4;
+    
+    // Powerup icons
+    // Add powerup icon objects here
+    private PowerupIcon testPowerup;
 
+    //variables for the supplier's spawn rate
+    private int increaseLeft = 135;
+    private int increaseRight = 135;
+    
+    //variables for the supplier contribution to material stat bar
+    protected int supplierContributionLeft = 20;
+    protected int supplierContributionRight = 20;
+    
+    //variables for the moving speed of the suppliers-- mainly for aesthetics
+    protected int speedLeft = 2;
+    protected int speedRight = 2;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -56,12 +73,15 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        
+        //Play background music
+        Sounds.getInstance().playBackgroundMusicLoop();
 
         // Create robots
         robotGood = new Robot("good");
         robotEvil = new Robot("evil");
         addObject(robotGood, 250, 320);
-        addObject(robotEvil, 750, 320);
+        addObject(robotEvil, 750, 300);
 
         // initiate piles
         // Link the robot to each pile
@@ -85,11 +105,14 @@ public class MyWorld extends World
 
         spawn(resNumRight, resNumLeft);
         spawn();
+        
+        // Powerup icons
+        // Instantiate powerup icons here
+        testPowerup = new PowerupIcon();
+        addObject(testPowerup, 300, 300);
     }
 
     public void act(){
-        
-        //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
 
@@ -104,6 +127,24 @@ public class MyWorld extends World
         if(m != null && m.getButton() == 3) {
             robotGood.stageUp();
         }
+        if (spiderFreezeTimerLeft > 0) {
+            for (Object obj : getObjects(Spider.class)) {
+                Spider spider = (Spider) obj;
+                if (spider.getX() < 512 && spider.getX() > 256) {
+                    removeObject(spider);
+                }
+            }
+            spiderFreezeTimerLeft--;
+        }
+        if (spiderFreezeTimerRight > 0) {
+            for (Object obj : getObjects(Spider.class)) {
+                Spider spider = (Spider) obj;
+                if (spider.getX() > 512 && spider.getX() < 768) {
+                    removeObject(spider);
+                }
+            }
+            spiderFreezeTimerRight--;
+        }
     }
 
     public void spawn(String teamSide){
@@ -117,7 +158,8 @@ public class MyWorld extends World
         }
         
         int spawnChanceSupplier = 1;
-        int randNum2 = Greenfoot.getRandomNumber(300); //spawn random num from 0-60, for spawn chances of spider
+        int randNum = Greenfoot.getRandomNumber(increaseLeft);
+        int randNum2 = Greenfoot.getRandomNumber(increaseRight); //spawn random num from 0-60, for spawn chances of spider
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
             supplierXSpawn = 535; //sets supplier x coordinate to the right side of the screen
             spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
@@ -143,10 +185,16 @@ public class MyWorld extends World
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
     }
+
+    public boolean shouldSpawnSpider(){
+        //chance to spawn a spider per act = spiderSpawnChance / 600
+        //return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
+        return false;
+    }
     
     public void spawn () {
-        addObject(new Computer(), 250, 500);
-        addObject(new Computer(), 750, 500);
+        addObject(new Computer(), 234, 500);
+        addObject(new Computer(), 768, 500);
     }
 
     public boolean shouldSpawnSpider(String teamSide){
@@ -157,16 +205,14 @@ public class MyWorld extends World
         else{
             return Greenfoot.getRandomNumber(600) < spiderSpawnChanceRight;
         }
-        
     }
 
-    //plays or stops background music depending on if scenario is running or not
     public void started(){
         Sounds.getInstance().playBackgroundMusicLoop();
     }
 
     public void stopped(){
-        Sounds.getInstance().stopBackgroundMusic();
+        Sounds.getInstance().pauseBackgroundMusic();
     }
 
     /**
@@ -174,8 +220,37 @@ public class MyWorld extends World
      */
     public void endGame(String winner)
     {
+        //Stops playing background music
+        Sounds.getInstance().stopBackgroundMusic();
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
-        Greenfoot.setWorld(new EndScreen(winner));    
+        Greenfoot.setWorld(new EndScreen(winner));
+    }
+    public void freezeLeft() {
+        spiderFreezeTimerLeft = 600;
+    }
+    public void freezeRight() {
+        spiderFreezeTimerRight = 600;
+    }
+    public void boostSupplierLeft() {
+        if (increaseLeft > 30) {
+            increaseLeft -= 3;
+        }
+        if (supplierContributionLeft <= 35) {
+            supplierContributionLeft += 5;
+        }
+        if (speedLeft <= 4) {
+            speedLeft *= 2;
+        }
+    }
+    public void boostSupplierRight() {
+        if (increaseRight > 30) {
+            increaseRight -= 3;
+        }
+        if (supplierContributionRight <= 35) {
+            supplierContributionRight += 5;
+        }
+        if (speedRight <= 4) {
+            speedRight *= 2;
+        }
     }
 }
-

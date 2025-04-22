@@ -13,21 +13,41 @@ public class Supplier extends Scientist
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private GreenfootImage supplier;
+    private int speedLeft = 2;
+    private int speedRight = 2;
     public Supplier(){
         supplier = new GreenfootImage("supplier.png");
         setImage(supplier);
     }
     public void act()
     {
+        MyWorld world = (MyWorld) getWorld();
         setRotation(-90);
-        move(2);
+        if (getX() < 512) {
+            move(world.speedLeft);
+        }
+        if (getX() > 512) {
+            move(world.speedRight);
+        }
         
         // determine which side is touched
         Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
-        if (touchedPile != null) {
-            touchedPile.increaseProgress(10);  // Only the touched pile's bar increases
-            getWorld().removeObject(this);
+       
+
+        if (getX() < 512) {
+            if (touchedPile != null) {
+                touchedPile.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases
+                getWorld().removeObject(this);
+                return;
+                //System.out.println("good " + world.supplierContributionLeft);
+            }
+        }
+        if (getX() > 512) {
+            if (touchedPile != null) {
+                touchedPile.increaseProgress(world.supplierContributionRight);  // Only the touched pile's bar increases
+                getWorld().removeObject(this);
+                //System.out.println("bad " + world.supplierContributionRight);
+            }
         }
     }
-    
 }

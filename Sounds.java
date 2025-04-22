@@ -5,7 +5,7 @@ import java.util.*;
  * This class is in charge of managing all sound effects and background music
  * 
  * @Elise Liu
- * @V03
+ * @version April 2025
  */
 public class Sounds extends Actor
 {
@@ -45,7 +45,7 @@ public class Sounds extends Actor
     private Sounds(){ 
 
         backgroundMusic = new GreenfootSound("background_music.mp3");
-        backgroundMusic.setVolume(80);
+        backgroundMusic.setVolume(60);
         soundList.add(backgroundMusic);
 
         //adds 15 sounds of the same audio file to their corresponding row of the 2d array
@@ -64,33 +64,50 @@ public class Sounds extends Actor
 
     }
 
-    public static Sounds getInstance(){ //used to get the object of this class, since constructor is private
+    /**
+     * Used to get the instance of the sound class, since its constructor is private.
+     */
+    public static Sounds getInstance(){
         return instance;
     }
 
     //play and stop the sound immediately, which preloads it 
+    /**
+     * Plays and stops the sound immediately, which preloads it
+     * 
+     * @param s     A Greenfoot sound that is taken from the sound list.
+     */
     public void preload(GreenfootSound s){
         s.play();
         s.stop();
     }
 
     /**
-     * Act - do whatever the Sounds wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Plays the background music on loop
      */
-    public void act()
-    {
-
-    }
-
     public void playBackgroundMusicLoop(){
         backgroundMusic.playLoop();
     }
 
+    /**
+     * Stops playing background music
+     */
     public void stopBackgroundMusic(){
         backgroundMusic.stop();
     }
+    
+    /**
+     * Pauses background music
+     */
+    public void pauseBackgroundMusic(){
+        backgroundMusic.pause();
+    }
 
+    /**
+     * The main method that should be called when a sound effect is needed
+     * 
+     * @param livingBeingType   Input a variable like "RESEARCH_IN_PROGRESS" and the code will automatically play the sound for it
+     */
     public void playSounds(int livingBeingType){
         soundArray[livingBeingType][soundIndex[livingBeingType]].play(); //plays the sound for the living being type
         soundIndex[livingBeingType]++; //increases the number for the sound index of the living being

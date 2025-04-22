@@ -1,23 +1,31 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Spider here.
+ * Manages spider's behaviour and image
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Elise Liu
+ * @version April 2025
  */
 public class Spider extends SuperSmoothMover
 {
     private String team; //team for where the spider is spawned
     private int exitXCoord;
     /**
+     * Sets the spider's image
      * 
+     * @param team  The team side the spider should spawn from. "Left" for left side, "Right" for right side.
      */
     public Spider(String team){
         setImage("spider.png");
         this.team = team;
     }
 
+    /**
+     * Sets the rotation of the spider and sets where it'll appear after going
+     * into the tubes. Also plays a sound effect upon spawning.
+     * 
+     * @param w     The world that the spider is added in.
+     */
     public void addedToWorld(World w){
         setRotation(90);
         if(team.equals("Right")){

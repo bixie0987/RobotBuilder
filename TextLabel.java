@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TextLabel extends Actor
 {
+    private String text;
     private int size;
     private Color colour;
     private Color highlightColour = new Color(0, 0, 0, 0); // transparent  bg/highlight
@@ -21,6 +22,7 @@ public class TextLabel extends Actor
      */
     public TextLabel(String text, int givenSize, Color givenColour) {
         // Set text values
+        this.text = text;
         size = givenSize;
         colour = givenColour;
         
@@ -41,6 +43,11 @@ public class TextLabel extends Actor
      */
     public void updateText(String newText) {
         GreenfootImage img = new GreenfootImage(newText, size, colour, highlightColour);
+        setImage(img);
+    }
+    
+    public void setColour(Color newColour) {
+        GreenfootImage img = new GreenfootImage(text, size, newColour, highlightColour);
         setImage(img);
     }
 }
