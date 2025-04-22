@@ -14,6 +14,7 @@ public class Supplier extends Scientist
      */
     private GreenfootImage supplier;
     public Supplier(){
+        //set image for suppliers
         supplier = new GreenfootImage("supplier.png");
         setImage(supplier);
     }

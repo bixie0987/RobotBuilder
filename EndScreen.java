@@ -17,7 +17,17 @@ public class EndScreen extends World
     public EndScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(1024, 800, 1);
+        GreenfootImage endscreen;
+        if (winner.equals("good")) {
+            endscreen = new GreenfootImage("endscreen1.PNG");
+        } else {
+            endscreen = new GreenfootImage("endscreen2.PNG");
+        }
+        
+        setBackground(endscreen);
+        endscreen.scale(1024, 800);
+        Sounds.getInstance().playSounds(Sounds.WIN_SOUND);
     }
     
     public void act()
