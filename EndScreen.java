@@ -3,20 +3,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class EndScreen here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yuvia Liu 
+ * @version April 2025
  */
 public class EndScreen extends World
 {
-    private GreenfootImage goodRobot;
-    private GreenfootImage evilRobot;
+    private int confettiTimer = 0;
+    private int confettiSpawned = 0;
+    private final int MAX_CONFETTI = 5;       // Total confetti to spawn
+    private final int MAX_FRAMES = 60;         // Spread across ~1 seconds
+    private GreenfootImage endscreen;
     /**
      * Constructor for objects of class EndScreen.
      * 
      */
-    public EndScreen()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    public EndScreen(String winner){   
         super(1024, 800, 1);
         GreenfootImage endscreen;
         if (winner.equals("good")) {
@@ -29,9 +30,19 @@ public class EndScreen extends World
         endscreen.scale(1024, 800);
         Sounds.getInstance().playSounds(Sounds.WIN_SOUND);
     }
-    
     public void act()
     {
-        
+        if (confettiSpawned < MAX_CONFETTI) {
+            confettiTimer++;
+    
+        // About 25% chance per frame, stops once 10 are spawned
+            if (Greenfoot.getRandomNumber(MAX_FRAMES) < 2) {
+                int x = Greenfoot.getRandomNumber(getWidth());
+                int y = Greenfoot.getRandomNumber(getHeight());
+                addObject(new ConfettiAnimation(), x, y);
+                confettiSpawned++;
+            }
+        }
+
     }
 }

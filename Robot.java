@@ -8,14 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Robot extends SuperSmoothMover
 {
+    private int robotPart = 0; // From 0 to 6 (for 6 total parts of robot)
     private int stage = 0; // each stage is one type of material. First stage is 0!!
     private int NUM_STAGES = 3; // total number of stages (materials)
     private SuperStatBar[] matProgBars = new SuperStatBar[NUM_STAGES]; // progress squares at the top - represents material stage
     
     private GreenfootImage baseImage;
-    
-    // Robot parts
-    private int robotPart = 0; // From 0 to 6 (for 6 total parts of robot)
     
     private String type; // "good" for left robot, "evil" for right robot
     
@@ -67,7 +65,7 @@ public class Robot extends SuperSmoothMover
             stage++;
         } else {
             // Trigger endgame screen
-            ((MyWorld)getWorld()).endGame(); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
+            ((MyWorld)getWorld()).endGame(type); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
         }
     }
     
@@ -80,7 +78,8 @@ public class Robot extends SuperSmoothMover
             robotPart++;
             
             // Create partImage
-            GreenfootImage partImage = new GreenfootImage("robot_parts_" + type + "/part" + robotPart + ".PNG");
+            // sample image file location: robot_parts_evil/stage0/part1.png
+            GreenfootImage partImage = new GreenfootImage("robot_parts_" + type + "/stage" + stage + "/part" + robotPart + ".png");
             partImage.scale((int)(partImage.getWidth()*0.49), (int)(partImage.getHeight()*0.49));
             
             // Center partImage on baseImage

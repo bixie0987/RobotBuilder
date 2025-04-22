@@ -5,7 +5,7 @@ import java.util.*;
  * This class is in charge of managing all sound effects and background music
  * 
  * @Elise Liu
- * @V03
+ * @version April 2025
  */
 public class Sounds extends Actor
 {
@@ -13,39 +13,39 @@ public class Sounds extends Actor
 
     //initializes variables to store sound effects/ambience sound
     //these sounds do not need to be in an array since they do not overlap
-    private GreenfootSound darknessSound;
     private GreenfootSound backgroundMusic;
-    private GreenfootSound bombSound;
 
     //array that holds sound effects
     private ArrayList<GreenfootSound> soundList = new ArrayList<GreenfootSound>();
 
-    private int soundIndex[] = new int[4]; //holds which sound is being played
+    private int soundIndex[] = new int[8]; //holds which sound is being played
     //holds the sound effects of each living being
     //first index holds the type of living being, second index holds duplicates of its audio files
     private GreenfootSound[][] soundArray = new GreenfootSound[soundIndex.length][15];
 
     //array that holds each living being's sound file name
-    private String[] soundNames = {"research_in_progress.wav","spider_spawn.wav","attach_limb.mp3", "research_bar_max.wav"};
+    private String[] soundNames = {"research_in_progress.wav","spider_spawn.wav","attach_limb.mp3", 
+        "research_bar_max.wav", "mouse_click.wav", "change_material.wav", "kill_spider.wav",
+    "win_sound.wav"};
 
     //variables to identify living beings
     public final static int RESEARCH_IN_PROGRESS = 0;
     public final static int SPIDER_SPAWN = 1;
     public final static int ATTACH_LIMB = 2;
     public final static int RESEARCH_BAR_MAX = 3;
-
+    public final static int MOUSE_CLICK = 4;
+    public final static int CHANGE_MATERIAL = 5;
+    public final static int KILL_SPIDER = 6;
+    public final static int WIN_SOUND = 7;
 
     /**
      * The constructor is private so that it can't be created by any other classes
      * There will be a method to get an instance of this class, which will be shared by every class
      */
-    private Sounds(){
-        //darknessSound = new GreenfootSound("dark_sound.wav");
-        //darknessSound.setVolume(60);
-        //soundList.add(darknessSound); //adds the sound effect to the array list    
+    private Sounds(){ 
 
         backgroundMusic = new GreenfootSound("background_music.mp3");
-        backgroundMusic.setVolume(30);
+        backgroundMusic.setVolume(60);
         soundList.add(backgroundMusic);
 
         //adds 15 sounds of the same audio file to their corresponding row of the 2d array
@@ -59,42 +59,55 @@ public class Sounds extends Actor
         }
 
         for(GreenfootSound s:soundList){
-            preload(s); //preloads each sound that is not in an array (eg darkness and bomb)
+            preload(s); //preloads each sound that is not in an array
         }
 
     }
 
-    public static Sounds getInstance(){ //used to get the object of this class, since constructor is private
+    /**
+     * Used to get the instance of the sound class, since its constructor is private.
+     */
+    public static Sounds getInstance(){
         return instance;
     }
 
     //play and stop the sound immediately, which preloads it 
+    /**
+     * Plays and stops the sound immediately, which preloads it
+     * 
+     * @param s     A Greenfoot sound that is taken from the sound list.
+     */
     public void preload(GreenfootSound s){
         s.play();
         s.stop();
     }
 
     /**
-     * Act - do whatever the Sounds wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Plays the background music on loop
      */
-    public void act()
-    {
-
-    }
-
-    //public void playDarknessSound(){
-    //darknessSound.play();
-    //}
-
     public void playBackgroundMusicLoop(){
         backgroundMusic.playLoop();
     }
 
+    /**
+     * Stops playing background music
+     */
     public void stopBackgroundMusic(){
         backgroundMusic.stop();
     }
+    
+    /**
+     * Pauses background music
+     */
+    public void pauseBackgroundMusic(){
+        backgroundMusic.pause();
+    }
 
+    /**
+     * The main method that should be called when a sound effect is needed
+     * 
+     * @param livingBeingType   Input a variable like "RESEARCH_IN_PROGRESS" and the code will automatically play the sound for it
+     */
     public void playSounds(int livingBeingType){
         soundArray[livingBeingType][soundIndex[livingBeingType]].play(); //plays the sound for the living being type
         soundIndex[livingBeingType]++; //increases the number for the sound index of the living being
