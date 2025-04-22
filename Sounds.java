@@ -42,13 +42,10 @@ public class Sounds extends Actor
      * The constructor is private so that it can't be created by any other classes
      * There will be a method to get an instance of this class, which will be shared by every class
      */
-    private Sounds(){
-        //darknessSound = new GreenfootSound("dark_sound.wav");
-        //darknessSound.setVolume(60);
-        //soundList.add(darknessSound); //adds the sound effect to the array list    
+    private Sounds(){ 
 
         backgroundMusic = new GreenfootSound("background_music.mp3");
-        backgroundMusic.setVolume(30);
+        backgroundMusic.setVolume(80);
         soundList.add(backgroundMusic);
 
         //adds 15 sounds of the same audio file to their corresponding row of the 2d array
