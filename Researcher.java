@@ -60,14 +60,14 @@ public class Researcher extends Scientist
     }
 
     public void doResearch() {
-        Computer touchedPile = (Computer) getOneIntersectingObject(Computer.class);
-        if (touchedPile != null) {
+        Computer touchedComputer = (Computer) getOneIntersectingObject(Computer.class);
+        if (touchedComputer != null) {
             if (researchCooldown == 0 ) {
                 if (side == "left") {
-                    touchedPile.increaseProgress(increaseLeft);  // Only the touched computer's bar increases
+                    touchedComputer.increaseProgress(increaseLeft);  // Only the touched computer's bar increases
                 }
                 if (side == "right") {
-                    touchedPile.increaseProgress(increaseRight);  // Only the touched computer's bar increases
+                    touchedComputer.increaseProgress(increaseRight);  // Only the touched computer's bar increases
                 }
                 researchCooldown = 60;
             }
