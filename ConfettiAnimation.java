@@ -4,7 +4,7 @@ import greenfoot.*;
  * FireworkConfetti simulates a "pop" or explosion by zooming in and fading out.
  * It starts small, quickly grows (zooms), then fades out and disappears.
  */
-public class ConfettiAnimation extends Actor
+public class ConfettiAnimation extends Effects
 {
     private GreenfootImage baseImage;
     private int age = 0;
