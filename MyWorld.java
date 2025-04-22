@@ -73,6 +73,9 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        
+        //Play background music
+        Sounds.getInstance().playBackgroundMusicLoop();
 
         // Create robots
         robotGood = new Robot("good");
@@ -110,14 +113,6 @@ public class MyWorld extends World
     }
 
     public void act(){
-        /*
-        spiderSpawnTimer++;
-        if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
-            spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
-        }
-        */
-
-        //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
 
@@ -212,13 +207,12 @@ public class MyWorld extends World
         }
     }
 
-    //plays or stops background music depending on if scenario is running or not
     public void started(){
         Sounds.getInstance().playBackgroundMusicLoop();
     }
 
     public void stopped(){
-        Sounds.getInstance().stopBackgroundMusic();
+        Sounds.getInstance().pauseBackgroundMusic();
     }
 
     /**
@@ -226,8 +220,10 @@ public class MyWorld extends World
      */
     public void endGame(String winner)
     {
+        //Stops playing background music
+        Sounds.getInstance().stopBackgroundMusic();
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
-        Greenfoot.setWorld(new EndScreen(winner));    
+        Greenfoot.setWorld(new EndScreen(winner));
     }
     public void freezeLeft() {
         spiderFreezeTimerLeft = 600;

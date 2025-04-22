@@ -18,8 +18,7 @@ public class EndScreen extends World
      * 
      */
     public EndScreen(String winner)
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    {   
         super(1024, 800, 1);
         GreenfootImage endscreen;
         if (winner.equals("good")) {
