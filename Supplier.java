@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class Supplier here.
  * 
@@ -30,24 +30,23 @@ public class Supplier extends Scientist
             move(world.speedRight);
         }
         
+        List<Materials> leftPileList = getWorld().getObjectsAt(455, 430, Materials.class);
+        List<Materials> rightPileList = getWorld().getObjectsAt(545, 430, Materials.class);
         // determine which side is touched
-        Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
-       
+        Materials touchedPileLeft = (leftPileList.isEmpty()) ? null : leftPileList.get(0);
+        
+        Materials touchedPileRight = (rightPileList.isEmpty()) ? null : rightPileList.get(0);
 
-        if (getX() < 512) {
-            if (touchedPile != null) {
-                touchedPile.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases
-                getWorld().removeObject(this);
-                return;
-                //System.out.println("good " + world.supplierContributionLeft);
-            }
+        if (getX() == 475 && getY() > 420 && getY() < 440 && touchedPileLeft != null) {
+            touchedPileLeft.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases
+            getWorld().removeObject(this);
+            return;
+            //System.out.println("good " + world.supplierContributionLeft);
         }
-        if (getX() > 512) {
-            if (touchedPile != null) {
-                touchedPile.increaseProgress(world.supplierContributionRight);  // Only the touched pile's bar increases
-                getWorld().removeObject(this);
-                //System.out.println("bad " + world.supplierContributionRight);
-            }
+        if (getX() == 535 && getY() > 420 && getY() < 440 && touchedPileRight != null) {        
+            touchedPileRight.increaseProgress(world.supplierContributionRight);  // Only the touched pile's bar increases
+            getWorld().removeObject(this);
+            //System.out.println("bad " + world.supplierContributionRight);
         }
     }
 }
