@@ -8,30 +8,31 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PowerupIcon extends Actor
 {
-    // Variables SPECIFIC to each powerup icon (these are instantiated in each PowerupIcon subclass' constructor)
-    protected String INFO_TEXT = "test description"; // default powerup icon text
-    protected GreenfootImage image = new GreenfootImage("powerup_icon.png"); // default icon image
-    
-    // Whether or not this icon's related powerup has just been activated
-    protected boolean ACTIVATED;
+    // Variables SPECIFIC to each powerup icon
+    private String INFO_TEXT = "test description"; // default powerup icon text
+    private GreenfootImage image;
     
     // Related description to this powerup
     private PowerupInfo info;
     // offset x- and y-values for info
-    private int infoX = 100;
-    private int infoY = 100;
+    private int infoX = 20;
+    private int infoY = 90;
+    
+    // Whether or not info text box appears on hover
+    private boolean isHoverable = true;
 
     /**
      * Constructor for objects of class Powerup
      */
-    public PowerupIcon()
+    public PowerupIcon(String imageFile, double size)
     {
         // code for default icon image
-        image.scale((int)(image.getWidth()*0.08), (int)(image.getHeight()*0.08));
+        image = new GreenfootImage(imageFile);
+        image.scale((int)(image.getWidth()*size), (int)(image.getHeight()*size));
         setImage(image);
     }
     
-    protected void addedToWorld(World w) {
+    public void addedToWorld(World w) {
         info = new PowerupInfo(INFO_TEXT);
         w.addObject(info, getX()+infoX, getY()-infoY);
     }
@@ -39,7 +40,7 @@ public class PowerupIcon extends Actor
     public void act() {
         // If mouse is hovering over upgrade, show upgrade description. Otherwise, hide description.
         if(Greenfoot.getMouseInfo() != null) {
-            if(isHovering()) {
+            if(isHovering() && isHoverable) {
                 info.show();
             } else {
                 info.hide();
@@ -68,7 +69,15 @@ public class PowerupIcon extends Actor
         }
     }
     
-    public boolean getActivated() {
-        return ACTIVATED;
+    public void hide() {
+        image.setTransparency(0);
+        info.hide();
+        isHoverable = false; // disable hovering feature
+    }
+    
+    public void show() {
+        image.setTransparency(255);
+        info.show();
+        isHoverable = true;
     }
 }
