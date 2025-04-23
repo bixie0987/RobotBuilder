@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class MyWorld here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @authors Chin-En Hu, Julia Yang, Yuvia Liu, Elise Liu, Jaclyn Liang
+ * @version April 2025
  */
 public class MyWorld extends World
 {
@@ -147,6 +147,11 @@ public class MyWorld extends World
         }
     }
 
+    /**
+     * The spawning of spiders and suppliers
+     * 
+     * @param teamSide  The team that the living being belongs to. Should be "Right" or "Left".
+     */
     public void spawn(String teamSide){
         leftSpiderSpawnTimer++;
         rightSpiderSpawnTimer++;
@@ -184,12 +189,6 @@ public class MyWorld extends World
         for (int i = 0; i < leftSide; i++) {
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
-    }
-
-    public boolean shouldSpawnSpider(){
-        //chance to spawn a spider per act = spiderSpawnChance / 600
-        //return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
-        return false;
     }
     
     public void spawn () {
