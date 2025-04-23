@@ -68,6 +68,7 @@ public class Materials extends Actor
         return robot;
     }
     
+
     public void updatePileImage(int stage) {
         piles = new GreenfootImage("pile" + stage + ".png");
         piles.scale(90, 70);

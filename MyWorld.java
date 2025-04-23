@@ -108,7 +108,7 @@ public class MyWorld extends World
         computerEvil = new Computer();
         
         //set paint order for pipe and spider
-        setPaintOrder (Pipe.class, Spider.class);
+        setPaintOrder (Pipe.class, Researcher.class, Spider.class, Computer.class);
 
         spawn(resNumRight, resNumLeft);
         spawn();

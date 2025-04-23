@@ -22,7 +22,7 @@ public class Computer extends Actor
     public Computer() {
         setImage("researcherComputer.png");
         GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 20, img.getHeight() / 20);
+        img.scale(img.getWidth() / 5, img.getHeight() / 5);
         setImage(img);
         
         researchBar = new SuperStatBar(100, 0, null, 60, 8, 0, Color.RED, Color.DARK_GRAY);
