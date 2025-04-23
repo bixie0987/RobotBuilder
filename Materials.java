@@ -16,17 +16,17 @@ public class Materials extends Actor
     // link to its Robot object
     private Robot robot;
     
+    // Pile count to track and update pile images    
     /**
      * Create materials pile. Each materials pile has its own progress bar and linked robot.
      * 
      * @param robot    The robot linked to this materials pile.
      */
-    public Materials(Robot robot) {
-        piles = new GreenfootImage("woodpiles.png"); // Set up images
-        piles.scale(90, 90);                          
-        setImage(piles);
-        
+    public Materials(Robot robot) {        
         this.robot = robot;
+        piles = new GreenfootImage("pile0.png");
+        piles.scale(90, 70);
+        setImage(piles);
         
         // Initiate progress bar
         progressBar = new SuperStatBar(100, 0, null, 60, 8, 0, Color.ORANGE, Color.DARK_GRAY);
@@ -55,7 +55,7 @@ public class Materials extends Actor
             robot.unlockPart();
             
             // Reset the progress bar back to 0
-            progressBar.update(0);
+            progressBar.update(0);                    
         }
     }
     
@@ -66,5 +66,11 @@ public class Materials extends Actor
      */
     public Robot getRobot() {
         return robot;
+    }
+    
+    public void updatePileImage(int stage) {
+        piles = new GreenfootImage("pile" + stage + ".png");
+        piles.scale(90, 70);
+        setImage(piles);
     }
 }

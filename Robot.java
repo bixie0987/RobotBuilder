@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.GreenfootImage;
 
 /**
  * Controls robots' appearance, animation, and behaviour
@@ -14,8 +15,11 @@ public class Robot extends SuperSmoothMover
     private SuperStatBar[] matProgBars = new SuperStatBar[NUM_STAGES]; // progress squares at the top - represents material stage
     
     private GreenfootImage baseImage;
+    private GreenfootImage piles;
     
     private String type; // "good" for left robot, "evil" for right robot
+    
+    private Materials myPile;
     
     /**
      * Sets robot's image
@@ -63,6 +67,10 @@ public class Robot extends SuperSmoothMover
         matProgBars[stage].update(1); // change current stage box to be completed (set its currVal to 1)
         if(stage < NUM_STAGES-1) {
             stage++;
+            if (myPile != null) {
+                myPile.updatePileImage(stage); // Update the pile's image
+            }
+  
         } else {
             // Trigger endgame screen
             ((MyWorld)getWorld()).endGame(type); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
@@ -93,5 +101,9 @@ public class Robot extends SuperSmoothMover
         } else {
             stageUp();
         }
+    }
+    
+    public void setPile(Materials pile) {
+        this.myPile = pile;
     }
 }
