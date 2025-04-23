@@ -35,8 +35,8 @@ public class Computer extends Actor
         
         // Powerup icons
         spiFreIcon = new PowerupIcon("spider_freeze_icon.png", 0.5, spiFreText);
-        resIncIcon = new PowerupIcon("powerup_icon.png", 0.08, resIncText);
-        supIncIcon = new PowerupIcon("powerup_icon.png", 0.08, supIncText);
+        resIncIcon = new PowerupIcon("researcher_increase_icon.png", 0.5, resIncText);
+        supIncIcon = new PowerupIcon("supplier_increase_icon.png", 0.5, supIncText);
     }
     public void addedToWorld(World w) {
         w.addObject(researchBar, getX(), getY() - 70);
