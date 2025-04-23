@@ -16,6 +16,11 @@ public class Computer extends Actor
     // Powerup icons
     private PowerupIcon spiFreIcon, resIncIcon, supIncIcon;
     
+    // Powerup text
+    private String[] spiFreText;
+    private String[] resIncText;
+    private String[] supIncText;
+    
     public Computer() {
         setImage("researcherComputer.png");
         GreenfootImage img = getImage();
@@ -24,10 +29,15 @@ public class Computer extends Actor
         
         researchBar = new SuperStatBar(100, 0, null, 60, 8, 0, Color.RED, Color.DARK_GRAY);
         
+        // Set up powerup icon description text
+        spiFreText = new String[]{"", "", "", ""};
+        resIncText = new String[]{"description", "lvl: ", "line3", "line4"};
+        supIncText = new String[]{"description", "lvl: ", "line3", "line4"};
+        
         // Powerup icons
-        spiFreIcon = new PowerupIcon("powerup_icon.png", 0.08);
-        resIncIcon = new PowerupIcon("powerup_icon.png", 0.08);
-        supIncIcon = new PowerupIcon("powerup_icon.png", 0.08);
+        spiFreIcon = new PowerupIcon("spider_freeze_icon.png", 0.5, spiFreText);
+        resIncIcon = new PowerupIcon("powerup_icon.png", 0.08, resIncText);
+        supIncIcon = new PowerupIcon("powerup_icon.png", 0.08, supIncText);
     }
     public void addedToWorld(World w) {
         w.addObject(researchBar, getX(), getY() - 70);
@@ -55,6 +65,8 @@ public class Computer extends Actor
         if (researchBar.getCurrentValue() >= 100) {
             randomPowerUp = Greenfoot.getRandomNumber(3);
             
+            randomPowerUp = 0; // DEBUGGING
+            
             if (randomPowerUp == 0) {
                 spiderFreeze();
             } else if (randomPowerUp == 1) {
@@ -63,8 +75,8 @@ public class Computer extends Actor
                 supplierIncrease();
             }
             researchBar.update(0);
-            randomPowerUp = 0; // DEBUGGING
-            System.out.println("randomPowerUp: " + randomPowerUp); // DEBUGGING
+            
+            System.out.println("randomPowerUp: " + randomPowerUp + morality); // DEBUGGING
         }
     }
     /**
@@ -85,15 +97,17 @@ public class Computer extends Actor
         if (morality) {
             //System.out.println("Good side freeze spider");
             world.freezeLeft();
+            System.out.println("called freezeLeft");
         }
         if (!morality) {
             //System.out.println("Bad side freeze spider");
             world.freezeRight();
+            System.out.println("called freezeRight");
         }
         
         // Show spiderFreeze icon (icon is otherwise hidden when powerup is not activated)
         spiFreIcon.show();
-        System.out.println("showing"); // DEBUGGING
+        System.out.println(morality + " is activated");
     }
     public void researchIncrease() {
         for (Object obj : getWorld().getObjects(Researcher.class)) {
@@ -127,5 +141,9 @@ public class Computer extends Actor
     
     public PowerupIcon getSpiFreIcon() {
         return spiFreIcon;
+    }
+    
+    public boolean getMorality() {
+        return morality;
     }
 }

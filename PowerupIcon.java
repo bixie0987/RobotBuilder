@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PowerupIcon extends Actor
 {
-    // Variables SPECIFIC to each powerup icon
-    private String INFO_TEXT = "test description"; // default powerup icon text
+    // Info text
+    private String[] textLines = new String[4];
+    
     private GreenfootImage image;
     
     // Related description to this powerup
@@ -24,16 +25,21 @@ public class PowerupIcon extends Actor
     /**
      * Constructor for objects of class Powerup
      */
-    public PowerupIcon(String imageFile, double size)
+    public PowerupIcon(String imageFile, double size, String[] givenTextLines)
     {
         // code for default icon image
         image = new GreenfootImage(imageFile);
         image.scale((int)(image.getWidth()*size), (int)(image.getHeight()*size));
         setImage(image);
+        
+        // set text
+        for(int i = 0; i < textLines.length; i++) {
+            textLines[i]  = givenTextLines[i];
+        }
     }
     
     public void addedToWorld(World w) {
-        info = new PowerupInfo(INFO_TEXT);
+        info = new PowerupInfo(textLines);
         w.addObject(info, getX()+infoX, getY()-infoY);
     }
     
