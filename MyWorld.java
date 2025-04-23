@@ -134,9 +134,6 @@ public class MyWorld extends World
             }
             spiderFreezeTimerLeft--;
         }
-        System.out.println("hello"); // DEBUGGING
-        System.out.println(spiderFreezeTimerLeft + " " + computerGood.getMorality()); // DEBUGGING
-        System.out.println(spiderFreezeTimerRight + " " + computerEvil.getMorality()); // DEBUGGING
         if (spiderFreezeTimerRight > 0) {
             for (Object obj : getObjects(Spider.class)) {
                 Spider spider = (Spider) obj;
@@ -148,11 +145,9 @@ public class MyWorld extends World
         }
         if(spiderFreezeTimerLeft == 1) {
             computerGood.getSpiFreIcon().hide();
-            System.out.println("spiFreIcon left hidden"); // DEBUGGING
         }
         if(spiderFreezeTimerRight == 1) {
             computerEvil.getSpiFreIcon().hide();
-            System.out.println("spiFreIcon right hidden"); // DEBUGGING
         }
     }
 

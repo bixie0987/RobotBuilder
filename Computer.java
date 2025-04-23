@@ -75,8 +75,6 @@ public class Computer extends Actor
                 supplierIncrease();
             }
             researchBar.update(0);
-            
-            System.out.println("randomPowerUp: " + randomPowerUp + morality); // DEBUGGING
         }
     }
     /**
