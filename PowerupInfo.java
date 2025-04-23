@@ -32,10 +32,17 @@ public class PowerupInfo extends Actor
     }
     
     protected void addedToWorld(World w) {
+        addTextLines();
+    }
+    
+    /**
+     * Adds TextLabel objects in textLines to world using addObject(), while positioning and spacing out each line
+     */
+    private void addTextLines() {
         // Add info text at center of box
         int y = -30; // y pos of the first line
         for(TextLabel t : textLines) {
-            w.addObject(t, getX(), getY() + y);
+            getWorld().addObject(t, getX(), getY() + y);
             y += 13;
         }
     }
@@ -43,6 +50,22 @@ public class PowerupInfo extends Actor
     public void act()
     {
         
+    }
+    
+    /**
+     * Changes description text visually
+     * 
+     * @param newInfo    New text to change to. All lines are changed
+     */
+    public void updateInfo(String[] newInfo) {
+        for(int i = 0; i < textLines.length; i++) {
+            // Remove old TextLabels
+            getWorld().removeObject(textLines[i]);
+            
+            // Replace indexes in arrays with new TextLabels
+            textLines[i] = new TextLabel(newInfo[i], 15, Color.BLACK);
+            addTextLines();
+        }
     }
     
     /**

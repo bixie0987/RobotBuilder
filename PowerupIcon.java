@@ -81,6 +81,21 @@ public class PowerupIcon extends Actor
         }
     }
     
+    /**
+     * Updates powerup icon's info text description
+     * 
+     * @param newText    New text to change to; must include all lines of info box, even the unchanged ones
+     */
+    public void updateInfoText(String[] newText) {
+        // Update the values of all the textLines
+        for(int i = 0; i < textLines.length; i++) {
+            textLines[i] = newText[i];
+        }
+        
+        // Visually update the info text
+        info.updateInfo(textLines);
+    }
+    
     public void hide() {
         image.setTransparency(0);
         info.hide();
