@@ -87,8 +87,8 @@ public class Computer extends Actor
         } else {
             morality = false;
         }
-        // Add your action code here.
     }
+    
     public void spiderFreeze() {
         MyWorld world = (MyWorld) getWorld();
         if (morality) {
