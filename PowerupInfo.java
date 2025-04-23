@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PowerupInfo here.
+ * The description box of each powerup icon
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version April 2025
  */
 public class PowerupInfo extends Actor
 {
@@ -17,7 +17,7 @@ public class PowerupInfo extends Actor
     /**
      * Set image for info box, and create info text
      * 
-     * @param infoText    Text containing powerup's info
+     * @param givenTexts    Text containing powerup's info. Each index is one line of text
      */
     public PowerupInfo(String[] givenTexts) {
         // Set image of box behind info text
@@ -45,7 +45,7 @@ public class PowerupInfo extends Actor
     }
     
     /**
-     * Hide info box from view (default)
+     * Hide info box from view (should be default)
      */
     public void hide() {
         boxImage.setTransparency(0);

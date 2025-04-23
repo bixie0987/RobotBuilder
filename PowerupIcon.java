@@ -1,14 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Superclass of all Powerup icons. Creates a hover-able icon (that displays powerup's info when user's mouse hovers over the icon)
+ * Superclass of all Powerup icons. Creates a hover-able icon (that displays powerup's info when user's mouse hovers over the icon).
  * 
  * @author Julia 
  * @version April 19
  */
 public class PowerupIcon extends Actor
 {
-    // Info text
+    // Info text. Each item in the array is one line of text
     private String[] textLines = new String[4];
     
     private GreenfootImage image;
@@ -23,7 +23,11 @@ public class PowerupIcon extends Actor
     private boolean isHoverable = true;
 
     /**
-     * Constructor for objects of class Powerup
+     * Creates powerup icon image and description text
+     * 
+     * @param imageFile         Name of icon's image file
+     * @param size              Size multiplier to scale icon's image to
+     * @param givenTextLines    Text for the powerup info/description; each item in the array is one line of text
      */
     public PowerupIcon(String imageFile, double size, String[] givenTextLines)
     {
@@ -32,13 +36,14 @@ public class PowerupIcon extends Actor
         image.scale((int)(image.getWidth()*size), (int)(image.getHeight()*size));
         setImage(image);
         
-        // set text
+        // set text. Each index is one line
         for(int i = 0; i < textLines.length; i++) {
             textLines[i]  = givenTextLines[i];
         }
     }
     
     public void addedToWorld(World w) {
+        // create info text box
         info = new PowerupInfo(textLines);
         w.addObject(info, getX()+infoX, getY()-infoY);
     }

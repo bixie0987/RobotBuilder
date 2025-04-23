@@ -16,10 +16,8 @@ public class Computer extends Actor
     // Powerup icons
     private PowerupIcon spiFreIcon, resIncIcon, supIncIcon;
     
-    // Powerup text
-    private String[] spiFreText;
-    private String[] resIncText;
-    private String[] supIncText;
+    // Powerup text. Set them up IN THE CONSTRUCTOR!!!!!
+    private String[] spiFreText, resIncText, supIncText;
     
     public Computer() {
         setImage("researcherComputer.png");
@@ -29,8 +27,9 @@ public class Computer extends Actor
         
         researchBar = new SuperStatBar(100, 0, null, 60, 8, 0, Color.RED, Color.DARK_GRAY);
         
-        // Set up powerup icon description text
-        spiFreText = new String[]{"", "", "", ""};
+        // Set up powerup icon description text HERE!!!!!!!
+        // Each index in the array is one line of text
+        spiFreText = new String[]{"description", "", "", ""};
         resIncText = new String[]{"description", "lvl: ", "line3", "line4"};
         supIncText = new String[]{"description", "lvl: ", "line3", "line4"};
         
