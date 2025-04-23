@@ -83,12 +83,15 @@ public class MyWorld extends World
         addObject(robotGood, 250, 320);
         addObject(robotEvil, 750, 300);
 
-        // initiate piles
-        // Link the robot to each pile
+        // initiate piles     
         pile1 = new Materials(robotGood);
         addObject(pile1, 455, 430);
+
         pile2 = new Materials(robotEvil);
         addObject(pile2, 545, 430);
+        
+        robotGood.setPile(pile1);  
+        robotEvil.setPile(pile2);
         
         //Add pipes
         pipe1 = new Pipe("Mario_pipe.png", 0.5);
