@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ResearchPile here.
+ * Manages powerups of researchers
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Chin En, Julia
+ * @version April 2025
  */
 public class Computer extends Actor
 {
@@ -29,9 +29,9 @@ public class Computer extends Actor
         
         // Set up powerup icon description text HERE!!!!!!!
         // Each index in the array is one line of text
-        spiFreText = new String[]{"description", "", "", ""};
-        resIncText = new String[]{"description", "lvl: ", "line3", "line4"};
-        supIncText = new String[]{"description", "lvl: ", "line3", "line4"};
+        spiFreText = new String[]{"description", "", "", "", ""};
+        resIncText = new String[]{"description", "lvl: ", "line3", "line4", "line5"};
+        supIncText = new String[]{"description", "lvl: ", "line3", "line4", "line5"};
         
         // Powerup icons
         spiFreIcon = new PowerupIcon("spider_freeze_icon.png", 0.5, spiFreText);

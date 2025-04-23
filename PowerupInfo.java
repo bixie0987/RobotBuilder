@@ -12,7 +12,8 @@ public class PowerupInfo extends Actor
     private GreenfootImage boxImage;
     
     // Info/description text
-    private TextLabel[] textLines = new TextLabel[4];
+    // There are 5 lines of text per powerupinfo!!!!
+    private TextLabel[] textLines = new TextLabel[5];
     
     /**
      * Set image for info box, and create info text
@@ -26,16 +27,16 @@ public class PowerupInfo extends Actor
         setImage(boxImage);
         
         for(int i = 0; i < textLines.length; i++) {
-            textLines[i] = new TextLabel(givenTexts[i], 20, Color.BLACK);
+            textLines[i] = new TextLabel(givenTexts[i], 15, Color.BLACK);
         }
     }
     
     protected void addedToWorld(World w) {
         // Add info text at center of box
-        int y = -20; // y pos of the first line
+        int y = -30; // y pos of the first line
         for(TextLabel t : textLines) {
             w.addObject(t, getX(), getY() + y);
-            y += 15;
+            y += 13;
         }
     }
     

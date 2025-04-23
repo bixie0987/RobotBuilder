@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Superclass of all Powerup icons. Creates a hover-able icon (that displays powerup's info when user's mouse hovers over the icon).
+ * Creates a hover-able icon for powerups (that displays powerup's info when user's mouse hovers over the icon).
  * 
  * @author Julia 
  * @version April 19
@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PowerupIcon extends Actor
 {
     // Info text. Each item in the array is one line of text
-    private String[] textLines = new String[4];
+    // There are max 5 lines of text!!!
+    private String[] textLines = new String[5];
     
     private GreenfootImage image;
     
@@ -27,7 +28,7 @@ public class PowerupIcon extends Actor
      * 
      * @param imageFile         Name of icon's image file
      * @param size              Size multiplier to scale icon's image to
-     * @param givenTextLines    Text for the powerup info/description; each item in the array is one line of text
+     * @param givenTextLines    Text for the powerup info/description; each item in the array is one line of text. There must be 5 items/lines of text for each powerup! To have a blank line, leave an empty string (i.e. "")
      */
     public PowerupIcon(String imageFile, double size, String[] givenTextLines)
     {
