@@ -155,6 +155,9 @@ public class MyWorld extends World
     public void spawn(String teamSide){
         leftSpiderSpawnTimer++;
         rightSpiderSpawnTimer++;
+        int spawnChanceSupplier = 1;
+        int randNum = Greenfoot.getRandomNumber(increaseLeft);
+        int randNum2 = Greenfoot.getRandomNumber(increaseRight); //spawn random num from 0-60, for spawn chances of spider
         if(leftSpiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
             leftSpiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
         }
@@ -162,9 +165,6 @@ public class MyWorld extends World
             rightSpiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
         }
         
-        int spawnChanceSupplier = 1;
-        int randNum = Greenfoot.getRandomNumber(increaseLeft);
-        int randNum2 = Greenfoot.getRandomNumber(increaseRight); //spawn random num from 0-60, for spawn chances of spider
         if(teamSide.equals("Right")){ //change coordinates based on spawn side
             supplierXSpawn = 535; //sets supplier x coordinate to the right side of the screen
             spiderXSpawn = 924; //sets spider x coordinate to the right side of the screen
