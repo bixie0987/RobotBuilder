@@ -27,6 +27,7 @@ public class Button extends Actor
     public void act()
     {
         if(Greenfoot.mousePressed(this)) {
+            Sounds.getInstance().playSounds(Sounds.MOUSE_CLICK);
             pressed = true;
         } else {
             pressed = false;

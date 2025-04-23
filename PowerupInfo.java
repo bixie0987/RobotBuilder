@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PowerupInfo here.
+ * The description box of each powerup icon
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version April 2025
  */
 public class PowerupInfo extends Actor
 {
@@ -12,38 +12,47 @@ public class PowerupInfo extends Actor
     private GreenfootImage boxImage;
     
     // Info/description text
-    private TextLabel text;
+    // There are 5 lines of text per powerupinfo!!!!
+    private TextLabel[] textLines = new TextLabel[5];
     
     /**
      * Set image for info box, and create info text
      * 
-     * @param infoText    Text containing powerup's info
+     * @param givenTexts    Text containing powerup's info. Each index is one line of text
      */
-    public PowerupInfo(String infoText) {
+    public PowerupInfo(String[] givenTexts) {
         // Set image of box behind info text
         boxImage = new GreenfootImage("description_box.png");
         boxImage.scale((int)(boxImage.getWidth()*0.1), (int)(boxImage.getHeight()*0.1));
         setImage(boxImage);
         
-        text = new TextLabel(infoText, 20, Color.BLACK);
+        for(int i = 0; i < textLines.length; i++) {
+            textLines[i] = new TextLabel(givenTexts[i], 15, Color.BLACK);
+        }
     }
     
     protected void addedToWorld(World w) {
         // Add info text at center of box
-        w.addObject(text, getX(), getY());
+        int y = -30; // y pos of the first line
+        for(TextLabel t : textLines) {
+            w.addObject(t, getX(), getY() + y);
+            y += 13;
+        }
     }
     
     public void act()
     {
-        // Add your action code here.
+        
     }
     
     /**
-     * Hide info box from view (default)
+     * Hide info box from view (should be default)
      */
     public void hide() {
         boxImage.setTransparency(0);
-        text.setColour(new Color(0, 0, 0, 0));
+        for(TextLabel t : textLines) {
+            t.setColour(new Color(0, 0, 0, 0));
+        }
     }
     
     /**
@@ -51,6 +60,8 @@ public class PowerupInfo extends Actor
      */
     public void show() {
         boxImage.setTransparency(255);
-        text.setColour(Color.BLACK);
+        for(TextLabel t : textLines) {
+            t.setColour(Color.BLACK);
+        }
     }
 }

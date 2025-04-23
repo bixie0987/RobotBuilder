@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class MyWorld here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @authors Chin-En Hu, Julia Yang, Yuvia Liu, Elise Liu, Jaclyn Liang
+ * @version April 2025
  */
 public class MyWorld extends World
 {
@@ -32,6 +32,10 @@ public class MyWorld extends World
 
     private int[][] coordsLeft = {
             {180, 550}, {220, 550}, {260, 550}, {300, 550}};
+            
+    // Computers
+    private Computer computerGood;
+    private Computer computerEvil;
 
     // Robots (good and evil)
     private Robot robotGood;
@@ -47,10 +51,6 @@ public class MyWorld extends World
     private Pipe pipe3;
     private Pipe pipe4;
     
-    // Powerup icons
-    // Add powerup icon objects here
-    private PowerupIcon testPowerup;
-
     //variables for the supplier's spawn rate
     private int increaseLeft = 135;
     private int increaseRight = 135;
@@ -73,6 +73,9 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        
+        //Play background music
+        Sounds.getInstance().playBackgroundMusicLoop();
 
         // Create robots
         robotGood = new Robot("good");
@@ -80,12 +83,15 @@ public class MyWorld extends World
         addObject(robotGood, 250, 320);
         addObject(robotEvil, 750, 300);
 
-        // initiate piles
-        // Link the robot to each pile
+        // initiate piles     
         pile1 = new Materials(robotGood);
         addObject(pile1, 455, 430);
+
         pile2 = new Materials(robotEvil);
         addObject(pile2, 545, 430);
+        
+        robotGood.setPile(pile1);  
+        robotEvil.setPile(pile2);
         
         //Add pipes
         pipe1 = new Pipe("Mario_pipe.png", 0.5);
@@ -97,27 +103,18 @@ public class MyWorld extends World
         pipe4 = new Pipe("Mario_pipe.png", 0.5);
         addObject(pipe4, 392, 750);
         
+        // Computers
+        computerGood = new Computer();
+        computerEvil = new Computer();
+        
         //set paint order for pipe and spider
         setPaintOrder (Pipe.class, Researcher.class, Spider.class, Computer.class);
 
         spawn(resNumRight, resNumLeft);
         spawn();
-        
-        // Powerup icons
-        // Instantiate powerup icons here
-        testPowerup = new PowerupIcon();
-        addObject(testPowerup, 300, 300);
     }
 
     public void act(){
-        /*
-        spiderSpawnTimer++;
-        if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
-            spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
-        }
-        */
-
-        //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
 
@@ -150,8 +147,19 @@ public class MyWorld extends World
             }
             spiderFreezeTimerRight--;
         }
+        if(spiderFreezeTimerLeft == 1) {
+            computerGood.getSpiFreIcon().hide();
+        }
+        if(spiderFreezeTimerRight == 1) {
+            computerEvil.getSpiFreIcon().hide();
+        }
     }
 
+    /**
+     * The spawning of spiders and suppliers
+     * 
+     * @param teamSide  The team that the living being belongs to. Should be "Right" or "Left".
+     */
     public void spawn(String teamSide){
         leftSpiderSpawnTimer++;
         rightSpiderSpawnTimer++;
@@ -190,16 +198,10 @@ public class MyWorld extends World
             addObject(new Researcher(), coordsLeft[i][0], coordsLeft[i][1]);
         }
     }
-
-    public boolean shouldSpawnSpider(){
-        //chance to spawn a spider per act = spiderSpawnChance / 600
-        //return Greenfoot.getRandomNumber(600) < spiderSpawnChance;
-        return false;
-    }
     
     public void spawn () {
-        addObject(new Computer(), 234, 500);
-        addObject(new Computer(), 768, 500);
+        addObject(computerGood, 234, 500);
+        addObject(computerEvil, 768, 500);
     }
 
     public boolean shouldSpawnSpider(String teamSide){
@@ -212,13 +214,12 @@ public class MyWorld extends World
         }
     }
 
-    //plays or stops background music depending on if scenario is running or not
     public void started(){
         Sounds.getInstance().playBackgroundMusicLoop();
     }
 
     public void stopped(){
-        Sounds.getInstance().stopBackgroundMusic();
+        Sounds.getInstance().pauseBackgroundMusic();
     }
 
     /**
@@ -226,8 +227,10 @@ public class MyWorld extends World
      */
     public void endGame(String winner)
     {
+        //Stops playing background music
+        Sounds.getInstance().stopBackgroundMusic();
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
-        Greenfoot.setWorld(new EndScreen(winner));    
+        Greenfoot.setWorld(new EndScreen(winner));
     }
     public void freezeLeft() {
         spiderFreezeTimerLeft = 600;
