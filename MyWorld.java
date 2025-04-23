@@ -32,6 +32,10 @@ public class MyWorld extends World
 
     private int[][] coordsLeft = {
             {180, 550}, {220, 550}, {260, 550}, {300, 550}};
+            
+    // Computers
+    private Computer computerGood;
+    private Computer computerEvil;
 
     // Robots (good and evil)
     private Robot robotGood;
@@ -47,10 +51,6 @@ public class MyWorld extends World
     private Pipe pipe3;
     private Pipe pipe4;
     
-    // Powerup icons
-    // Add powerup icon objects here
-    private PowerupIcon testPowerup;
-
     //variables for the supplier's spawn rate
     private int increaseLeft = 135;
     private int increaseRight = 135;
@@ -103,16 +103,15 @@ public class MyWorld extends World
         pipe4 = new Pipe("Mario_pipe.png", 0.5);
         addObject(pipe4, 392, 750);
         
+        // Computers
+        computerGood = new Computer();
+        computerEvil = new Computer();
+        
         //set paint order for pipe and spider
         setPaintOrder (Pipe.class, Spider.class);
 
         spawn(resNumRight, resNumLeft);
         spawn();
-        
-        // Powerup icons
-        // Instantiate powerup icons here
-        testPowerup = new PowerupIcon();
-        addObject(testPowerup, 300, 300);
     }
 
     public void act(){
@@ -147,6 +146,12 @@ public class MyWorld extends World
                 }
             }
             spiderFreezeTimerRight--;
+        }
+        if(spiderFreezeTimerLeft == 1) {
+            computerGood.getSpiFreIcon().hide();
+        }
+        if(spiderFreezeTimerRight == 1) {
+            computerEvil.getSpiFreIcon().hide();
         }
     }
 
@@ -196,8 +201,8 @@ public class MyWorld extends World
     }
     
     public void spawn () {
-        addObject(new Computer(), 234, 500);
-        addObject(new Computer(), 768, 500);
+        addObject(computerGood, 234, 500);
+        addObject(computerEvil, 768, 500);
     }
 
     public boolean shouldSpawnSpider(String teamSide){

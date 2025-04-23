@@ -41,8 +41,9 @@ public class Robot extends SuperSmoothMover
     public void addedToWorld(World w) {
         // Create material progress bars
         for(int i = 0; i < matProgBars.length; i++) {
-            matProgBars[i] = new SuperStatBar(1, 0, null, 30, 30, 0); // each progress 'box' is a superstatbar, but with maxVal 1 (unfinished stages: currVal = 0; finished stages: currVal = 1)
-
+            matProgBars[i] = new SuperStatBar(1, 0, null, 30, 30, 0, new Color(166, 255, 255), new Color(30, 70, 136)); // each progress 'box' is a superstatbar, but with maxVal 1 (unfinished stages: currVal = 0; finished stages: currVal = 1)
+            // btw the matProgBars colours are taken from SettingsScreen's parameter bar colours
+            
             w.addObject(matProgBars[i], this.getX()-150 + 80*i, 80);
         }
     }
