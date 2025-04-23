@@ -51,11 +51,17 @@ public class MyWorld extends World
     private Pipe pipe3;
     private Pipe pipe4;
     
-    private int increaseLeft = 100;
-    private int increaseRight = 100;
+    //variables for the supplier's spawn rate
+    private int increaseLeft = 135;
+    private int increaseRight = 135;
     
-    protected int supplierContributionLeft = 10;
-    protected int supplierContributionRight = 10;
+    //variables for the supplier contribution to material stat bar
+    protected int supplierContributionLeft = 20;
+    protected int supplierContributionRight = 20;
+    
+    //variables for the moving speed of the suppliers-- mainly for aesthetics
+    protected int speedLeft = 2;
+    protected int speedRight = 2;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -67,6 +73,9 @@ public class MyWorld extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("background01.png");
         setBackground(background);
+        
+        //Play background music
+        Sounds.getInstance().playBackgroundMusicLoop();
 
         // Create robots
         robotGood = new Robot("good");
@@ -74,12 +83,15 @@ public class MyWorld extends World
         addObject(robotGood, 250, 320);
         addObject(robotEvil, 750, 300);
 
-        // initiate piles
-        // Link the robot to each pile
+        // initiate piles     
         pile1 = new Materials(robotGood);
         addObject(pile1, 455, 430);
+
         pile2 = new Materials(robotEvil);
         addObject(pile2, 545, 430);
+        
+        robotGood.setPile(pile1);  
+        robotEvil.setPile(pile2);
         
         //Add pipes
         pipe1 = new Pipe("Mario_pipe.png", 0.5);
@@ -103,14 +115,6 @@ public class MyWorld extends World
     }
 
     public void act(){
-        /*
-        spiderSpawnTimer++;
-        if(spiderSpawnTimer>=SPIDER_SPAWN_INTERVAL){
-            spiderSpawnTimer = 0; //resets the timer to 0 every 10 seconds
-        }
-        */
-
-        //spawn(resNumRight, resNumLeft);
         spawn("Right");
         spawn("Left");
 
@@ -211,13 +215,12 @@ public class MyWorld extends World
         }
     }
 
-    //plays or stops background music depending on if scenario is running or not
     public void started(){
         Sounds.getInstance().playBackgroundMusicLoop();
     }
 
     public void stopped(){
-        Sounds.getInstance().stopBackgroundMusic();
+        Sounds.getInstance().pauseBackgroundMusic();
     }
 
     /**
@@ -225,8 +228,10 @@ public class MyWorld extends World
      */
     public void endGame(String winner)
     {
+        //Stops playing background music
+        Sounds.getInstance().stopBackgroundMusic();
         // Condition is found in Robot class! (this method is called when robot's MAX_STAGE is reached)
-        Greenfoot.setWorld(new EndScreen(winner));    
+        Greenfoot.setWorld(new EndScreen(winner));
     }
     public void freezeLeft() {
         spiderFreezeTimerLeft = 600;
@@ -235,19 +240,25 @@ public class MyWorld extends World
         spiderFreezeTimerRight = 600;
     }
     public void boostSupplierLeft() {
-        if (increaseLeft > 10) {
+        if (increaseLeft > 30) {
             increaseLeft -= 3;
         }
-        if (supplierContributionLeft < 50) {
-            supplierContributionLeft *= 2;
+        if (supplierContributionLeft <= 35) {
+            supplierContributionLeft += 5;
+        }
+        if (speedLeft <= 4) {
+            speedLeft *= 2;
         }
     }
     public void boostSupplierRight() {
-        if (increaseRight > 10) {
+        if (increaseRight > 30) {
             increaseRight -= 3;
         }
-        if (supplierContributionRight < 50) {
-            supplierContributionRight *= 2;
+        if (supplierContributionRight <= 35) {
+            supplierContributionRight += 5;
+        }
+        if (speedRight <= 4) {
+            speedRight *= 2;
         }
     }
 }

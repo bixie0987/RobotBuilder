@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class Supplier here.
  * 
@@ -16,6 +16,7 @@ public class Supplier extends Scientist
     private int speedLeft = 2;
     private int speedRight = 2;
     public Supplier(){
+        //set image for suppliers
         supplier = new GreenfootImage("supplier.png");
         setImage(supplier);
     }
@@ -24,36 +25,29 @@ public class Supplier extends Scientist
         MyWorld world = (MyWorld) getWorld();
         setRotation(-90);
         if (getX() < 512) {
-            move(speedLeft);
+            move(world.speedLeft);
         }
         if (getX() > 512) {
-            move(speedRight);
+            move(world.speedRight);
         }
         
+        List<Materials> leftPileList = getWorld().getObjectsAt(455, 430, Materials.class);
+        List<Materials> rightPileList = getWorld().getObjectsAt(545, 430, Materials.class);
         // determine which side is touched
-        Materials touchedPile = (Materials) getOneIntersectingObject(Materials.class);
-        if (getX() < 512) {
-            if (touchedPile != null) {
-                touchedPile.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases
-                getWorld().removeObject(this);
-                //System.out.println("good " + world.supplierContributionLeft);
-            }
-        } else {
-            if (touchedPile != null) {
-                touchedPile.increaseProgress(world.supplierContributionRight);  // Only the touched pile's bar increases
-                getWorld().removeObject(this);
-                //System.out.println("bad " + world.supplierContributionRight);
-            }
+        Materials touchedPileLeft = (leftPileList.isEmpty()) ? null : leftPileList.get(0);
+        
+        Materials touchedPileRight = (rightPileList.isEmpty()) ? null : rightPileList.get(0);
+
+        if (getX() == 475 && getY() > 420 && getY() < 440 && touchedPileLeft != null) {
+            touchedPileLeft.increaseProgress(world.supplierContributionLeft);  // Only the touched pile's bar increases
+            getWorld().removeObject(this);
+            return;
+            //System.out.println("good " + world.supplierContributionLeft);
         }
-    }
-    public void boostSupplierLeft() {
-        if (getX() < 512) {
-            speedLeft *= 2;
-        }
-    }
-    public void boostSupplierRight() {
-        if (getX() > 512) {
-            speedRight *= 2;
+        if (getX() == 535 && getY() > 420 && getY() < 440 && touchedPileRight != null) {        
+            touchedPileRight.increaseProgress(world.supplierContributionRight);  // Only the touched pile's bar increases
+            getWorld().removeObject(this);
+            //System.out.println("bad " + world.supplierContributionRight);
         }
     }
 }
