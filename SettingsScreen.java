@@ -29,15 +29,21 @@ public class SettingsScreen extends World
         TextLabel title = new TextLabel("Settings", 40, Color.WHITE);
         addObject(title, getWidth()/2, 70);
         
+        // Create subtitle text, 'Your Robot' and 'Evil Robot'
+        TextLabel subtitleGood = new TextLabel("Your Robot", 30, Color.WHITE);
+        TextLabel subtitleEvil = new TextLabel("Evil Robot", 30, Color.WHITE);
+        addObject(subtitleGood, getWidth()/4, 180);
+        addObject(subtitleEvil, getWidth() - getWidth()/4, 180);
+        
         // Create parameters (including their corresponding buttons/bars)
         // Good robot params
         int paramX = 80;
         numResearchersGood = new Parameter("Number of researchers", paramX, 300, this, 4, 1);
         spiderSpawnChanceGood = new Parameter("Spider spawn chance", paramX, 350, this, 10, 1);
         // Evil robot params
-        paramX = 540;
-        numResearchersEvil = new Parameter("Number of researchers (evil)", paramX, 300, this, 4, 1);
-        spiderSpawnChanceEvil = new Parameter("Spider spawn chance (evil)", paramX, 350, this, 10, 1);
+        paramX = 550;
+        numResearchersEvil = new Parameter("Number of researchers", paramX, 300, this, 4, 1);
+        spiderSpawnChanceEvil = new Parameter("Spider spawn chance", paramX, 350, this, 10, 1);
         
         // Create 'start' button
         startButton = new Button("startBUTT.png", 0.5);
@@ -51,7 +57,7 @@ public class SettingsScreen extends World
         numResearchersEvil.update();
         spiderSpawnChanceEvil.update();
         
-        // Check if 'Finish' button is pressed
+        // Check if 'Start' button is pressed
         if(startButton.getPressed()) {
             // Save parameters
             ParamStorage.setNumResearchersGood(numResearchersGood.getParamValue());
@@ -61,7 +67,6 @@ public class SettingsScreen extends World
             
             // Exit SettingsScreen and switch to simulation screen (MyWorld)
             Greenfoot.setWorld(new MyWorld());
-            ParamStorage.printAll();
         }
     }
 }

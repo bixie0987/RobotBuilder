@@ -1,4 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
+import greenfoot.GreenfootImage;
 
 /**
  * Controls robots' appearance, animation, and behaviour
@@ -6,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Julia
  * @version April 2025
  */
-public class Robot extends SuperSmoothMover
+public class Robot extends Actor
 {
     private int robotPart = 0; // From 0 to 6 (for 6 total parts of robot)
     private int stage = 0; // each stage is one type of material. First stage is 0!!
@@ -14,8 +16,11 @@ public class Robot extends SuperSmoothMover
     private SuperStatBar[] matProgBars = new SuperStatBar[NUM_STAGES]; // progress squares at the top - represents material stage
     
     private GreenfootImage baseImage;
+    private GreenfootImage piles;
     
     private String type; // "good" for left robot, "evil" for right robot
+    
+    private Materials myPile;
     
     /**
      * Sets robot's image
@@ -37,8 +42,9 @@ public class Robot extends SuperSmoothMover
     public void addedToWorld(World w) {
         // Create material progress bars
         for(int i = 0; i < matProgBars.length; i++) {
-            matProgBars[i] = new SuperStatBar(1, 0, null, 30, 30, 0); // each progress 'box' is a superstatbar, but with maxVal 1 (unfinished stages: currVal = 0; finished stages: currVal = 1)
-
+            matProgBars[i] = new SuperStatBar(1, 0, null, 30, 30, 0, new Color(166, 255, 255), new Color(30, 70, 136)); // each progress 'box' is a superstatbar, but with maxVal 1 (unfinished stages: currVal = 0; finished stages: currVal = 1)
+            // btw the matProgBars colours are taken from SettingsScreen's parameter bar colours
+            
             w.addObject(matProgBars[i], this.getX()-150 + 80*i, 80);
         }
     }
@@ -52,6 +58,11 @@ public class Robot extends SuperSmoothMover
      * Prepares robot for next stage of material - plays poof animation, changes robot image, updates material progress bar UNFINISHED!!!
      */
     public void stageUp() {
+        List<Materials> leftPileList = getWorld().getObjectsAt(455, 430, Materials.class);
+        List<Materials> rightPileList = getWorld().getObjectsAt(545, 430, Materials.class);
+
+        Materials leftPile = (leftPileList.isEmpty()) ? null : leftPileList.get(0);
+        Materials rightPile = (rightPileList.isEmpty()) ? null : rightPileList.get(0);
         // Reset part counter
         robotPart = 0;
         
@@ -63,6 +74,10 @@ public class Robot extends SuperSmoothMover
         matProgBars[stage].update(1); // change current stage box to be completed (set its currVal to 1)
         if(stage < NUM_STAGES-1) {
             stage++;
+            if (myPile != null) {
+                myPile.updatePileImage(stage); // Update the pile's image
+            }
+  
         } else {
             // Trigger endgame screen
             ((MyWorld)getWorld()).endGame(type); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))
@@ -93,5 +108,9 @@ public class Robot extends SuperSmoothMover
         } else {
             stageUp();
         }
+    }
+    
+    public void setPile(Materials pile) {
+        this.myPile = pile;
     }
 }
