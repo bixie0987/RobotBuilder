@@ -51,7 +51,7 @@ public class SettingsScreen extends World
         numResearchersEvil.update();
         spiderSpawnChanceEvil.update();
         
-        // Check if 'Finish' button is pressed
+        // Check if 'Start' button is pressed
         if(startButton.getPressed()) {
             // Save parameters
             ParamStorage.setNumResearchersGood(numResearchersGood.getParamValue());

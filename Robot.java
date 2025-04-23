@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Controls robots' appearance, animation, and behaviour
@@ -6,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Julia
  * @version April 2025
  */
-public class Robot extends SuperSmoothMover
+public class Robot extends Actor
 {
     private int robotPart = 0; // From 0 to 6 (for 6 total parts of robot)
     private int stage = 0; // each stage is one type of material. First stage is 0!!
@@ -52,6 +53,11 @@ public class Robot extends SuperSmoothMover
      * Prepares robot for next stage of material - plays poof animation, changes robot image, updates material progress bar UNFINISHED!!!
      */
     public void stageUp() {
+        List<Materials> leftPileList = getWorld().getObjectsAt(455, 430, Materials.class);
+        List<Materials> rightPileList = getWorld().getObjectsAt(545, 430, Materials.class);
+
+        Materials leftPile = (leftPileList.isEmpty()) ? null : leftPileList.get(0);
+        Materials rightPile = (rightPileList.isEmpty()) ? null : rightPileList.get(0);
         // Reset part counter
         robotPart = 0;
         
@@ -62,6 +68,11 @@ public class Robot extends SuperSmoothMover
         matProgBars[stage].update(1); // change current stage box to be completed (set its currVal to 1)
         if(stage < NUM_STAGES-1) {
             stage++;
+            if (type.equals("good") && leftPile != null) {
+                leftPile.leftStage();
+            } else if (rightPile != null) {
+                rightPile.rightStage();
+            }
         } else {
             // Trigger endgame screen
             ((MyWorld)getWorld()).endGame(type); // must cast getWorld(), which returns World, to MyWorld specifically, bc endGame() method is only found in MyWorld (which is a subclass of World))

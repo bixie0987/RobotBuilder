@@ -98,8 +98,7 @@ public class MyWorld extends World
         addObject(pipe4, 392, 750);
         
         //set paint order for pipe and spider
-        setPaintOrder (Pipe.class, Spider.class);
-        setPaintOrder (Researcher.class, Computer.class);
+        setPaintOrder (Pipe.class, Researcher.class, Spider.class, Computer.class);
 
         spawn(resNumRight, resNumLeft);
         spawn();

@@ -15,6 +15,9 @@ public class Materials extends Actor
     
     // link to its Robot object
     private Robot robot;
+    
+    private int leftImage = 0;
+    private int rightImage = 0;
     /**
      * Create materials pile. Each materials pile has its own progress bar and linked robot.
      * 
@@ -65,5 +68,27 @@ public class Materials extends Actor
      */
     public Robot getRobot() {
         return robot;
+    }
+    
+    public void leftStage() {
+        if (leftImage == 0) {
+            
+            leftImage++;
+            return;
+        }
+        if (leftImage == 1) {
+            
+        }
+    }
+    
+    public void rightStage() {
+        if (rightImage == 0) {
+            
+            rightImage++;
+            return;
+        }
+        if (rightImage == 1) {
+            
+        }
     }
 }
