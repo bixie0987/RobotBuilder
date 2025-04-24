@@ -62,8 +62,6 @@ public class Computer extends Actor
         if (researchBar.getCurrentValue() >= 100) {
             randomPowerUp = Greenfoot.getRandomNumber(3);
             
-            randomPowerUp = 0; // DEBUGGING
-            
             if (randomPowerUp == 0) {
                 //freezes spiders for 30 secs
                 spiderFreeze();

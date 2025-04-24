@@ -13,10 +13,12 @@ AUTHORS: Chin-En, Jaclyn, Elise, Yuvia, Julia
 --- FEATURES ---
 
 Compete in a robot building competition! Features include...
-- A settings screen to set attributes of both sides' robots
+- An opening cutscene
+- A settings screen - set attributes for both sides' robots
 - 3 material stages for each robot to get past to win (stage indicated by the 3 boxes at the top)
 - Team members on each robot's side (researchers, spiders, and suppliers), each with a different role
 - 3 powerups for each team
+- 2 different endings
 
 
 --- CREDITS ---
