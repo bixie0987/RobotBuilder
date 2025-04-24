@@ -10,14 +10,14 @@ public class PowerupIcon extends Actor
 {
     // Info text. Each item in the array is one line of text
     // There are max 5 lines of text!!!
-    private String[] textLines = new String[5];
+    private String[] textLines = new String[6];
     
     private GreenfootImage image;
     
     // Related description to this powerup
     private PowerupInfo info;
     // offset x- and y-values for info
-    private int infoX = 20;
+    private int infoX = 0;
     private int infoY = 90;
     
     // Whether or not info text box appears on hover
