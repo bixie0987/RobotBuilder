@@ -28,6 +28,9 @@ public class StartScreen extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("blackBackground.png");
         setBackground(background);
+        
+        researcherText = new ResearcherText();
+        supplierText = new SupplierText();
     }
     
     public void act() {
@@ -40,7 +43,7 @@ public class StartScreen extends World
     
     public void spawn() {
         if (!researcher) {
-            addObject(new ResearcherText(), 512, 400);
+            addObject(researcherText, 512, 400);
             researcher = true;
         }
         if (countdown1 > 0) {
@@ -52,7 +55,7 @@ public class StartScreen extends World
             researcherText = null;
         }
         if (!supplier) {
-            addObject(new SupplierText(), 512, 400);
+            addObject(supplierText, 512, 400);
             supplier = true;
         }
         if (countdown2 > 0) {
