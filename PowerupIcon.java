@@ -10,14 +10,14 @@ public class PowerupIcon extends Actor
 {
     // Info text. Each item in the array is one line of text
     // There are max 5 lines of text!!!
-    private String[] textLines = new String[5];
+    private String[] textLines = new String[6];
     
     private GreenfootImage image;
     
     // Related description to this powerup
     private PowerupInfo info;
     // offset x- and y-values for info
-    private int infoX = 20;
+    private int infoX = 0;
     private int infoY = 90;
     
     // Whether or not info text box appears on hover
@@ -79,6 +79,21 @@ public class PowerupIcon extends Actor
         } else {
             return false;
         }
+    }
+    
+    /**
+     * Updates powerup icon's info text description
+     * 
+     * @param newText    New text to change to; must include all lines of info box, even the unchanged ones
+     */
+    public void updateInfoText(String[] newText) {
+        // Update the values of all the textLines
+        for(int i = 0; i < textLines.length; i++) {
+            textLines[i] = newText[i];
+        }
+        
+        // Visually update the info text
+        info.updateInfo(textLines);
     }
     
     public void hide() {

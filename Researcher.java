@@ -161,4 +161,17 @@ public class Researcher extends Scientist
             }
         }
     }
+    
+    public int getIncreaseLeft() {
+        return increaseLeft;
+    }
+    public int getIncreaseRight() {
+        return increaseRight;
+    }
+    public int getLeftSpeed() {
+        return leftSpeed;
+    }
+    public int getRightSpeed() {
+        return rightSpeed;
+    }
 }
