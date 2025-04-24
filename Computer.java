@@ -21,7 +21,7 @@ public class Computer extends Actor
     
     // Powerup variables (to use in their text)
     private int resLvl = 0;
-    private int resInc, resSpeed; // idk what to do with these
+    private int supLvl = 0;
     
     public Computer() {
         setImage("researcherComputer.png");
@@ -33,9 +33,9 @@ public class Computer extends Actor
         
         // Set up powerup icon description text HERE!!!!!!!
         // Each index in the array is one line of text
-        spiFreText = new String[]{"Freezes spiders for 30 secs in", "their pipes", "", "", "", ""};
-        resIncText = new String[]{"Boosts researcher's movement", "speed and research ability", "Lvl: " + resLvl, "line3", "line4", "line5"};
-        supIncText = new String[]{"description", "", "Lvl: ", "line3", "line4", "line5"};
+        spiFreText = new String[]{"Freezes spiders for 10 secs in", "their pipes", "", "", "", ""};
+        resIncText = new String[]{"Boosts researcher's movement", "speed and research ability", "", "Lvl: " + resLvl, "", ""};
+        supIncText = new String[]{"Boosts supplier's movement", "speed, supply contribution", "and spawn rate", "", "Lvl: " + supLvl, ""};
         
         // Powerup icons
         spiFreIcon = new PowerupIcon("spider_freeze_icon.png", 0.5, spiFreText);
@@ -61,6 +61,8 @@ public class Computer extends Actor
     public void checkPowerUpStatus() {
         if (researchBar.getCurrentValue() >= 100) {
             randomPowerUp = Greenfoot.getRandomNumber(3);
+            
+            randomPowerUp = 0; // DEBUGGING
             
             if (randomPowerUp == 0) {
                 spiderFreeze();
@@ -108,6 +110,8 @@ public class Computer extends Actor
             }
         }
         resLvl++; // increase level, indicator of how many times this powerup has been activated
+        // visually update text box for resLvl change
+        resIncIcon.updateInfoText(new String[]{"Boosts researcher's movement", "speed and research ability", "", "Lvl: " + resLvl, "", ""});
     }
     public void supplierIncrease() {
         MyWorld world = (MyWorld) getWorld();
@@ -116,6 +120,9 @@ public class Computer extends Actor
         } else {
             world.boostSupplierRight();
         }
+        supLvl++; // increase level, indicator of how many times this powerup has been activated
+        // visually update text box for resLvl change
+        supIncIcon.updateInfoText(new String[]{"Boosts supplier's movement", "speed, supply contribution", "and spawn rate", "", "Lvl: " + supLvl, ""});
     }
     
     public PowerupIcon getSpiFreIcon() {
