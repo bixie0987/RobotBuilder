@@ -30,9 +30,6 @@ public class StartScreen extends World
         super(1024, 800, 1); 
         background = new GreenfootImage("blackBackground.png");
         setBackground(background);
-        
-        researcherText = new ResearcherText();
-        supplierText = new SupplierText();
     }
     
     public void act() {
