@@ -34,7 +34,7 @@ public class StartScreen extends World
     
     public void act() {
         if (!sound) {
-            Greenfoot.playSound("police_siren.wav");
+            Greenfoot.playSound("police_siren.mp3");
             sound = true;
         }
         if (delay > 0) {
