@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Write a description of class Supplier here.
  * 
- * @author Yuvia Liu, Jaclyn
+ * @author Yuvia Liu, Jaclyn, Chin-En Hu
  * @version April 2025
  */
 public class Supplier extends Scientist
