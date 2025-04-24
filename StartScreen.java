@@ -31,13 +31,11 @@ public class StartScreen extends World
         background = new GreenfootImage("blackBackground.png");
         setBackground(background);
         
-        researcherText = new ResearcherText();
-        supplierText = new SupplierText();
     }
     
     public void act() {
         if (!sound) {
-            Greenfoot.playSound("police_siren.wav");
+            Greenfoot.playSound("police_siren.mp3");
             sound = true;
         }
         if (delay > 0) {
