@@ -33,7 +33,8 @@ Spider freeze icon - ChatGPT
 Spider - https://vignette1.wikia.nocookie.net/geometry-dash/images/5/5a/Spider2.png/revision/latest?cb=20170221165540&path-prefix=es
 Researcher animation - https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/?authuser=0#?body=Body_color_light&head=Human_male_light&hair=Jewfro_white&jacket=Collared_coat_white&legs=Long_Pants_black&facial_eyes=Nerd_Glasses_black&gloves=Gloves_white&facial_mask=none_Plain_Mask&shield=none_Shield&wrinkes=Wrinkles_light&shoes=Basic_Shoes_black&clothes=Shortsleeve_white
 Supplier - https://chatgpt.com/431efa3a-f43e-4cc9-b273-0b6902046096
-Start button - https://pngtree.com/freepng/start-button-with-gradient-and-icon_5426089.html
+Start button - https://pngtree.com/freepng/start-button-with-gradient-and-icon_5426089.html\
+Powerup description box - https://static.vecteezy.com/system/resources/previews/046/373/138/non_2x/hud-frames-futuristic-text-box-border-frame-scifi-digital-screen-panel-set-vector.jpg
 
 
 SOUNDS:

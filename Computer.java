@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Manages powerups of researchers
  * 
- * @author Chin En, Julia
+ * @author Chin-En, Julia
  * @version April 2025
  */
 public class Computer extends Actor
@@ -19,6 +19,10 @@ public class Computer extends Actor
     // Powerup text. Set them up IN THE CONSTRUCTOR!!!!!
     private String[] spiFreText, resIncText, supIncText;
     
+    // Powerup variables (to use in their text)
+    private int resLvl = 0;
+    private int resInc, resSpeed; // idk what to do with these
+    
     public Computer() {
         setImage("researcherComputer.png");
         GreenfootImage img = getImage();
@@ -29,9 +33,9 @@ public class Computer extends Actor
         
         // Set up powerup icon description text HERE!!!!!!!
         // Each index in the array is one line of text
-        spiFreText = new String[]{"description", "", "", "", ""};
-        resIncText = new String[]{"description", "lvl: ", "line3", "line4", "line5"};
-        supIncText = new String[]{"description", "lvl: ", "line3", "line4", "line5"};
+        spiFreText = new String[]{"Freezes spiders for 30 secs in", "their pipes", "", "", "", ""};
+        resIncText = new String[]{"Boosts researcher's movement", "speed and research ability", "Lvl: " + resLvl, "line3", "line4", "line5"};
+        supIncText = new String[]{"description", "", "Lvl: ", "line3", "line4", "line5"};
         
         // Powerup icons
         spiFreIcon = new PowerupIcon("spider_freeze_icon.png", 0.5, spiFreText);
@@ -55,12 +59,6 @@ public class Computer extends Actor
         checkPowerUpStatus();
     }
     public void checkPowerUpStatus() {
-        // DEBUGGING!
-        if(Greenfoot.isKeyDown("down")) {
-            researchBar.update(95);
-        }
-        
-        
         if (researchBar.getCurrentValue() >= 100) {
             randomPowerUp = Greenfoot.getRandomNumber(3);
             
@@ -87,24 +85,19 @@ public class Computer extends Actor
         } else {
             morality = false;
         }
-        // Add your action code here.
     }
+    
     public void spiderFreeze() {
         MyWorld world = (MyWorld) getWorld();
         if (morality) {
-            //System.out.println("Good side freeze spider");
             world.freezeLeft();
-            System.out.println("called freezeLeft");
         }
         if (!morality) {
-            //System.out.println("Bad side freeze spider");
             world.freezeRight();
-            System.out.println("called freezeRight");
         }
         
         // Show spiderFreeze icon (icon is otherwise hidden when powerup is not activated)
         spiFreIcon.show();
-        System.out.println(morality + " is activated");
     }
     public void researchIncrease() {
         for (Object obj : getWorld().getObjects(Researcher.class)) {
@@ -116,6 +109,7 @@ public class Computer extends Actor
                 r.boostResearcherRight();
             }
         }
+        resLvl++; // increase level, indicator of how many times this powerup has been activated
     }
     public void supplierIncrease() {
         MyWorld world = (MyWorld) getWorld();
