@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Manages powerups of researchers
  * 
- * @author Chin-En, Julia
+ * @author Chin-En Hu, Julia
  * @version April 2025
  */
 public class Computer extends Actor
@@ -63,10 +63,13 @@ public class Computer extends Actor
             randomPowerUp = Greenfoot.getRandomNumber(3);
             
             if (randomPowerUp == 0) {
+                //freezes spiders for 30 secs
                 spiderFreeze();
             } else if (randomPowerUp == 1) {
+                //increases researcher stats
                 researchIncrease();
             } else if (randomPowerUp == 2) {
+                //increases supplier stats
                 supplierIncrease();
             }
             researchBar.update(0);

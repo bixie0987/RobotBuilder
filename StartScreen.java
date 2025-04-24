@@ -3,14 +3,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class StartScreen here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Chin-En Hu
+ * @version April 2025
  */
 public class StartScreen extends World
 {
     private GreenfootImage background;
     
     private int delay = 198;
+    
+    //booleans to ensure it doesn't spawn objects more than once
     private boolean sound = false;
     private boolean researcher = false;
     private boolean supplier = false;
