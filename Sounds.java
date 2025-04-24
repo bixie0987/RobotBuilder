@@ -25,11 +25,7 @@ public class Sounds extends Actor
 
     //array that holds each living being's sound file name
     private String[] soundNames = {"research_in_progress.wav","spider_spawn.wav","attach_limb.mp3", 
-<<<<<<< Updated upstream
         "research_bar_max.wav", "mouse_click.wav", "change_material.wav", "kill_spider.wav",
-=======
-        "research_bar_max.wav", "mouse_click.mp3", "change_material.wav", "kill_spider.wav",
->>>>>>> Stashed changes
     "win_sound.wav", "police_siren.wav"};
 
     //variables to identify living beings
